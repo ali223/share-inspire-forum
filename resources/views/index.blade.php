@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
+
 <div class="panel panel-info">
   <div class="panel-heading">
     <h1>ShareInspire</h1>
@@ -21,7 +22,9 @@
          <tr>
            <th>Title</th>
            <th>Created By</th>
-           <th>Date Created</th>         
+           <th>Date Created</th>  
+           <th>Posts</th>                    
+           <th>Last Post</th>                    
          </tr>
        </thead>
 
