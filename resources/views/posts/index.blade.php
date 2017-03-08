@@ -43,7 +43,7 @@
        </tbody>
     </table>
     <hr>
-    <a href="/categories/{{ $topic->category->id }}/topics" class="btn btn-primary">Back to Topics List</a>
+    <a href="{{ route('topics.index', $topic->category->id) }}" class="btn btn-primary">Back to Topics List</a>
   </div>
 </div>
 

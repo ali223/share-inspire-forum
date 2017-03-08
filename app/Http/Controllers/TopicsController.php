@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Topic;
 use App\Category;
+use App\Post;
 
 class TopicsController extends Controller
 {
@@ -40,12 +41,30 @@ class TopicsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Category $category)
     {
         $this->validate($request, [
             'title' => 'required',
             'content' => 'required'
         ]);
+
+        $post = new Post;
+        $post->content = $request->content;
+        $post->user_id = 7;
+
+
+        $topic = new Topic;
+        $topic->title = $request->title;
+        $topic->user_id = 7; // hard coded user id for the time being
+
+        $category->topics()->save($topic);
+
+        $topic->posts()->save($post);
+
+
+        return redirect("/categories/{$category->id}/topics");
+
+
 
     }
 

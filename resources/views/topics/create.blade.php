@@ -22,7 +22,7 @@
   </div>
 
   <div class="panel-body text-left">
-    <form method="POST" action="/categories/{{ $category->id }}/topics">
+    <form method="POST" action=" {{ route('topics.store', $category->id) }}">
       {{ csrf_field() }}
       <div class="form-group">
         <label for="title">Topic Title:</label>

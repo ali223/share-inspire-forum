@@ -11,12 +11,15 @@
 |
 */
 
-Route::get('/', 'CategoriesController@index');
-Route::get('/categories', 'CategoriesController@index');
+Route::get('/', 'CategoriesController@index')->name('home');
 
-Route::get('/categories/{category}/topics', 'TopicsController@index');
+Route::get('/categories', 'CategoriesController@index')->name('categories.index');
 
-Route::get('/categories/{category}/topics/create', 'TopicsController@create');
-Route::post('/categories/{category}/topics', 'TopicsController@store');
 
-Route::get('/topics/{topic}/posts', 'PostsController@index');
+Route::get('/categories/{category}/topics', 'TopicsController@index')->name('topics.index');
+
+Route::get('/categories/{category}/topics/create', 'TopicsController@create')->name('topics.create');
+
+Route::post('/categories/{category}/topics', 'TopicsController@store')->name('topics.store');
+
+Route::get('/topics/{topic}/posts', 'PostsController@index')->name('posts.index');

@@ -35,7 +35,7 @@
        <tbody>
           @foreach($category->topics as $topic)
           <tr>
-            <td><a href="/topics/{{ $topic->id }}/posts">{{ $topic->title }}</a></td>
+            <td><a href="{{ route('posts.index', $topic->id) }}">{{ $topic->title }}</a></td>
             <td>{{ $topic->user->name }}</td>
             <td>{{ $topic->created_at }}</td>
             <td></td>
@@ -44,8 +44,8 @@
        </tbody>
     </table>
     <hr>
-    <a href="/categories/{{ $category->id }}/topics/create" class="btn btn-primary">Create a New Topic</a>
-    <a href="/categories" class="btn btn-primary">Back to Categories List</a>
+    <a href="{{ route('topics.create', $category->id) }}" class="btn btn-primary">Create a New Topic</a>
+    <a href="{{ route('categories.index') }}" class="btn btn-primary">Back to Categories List</a>
 
   </div>
 </div>

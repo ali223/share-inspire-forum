@@ -32,7 +32,7 @@
        <tbody>
           @foreach($categories as $category)
           <tr>
-            <td><a href="/categories/{{ $category->id }}/topics">{{ $category->name }}</a></td>
+            <td><a href="{{ route('topics.index', $category->id) }}">{{ $category->name }}</a></td>
             <td>{{ $category->description }}</td>
             <td>{{ $category->user->name }}</td>
           </tr>
