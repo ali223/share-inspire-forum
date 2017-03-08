@@ -1,5 +1,7 @@
 @extends('layouts.master')
 
+@section('title', 'ShareInspire Forum | Categories')
+
 @section('content')
 
 <div class="panel panel-info">

@@ -13,6 +13,5 @@
 
 Route::get('/', 'CategoriesController@index');
 Route::get('/categories', 'CategoriesController@index');
-Route::get('/categories/{categoryid}/topics', 'TopicsController@index');
-Route::get('/topics/{topicid}', 'PostsController@index');
-
+Route::get('/categories/{category}/topics', 'TopicsController@index');
+Route::get('/topics/{topic}/posts', 'PostsController@index');

@@ -3,24 +3,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Post;
 use App\Topic;
-use App\Category;
 
-class TopicsController extends Controller
+class PostsController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Category $category)
+    public function index(Topic $topic)
     {
 
         // using Lazy Eager loading to retrieve all the related topics in one go 
         // and then pass to the views. This prevents n+1 query problem
 
-        $category->load('topics');
-        return view('topics.index', compact('category'));
+        $topic->load('posts');
+        return view('posts.index', compact('topic'));
     }
 
     /**

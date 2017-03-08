@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'ShareInspire Forum | Topics')
+@section('title', 'ShareInspire Forum | Posts')
 
 @section('content')
 
@@ -16,7 +16,8 @@
 
 <div class="panel panel-default">
   <div class="panel-heading text-center">
-    <h3>Category: <strong>{{ $category->name }}</strong></h3>
+    <h3>Category: <strong>{{ $topic->category->name }}</strong></h3>
+    <h4>Topic: <strong>{{ $topic->title }}</strong></h3>
   </div>
 
   <div class="panel-body text-center">
@@ -24,29 +25,25 @@
     <table class="table text-left">
        <thead>
          <tr>
-           <th>Topic Title</th>
-           <th>Created By</th>
-           <th>Date Created</th>
            <th>Posts</th>
-           
+           <th>Created By</th>
+           <th>Date Created</th>           
          </tr>
        </thead>
 
        <tbody>
-          @foreach($category->topics as $topic)
+          @foreach($topic->posts as $post)
           <tr>
-            <td><a href="/topics/{{ $topic->id }}/posts">{{ $topic->title }}</a></td>
-            <td>{{ $topic->user->name }}</td>
-            <td>{{ $topic->created_at }}</td>
+            <td>{{ $post->content }}</a></td>
+            <td>{{ $post->user->name }}</td>
+            <td>{{ $post->created_at }}</td>
             <td></td>
           </tr>
           @endforeach
        </tbody>
     </table>
     <hr>
-    <a href="/categories" class="btn btn-primary">Create New Topic</a>
-    <a href="/categories" class="btn btn-primary">Back to Categories List</a>
-
+    <a href="/categories/{{ $topic->category->id }}/topics" class="btn btn-primary">Back to Topics List</a>
   </div>
 </div>
 
