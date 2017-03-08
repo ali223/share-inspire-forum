@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'ShareInspire Forum | Topics')
+@section('title', "ShareInspire Forum | {$category->name} | Topics")
 
 @section('content')
 
@@ -44,7 +44,7 @@
        </tbody>
     </table>
     <hr>
-    <a href="/categories" class="btn btn-primary">Create New Topic</a>
+    <a href="/categories/{{ $category->id }}/topics/create" class="btn btn-primary">Create a New Topic</a>
     <a href="/categories" class="btn btn-primary">Back to Categories List</a>
 
   </div>

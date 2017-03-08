@@ -13,5 +13,10 @@
 
 Route::get('/', 'CategoriesController@index');
 Route::get('/categories', 'CategoriesController@index');
+
 Route::get('/categories/{category}/topics', 'TopicsController@index');
+
+Route::get('/categories/{category}/topics/create', 'TopicsController@create');
+Route::post('/categories/{category}/topics', 'TopicsController@store');
+
 Route::get('/topics/{topic}/posts', 'PostsController@index');

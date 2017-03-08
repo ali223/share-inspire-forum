@@ -28,9 +28,10 @@ class TopicsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Category $category)
     {
-        //
+
+        return view('topics.create', compact('category'));
     }
 
     /**
@@ -41,7 +42,11 @@ class TopicsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required',
+            'content' => 'required'
+        ]);
+
     }
 
     /**

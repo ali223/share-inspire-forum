@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'ShareInspire Forum | Posts')
+@section('title', "ShareInspire Forum | {$topic->category->name} | {$topic->title} | Posts")
 
 @section('content')
 
