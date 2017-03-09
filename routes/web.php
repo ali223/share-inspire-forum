@@ -23,3 +23,10 @@ Route::get('/categories/{category}/topics/create', 'TopicsController@create')->n
 Route::post('/categories/{category}/topics', 'TopicsController@store')->name('topics.store');
 
 Route::get('/topics/{topic}/posts', 'PostsController@index')->name('posts.index');
+
+Route::get('/topics/{topic}/posts/create', 'PostsController@create')->name('posts.create');
+
+Route::post('/topics/{topic}/posts', 'PostsController@store')->name('posts.store');
+
+Route::put('/topics/{topic}/posts/{post}', 'PostsController@update')->name('posts.update');
+

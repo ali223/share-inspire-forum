@@ -28,9 +28,10 @@ class PostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Topic $topic)
     {
-        //
+        $topic->load('category');
+        return view('posts.create', compact('topic'));
     }
 
     /**
@@ -39,9 +40,21 @@ class PostsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Topic $topic)
     {
-        //
+        $this->validate($request, [
+            'content' => 'required'
+        ]);
+
+        $post = new Post;
+        $post->content = $request->content;
+        $post->user_id = 6;  // hard-coding user id for the time being
+
+        $topic->posts()->save($post);
+
+        return redirect()->route('posts.index', $topic->id);
+
+
     }
 
     /**
@@ -73,9 +86,15 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Topic $topic, Post $post)
     {
-        //
+        $post->content = $request->content;
+
+        $topic->posts()->save($post);
+
+        return response()->json(['message' => 'hello world']);
+
+
     }
 
     /**

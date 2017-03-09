@@ -62,7 +62,7 @@ class TopicsController extends Controller
         $topic->posts()->save($post);
 
 
-        return redirect("/categories/{$category->id}/topics");
+        return redirect()->route('topics.index', $category->id);
 
 
 
