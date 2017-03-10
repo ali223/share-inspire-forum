@@ -92,8 +92,7 @@ class PostsController extends Controller
 
         $topic->posts()->save($post);
 
-        return response()->json(['message' => 'hello world']);
-
+        return response()->json(['new_content' => $post->content], 200);
 
     }
 
@@ -103,8 +102,11 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Topic $topic, Post $post)
     {
-        //
+        $post->delete();
+
+        return response()->json(['message' => 'The post has been deleted successfully'], 200);
+
     }
 }

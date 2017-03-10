@@ -64,7 +64,7 @@
                 <p>{{ $post->content }}</p>
                 <div class="interaction">
                   <a href="#" class="edit">Edit</a> |
-                  <a href="#">Delete</a>
+                  <a href="#" class="delete">Delete</a>
                 </div>
               </div>
             </td>
@@ -88,6 +88,7 @@
 <script>
   var token = "{{ csrf_token() }}";
   var urlEdit = "/topics/{{$topic->id}}/posts/";
+  var urlDelete = "/topics/{{$topic->id}}/posts/";
 
 </script>
 

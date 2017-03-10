@@ -30,3 +30,4 @@ Route::post('/topics/{topic}/posts', 'PostsController@store')->name('posts.store
 
 Route::put('/topics/{topic}/posts/{post}', 'PostsController@update')->name('posts.update');
 
+Route::delete('/topics/{topic}/posts/{post}', 'PostsController@destroy')->name('posts.destroy');
