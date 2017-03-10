@@ -38,6 +38,9 @@
   </div>
 </div>
 
+<div class="alert alert-success" id="message-alert" role="alert"></div>
+
+
 
 <div class="panel panel-default">
   <div class="panel-heading text-center">

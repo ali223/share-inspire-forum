@@ -2,6 +2,11 @@ var postId = 0;
 
 var postContentElement = null;
 
+$(document).ready(function(){
+
+   $('#message-alert').hide();
+
+});
 
 $('.table').find('.edit').on('click', function(event) {
 	 
@@ -39,6 +44,10 @@ $('#modal-save').on('click', function() {
 			console.log(msg['new_content']);
 			$(postContentElement).text(msg['new_content']);
 			$('#edit-modal').modal('hide');			
+
+			$('#message-alert').text('Your Post has been updated successfully.');			
+			$('#message-alert').show(0).delay(5000).fadeOut();
+
 	});
 
 	
@@ -57,7 +66,10 @@ $('.table').find('.delete').on('click', function(event) {
 	  	data: { postId: postId, _token: token}
 	})
 	 	.done(function(msg) {
-			alert(msg['message']);
+			//alert(msg['message']);
+			$('#message-alert').text(msg['message']);			
+			$('#message-alert').show(0).delay(5000).fadeOut();
+
 			var tableRow = event.target.parentNode.parentNode.parentNode.parentNode;
 			$(tableRow).remove();
 
