@@ -6,6 +6,10 @@ $(document).ready(function(){
 
    $('#message-alert').hide();
 
+   if($('#add-message-alert').length) {
+     $('#add-message-alert').delay(5000).fadeOut();
+   }
+
 });
 
 $('.table').find('.edit').on('click', function(event) {

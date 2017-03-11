@@ -13,6 +13,11 @@
   </div>
 </div>
 
+@if(Session::has('message'))
+  <div class="alert alert-success" id="add-message-alert" role="alert">{{ Session::get('message') }}</div>
+@endif
+
+
 
 <div class="panel panel-default">
   <div class="panel-heading text-center"><h3>Forum Categories</h3></div>

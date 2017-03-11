@@ -52,9 +52,9 @@ class PostsController extends Controller
 
         $topic->posts()->save($post);
 
-        return redirect()->route('posts.index', $topic->id);
-
-
+        return redirect()
+                ->route('posts.index', $topic->id)
+                ->with('message', 'New Post Created Successfully');
     }
 
     /**
