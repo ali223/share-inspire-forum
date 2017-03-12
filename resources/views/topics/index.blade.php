@@ -27,8 +27,7 @@
            <th>Topic Title</th>
            <th>Created By</th>
            <th>Date Created</th>
-           <th>Posts</th>
-           
+           <th>Posts</th>           
          </tr>
        </thead>
 
@@ -44,7 +43,11 @@
        </tbody>
     </table>
     <hr>
-    <a href="{{ route('topics.create', $category->id) }}" class="btn btn-primary">Create a New Topic</a>
+    @if(Auth::check())
+      <a href="{{ route('topics.create', $category->id) }}" 
+        class="btn btn-primary">Create a New Topic</a>
+    @endif
+
     <a href="{{ route('categories.index') }}" class="btn btn-primary">Back to Categories List</a>
 
   </div>

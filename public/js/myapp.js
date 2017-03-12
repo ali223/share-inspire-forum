@@ -45,7 +45,17 @@ $('#modal-save').on('click', function() {
 	  	data: { content: $('#post-content').val() , postId: postId, _token: token, _method: 'PUT'}
 	})
 	 	.done(function(msg) {
+	 		// if (msg.hasOwnProperty('error')) {
+				// $('#message-alert').text(msg.error]);			
+				// $('#message-alert').show();
+				// $('#edit-modal').modal('hide');			
+				// msg = null;
+				// return;
+	 		// }
+	 		
+
 			console.log(msg['new_content']);
+
 			$(postContentElement).text(msg['new_content']);
 			$('#edit-modal').modal('hide');			
 

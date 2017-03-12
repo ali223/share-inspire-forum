@@ -13,6 +13,12 @@ class PostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct() 
+    {
+        $this->middleware('auth', ['only' => ['create', 'store', 'update', 'destroy'] ]);
+    }
+
     public function index(Topic $topic)
     {
 
@@ -48,7 +54,7 @@ class PostsController extends Controller
 
         $post = new Post;
         $post->content = $request->content;
-        $post->user_id = 6;  // hard-coding user id for the time being
+        $post->user_id = auth()->user()->id;
 
         $topic->posts()->save($post);
 
@@ -88,6 +94,11 @@ class PostsController extends Controller
      */
     public function update(Request $request, Topic $topic, Post $post)
     {
+        if(!(auth()->user()->id == $post->user_id)) {
+            return response()->json
+                    (['error' => 'Unauthenticated User -- can only edit your own posts'], 200);
+        }
+
         $post->content = $request->content;
 
         $topic->posts()->save($post);

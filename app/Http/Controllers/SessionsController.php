@@ -3,11 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Topic;
-use App\Category;
-use App\Post;
 
-class TopicsController extends Controller
+class SessionsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,19 +12,14 @@ class TopicsController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function __construct()
+    public function __construct() 
     {
-        $this->middleware('auth', ['only' => ['create', 'store'] ]);
+        $this->middleware('guest', ['except' => ['destroy'] ]);
     }
 
-    public function index(Category $category)
+    public function index()
     {
-
-        // using Lazy Eager loading to retrieve all the related topics in one go 
-        // and then pass to the views. This prevents n+1 query problem
-
-        $category->load('topics');
-        return view('topics.index', compact('category'));
+        //
     }
 
     /**
@@ -35,10 +27,9 @@ class TopicsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Category $category)
+    public function create()
     {
-
-        return view('topics.create', compact('category'));
+        return view('sessions.create');
     }
 
     /**
@@ -47,31 +38,21 @@ class TopicsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Category $category)
+    public function store(Request $request)
     {
         $this->validate($request, [
-            'title' => 'required',
-            'content' => 'required'
+            'email' => 'required|email',
+            'password' => 'required'
         ]);
 
-        $post = new Post;
-        $post->content = $request->content;
-        $post->user_id = auth()->user()->id;
+        if(!auth()->attempt( [ 'email' => $request->email, 'password' => $request->password ] ) ) {
+            return back()->withErrors([
+                'message' => 'Please check your credentials and try again.'
+            ]);
+        }
 
-
-        $topic = new Topic;
-        $topic->title = $request->title;
-        $topic->user_id = auth()->user()->id;
-
-        $category->topics()->save($topic);
-
-        $topic->posts()->save($post);
-
-
-        return redirect()->route('topics.index', $category->id);
-
-
-
+        return redirect()->route('home');
+            
     }
 
     /**
@@ -114,8 +95,10 @@ class TopicsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy()
     {
-        //
+        auth()->logout();
+        return redirect()->route('home')->withMessage('You have been logged out successfully.');
     }
+        
 }
