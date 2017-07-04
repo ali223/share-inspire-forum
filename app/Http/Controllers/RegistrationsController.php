@@ -52,7 +52,7 @@ class RegistrationsController extends Controller
 
     	auth()->login($user);
 
-        Mail::to($user)->send(new Welcome($user));
+        //Mail::to($user)->send(new Welcome($user));
 
 		return redirect()->route('home')->with('message', 'User signed up successfully');        
     }
