@@ -68,10 +68,12 @@
             <td>
               <div class="content" data-postid="{{ $post->id }}">
                 <p>{{ $post->content }}</p>
-                <div class="interaction">
-                  <a href="#" class="edit">Edit</a> |
-                  <a href="#" class="delete">Delete</a>
-                </div>
+                @can('update', $post)
+                  <div class="interaction">
+                    <a href="#" class="edit">Edit</a> |
+                    <a href="#" class="delete">Delete</a>
+                  </div>
+                @endcan
               </div>
             </td>
             <td>{{ $post->user->name }} </td>

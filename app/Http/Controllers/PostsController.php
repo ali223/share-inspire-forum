@@ -94,10 +94,7 @@ class PostsController extends Controller
      */
     public function update(Request $request, Topic $topic, Post $post)
     {
-        if(!(auth()->user()->id == $post->user_id)) {
-            return response()->json
-                    (['error' => 'Unauthenticated User -- can only edit your own posts'], 200);
-        }
+        $this->authorize('update', $post);
 
         $post->content = $request->content;
 
@@ -115,6 +112,8 @@ class PostsController extends Controller
      */
     public function destroy(Topic $topic, Post $post)
     {
+        $this->authorize('update', $post);
+        
         $post->delete();
 
         return response()->json(['message' => 'The post has been deleted successfully'], 200);
