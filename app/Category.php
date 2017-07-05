@@ -15,4 +15,9 @@ class Category extends Model
     {
     	return $this->hasMany(Topic::class);
     }
+
+    public function posts()
+    {
+    	return $this->hasManyThrough(Post::class, Topic::class);
+    }
 }

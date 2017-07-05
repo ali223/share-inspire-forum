@@ -26,7 +26,7 @@
            <th>Category Name</th>
            <th>Category Description</th>
            <th>Created By</th>
-           <th>Posts</th>
+           <th>No. of Topics</th>
          </tr>
        </thead>
 
@@ -36,6 +36,7 @@
             <td><a href="{{ route('topics.index', $category->id) }}">{{ $category->name }}</a></td>
             <td>{{ $category->description }}</td>
             <td>{{ $category->user->name }}</td>
+            <td>{{ $category->topics_count }}</td>
           </tr>
           @endforeach
        </tbody>

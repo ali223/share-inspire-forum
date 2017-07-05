@@ -20,13 +20,15 @@ class TopicsController extends Controller
         $this->middleware('auth', ['only' => ['create', 'store'] ]);
     }
 
-    public function index(Category $category)
+    public function index($category_id)
     {
 
         // using Lazy Eager loading to retrieve all the related topics in one go 
         // and then pass to the views. This prevents n+1 query problem
 
-        $category->load('topics');
+        $category = Category::with('topics')->find($category_id);
+
+                
         return view('topics.index', compact('category'));
     }
 

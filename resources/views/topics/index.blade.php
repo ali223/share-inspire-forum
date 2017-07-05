@@ -27,7 +27,7 @@
            <th>Topic Title</th>
            <th>Created By</th>
            <th>Date Created</th>
-           <th>Posts</th>           
+           <th>No. of Posts</th>           
          </tr>
        </thead>
 
@@ -37,7 +37,7 @@
             <td><a href="{{ route('posts.index', $topic->id) }}">{{ $topic->title }}</a></td>
             <td>{{ $topic->user->name }}</td>
             <td>{{ $topic->created_at }}</td>
-            <td></td>
+            <td>{{ $topic->posts->count() }}</td>
           </tr>
           @endforeach
        </tbody>
