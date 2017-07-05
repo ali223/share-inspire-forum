@@ -56,7 +56,7 @@
     <table class="table text-left">
        <thead>
          <tr>
-           <th>Posts</th>
+           <th width="75%">Posts</th>
            <th>Created By</th>
            <th>Date Created</th>           
          </tr>
@@ -77,7 +77,7 @@
               </div>
             </td>
             <td>{{ $post->user->name }} </td>
-            <td>{{ $post->created_at }}</td>
+            <td>{{ $post->created_at->toDayDateTimeString() }}</td>
             <td></td>
           </tr>
           @endforeach

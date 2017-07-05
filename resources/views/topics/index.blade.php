@@ -36,7 +36,7 @@
           <tr>
             <td><a href="{{ route('posts.index', $topic->id) }}">{{ $topic->title }}</a></td>
             <td>{{ $topic->user->name }}</td>
-            <td>{{ $topic->created_at }}</td>
+            <td>{{ $topic->created_at->toDayDateTimeString() }}</td>
             <td>{{ $topic->posts->count() }}</td>
           </tr>
           @endforeach
