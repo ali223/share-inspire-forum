@@ -24,7 +24,7 @@
   <div class="panel-body">
     
     <ul>
-        @foreach($user->topics as $topic)
+        @forelse($user->topics as $topic)
           <li>
               <a href="{{ route('posts.index', $topic) }}">
                 {{ $topic->title }}
@@ -33,8 +33,9 @@
                 Created on {{ $topic->created_at->toDayDateTimeString() }}
               </em> 
           </li>
-          
-        @endforeach
+        @empty
+          <li>No Topics Created yet.</li>
+        @endforelse
     </ul>
   </div>
 </div>
@@ -46,15 +47,16 @@
   <div class="panel-body">
     
     <ul>
-        @foreach($user->posts as $post)
+        @forelse($user->posts as $post)
           <li>
               <a href="{{ route('posts.index', $post->topic) }}">
                 {{ substr($post->content, 0 ,80) }}....
               </a>
               <em>Created on {{ $post->created_at->toDayDateTimeString() }}</em> 
           </li>
-          
-        @endforeach
+        @empty
+          <li>No Posts Created yet.</li>
+        @endforelse
     </ul>
   </div>
 </div>
