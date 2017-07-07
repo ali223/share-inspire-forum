@@ -35,7 +35,11 @@
           @foreach($category->topics as $topic)
           <tr>
             <td><a href="{{ route('posts.index', $topic->id) }}">{{ $topic->title }}</a></td>
-            <td>{{ $topic->user->name }}</td>
+            <td>
+              <a href="{{ route('profiles.show', $topic->user->id) }}">
+                {{ $topic->user->name }}
+              </a>
+            </td>
             <td>{{ $topic->created_at->toDayDateTimeString() }}</td>
             <td>{{ $topic->posts->count() }}</td>
           </tr>

@@ -35,6 +35,8 @@ Route::delete('/topics/{topic}/posts/{post}', 'PostsController@destroy')->name('
 Route::get('/registrations/create', 'RegistrationsController@create')->name('registrations.create');
 Route::post('/registrations', 'RegistrationsController@store')->name('registrations.store');
 
+Route::get('/profiles/{id}', 'ProfilesController@show')->name('profiles.show');
+
 Route::get('/login', 'SessionsController@create')->name('sessions.create');
 Route::post('/login', 'SessionsController@store')->name('sessions.store');
 

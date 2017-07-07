@@ -76,7 +76,11 @@
                 @endcan
               </div>
             </td>
-            <td>{{ $post->user->name }} </td>
+            <td>
+              <a href="{{ route('profiles.show', $post->user->id) }}">
+                {{ $post->user->name }} 
+              </a>
+            </td>
             <td>{{ $post->created_at->toDayDateTimeString() }}</td>
             <td></td>
           </tr>

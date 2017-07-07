@@ -35,7 +35,11 @@
           <tr>
             <td><a href="{{ route('topics.index', $category->id) }}">{{ $category->name }}</a></td>
             <td>{{ $category->description }}</td>
-            <td>{{ $category->user->name }}</td>
+            <td>
+              <a href="{{ route('profiles.show', $category->user->id) }}">
+                {{ $category->user->name }}
+              </a>
+            </td>
             <td>{{ $category->topics_count }}</td>
           </tr>
           @endforeach
