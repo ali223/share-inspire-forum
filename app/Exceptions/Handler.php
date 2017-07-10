@@ -60,6 +60,14 @@ class Handler extends ExceptionHandler
             return response()->json(['error' => 'Unauthenticated.'], 401);
         }
 
-        return redirect()->guest(route('sessions.create'));
+        $route = 'sessions.create';
+
+        $guard = array_get($exception->guards(), 0);
+
+        if($guard == 'admin') {
+            $route = 'adminsessions.create';
+        }
+
+        return redirect()->guest(route($route));
     }
 }

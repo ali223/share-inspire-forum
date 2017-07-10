@@ -11,12 +11,22 @@
 |
 */
 
+Route::prefix('admin')->group( function () {
+	Route::get('/', 'AdminController@index')->name('admins.index');
+
+	Route::get('/login', 'AdminSessionsController@create')->name('adminsessions.create');
+
+	Route::post('/login', 'AdminSessionsController@store')->name('adminsessions.store');
+
+});
+
+
 Route::get('/', 'CategoriesController@index')->name('home');
 
 Route::get('/categories', 'CategoriesController@index')->name('categories.index');
 
 
-Route::get('/categories/{category}/topics', 'TopicsController@index')->name('topics.index');
+Route::get('/categories/{category}/topics', 'TopicsController@index')->name('topics.index'); 
 
 Route::get('/categories/{category}/topics/create', 'TopicsController@create')->name('topics.create');
 
