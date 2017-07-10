@@ -14,6 +14,11 @@
 Route::prefix('admin')->group( function () {
 	Route::get('/', 'AdminController@index')->name('admins.index');
 
+	Route::get('/categories/create', 'CategoriesController@create')->name('admincategories.create');
+
+	Route::post('/categories', 'CategoriesController@store')->name('admincategories.store');
+
+
 	Route::get('/login', 'AdminSessionsController@create')->name('adminsessions.create');
 
 	Route::post('/login', 'AdminSessionsController@store')->name('adminsessions.store');

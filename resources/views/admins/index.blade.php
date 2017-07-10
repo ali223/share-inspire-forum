@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('adminlayouts.master')
 
 @section('title', 'ShareInspire Forum | ADMIN')
 
@@ -13,7 +13,7 @@
   </div>
 </div>
 
-@include('layouts.message')
+@include('adminlayouts.message')
 
 <h3>You are logged in as ADMIN!</h3>
 @endsection

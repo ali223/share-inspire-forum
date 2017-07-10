@@ -26,7 +26,7 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        //
+        return view('admins.categories.create');
     }
 
     /**
@@ -37,7 +37,21 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'description' => 'required'
+        ]);
+
+
+        Category::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'admin_id' => auth()->guard('admin')->id()
+        ]);
+
+        return redirect()->route('admins.index');
+
+
     }
 
     /**

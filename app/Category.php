@@ -6,9 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
-    public function user()
+    protected $fillable = ['name', 'description', 'admin_id'];
+
+    public function admin()
     {
-    	return $this->belongsTo(User::class);
+    	return $this->belongsTo(Admin::class);
     }
 
     public function topics()
