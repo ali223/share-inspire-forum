@@ -20,4 +20,9 @@ class Topic extends Model
     {
     	return $this->belongsTo(Category::class);
     }
+
+    public static function unapprovedCount()
+    {
+        return static::where('approved', 0)->count();
+    }
 }

@@ -16,4 +16,10 @@
 @include('adminlayouts.message')
 
 <h3>You are logged in as ADMIN!</h3>
+
+<hr>
+
+<h4> {{ $unapprovedTopicsCount }} topics are waiting to be approved </h4>
+<h4> {{ $unapprovedPostsCount }} posts are waiting to be approved </h4>
+
 @endsection

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Topic;
+use App\Post;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -13,6 +15,13 @@ class AdminController extends Controller
 
     public function index()
     {
-    	return view('admins.index');
+
+    	$unapprovedTopicsCount = Topic::unapprovedCount();
+    	$unapprovedPostsCount = Post::unapprovedCount();
+
+    	return view('admins.index', [
+    		'unapprovedTopicsCount' => $unapprovedTopicsCount,
+    		'unapprovedPostsCount' => $unapprovedPostsCount
+    	]);
     }
 }

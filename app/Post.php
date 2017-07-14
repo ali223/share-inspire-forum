@@ -16,4 +16,10 @@ class Post extends Model
     	return $this->belongsTo(Topic::class);
     }
 
+    public static function unapprovedCount()
+    {
+        return static::where('approved', 0)->count();
+    }
+    
+
 }
