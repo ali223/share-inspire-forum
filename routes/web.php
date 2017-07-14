@@ -23,6 +23,9 @@ Route::prefix('admin')->group( function () {
 
 	Route::post('/login', 'AdminSessionsController@store')->name('adminsessions.store');
 
+	Route::get('/logout', 'AdminSessionsController@destroy')->name('adminsessions.destroy');
+
+
 });
 
 

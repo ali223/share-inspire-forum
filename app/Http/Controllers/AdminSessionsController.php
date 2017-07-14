@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers; 
 
 use Illuminate\Http\Request;
 
@@ -14,7 +14,7 @@ class AdminSessionsController extends Controller
 
     public function __construct() 
     {
-        $this->middleware('guest:admin');
+        $this->middleware('guest:admin', ['except' => 'destroy']);
     }
 
     public function index()
@@ -97,8 +97,8 @@ class AdminSessionsController extends Controller
      */
     public function destroy()
     {
-        auth()->logout();
-        return redirect()->route('home')->withMessage('You have been logged out successfully.');
+        auth()->guard('admin')->logout();
+        return redirect()->route('home')->withMessage('Admin has been logged out successfully.');
     }
         
 }

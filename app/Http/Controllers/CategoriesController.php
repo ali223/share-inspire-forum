@@ -12,6 +12,12 @@ class CategoriesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth:admin', ['only' => ['create', 'store']]);
+    }
+
     public function index()
     {
         $categories = Category::withCount('topics')->get();
@@ -49,8 +55,10 @@ class CategoriesController extends Controller
             'admin_id' => auth()->guard('admin')->id()
         ]);
 
-        return redirect()->route('admins.index');
-
+        return redirect()
+            ->back()
+            ->with('message', 
+                    "Category {$request->name} has been created successfully.");
 
     }
 
