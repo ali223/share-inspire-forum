@@ -26,7 +26,11 @@ class TopicsController extends Controller
         // using Lazy Eager loading to retrieve all the related topics in one go 
         // and then pass to the views. This prevents n+1 query problem
 
-        $category = Category::with('topics')->find($category_id);
+        $category = Category::with(
+            ['topics' => function($query) {
+                $query->where('approved', 1);
+            }] 
+        )->find($category_id);
 
                 
         return view('topics.index', compact('category'));
