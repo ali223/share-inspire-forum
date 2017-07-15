@@ -18,8 +18,12 @@
 
               <li><a href="{{ route('admincategories.create') }}">Categories</a></li>
 
-              <li><a href="{{ route('registrations.create') }}">Moderate Topics</a></li>
-              <li><a href="{{ route('sessions.create') }}">Moderate Posts</a></li>
+              <li><a href="{{ route('admintopics.index') }}">Topics</a></li>
+
+              <li><a href="{{ route('sessions.create') }}">Posts</a></li>
+
+              <li><a href="{{ route('admintopics.index') }}">Users</a></li>
+
           </ul>
           <form class="navbar-form navbar-left">
             <div class="form-group">

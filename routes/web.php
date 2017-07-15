@@ -18,6 +18,12 @@ Route::prefix('admin')->group( function () {
 
 	Route::post('/categories', 'CategoriesController@store')->name('admincategories.store');
 
+	Route::get('/topics', 'AdminTopicsController@index')->name('admintopics.index');
+
+	Route::get('/topics/approve/{topic}', 'AdminTopicsController@approve')->name('admintopics.approve');
+
+	Route::get('/topics/disapprove/{topic}', 'AdminTopicsController@disapprove')->name('admintopics.disapprove');
+
 
 	Route::get('/login', 'AdminSessionsController@create')->name('adminsessions.create');
 

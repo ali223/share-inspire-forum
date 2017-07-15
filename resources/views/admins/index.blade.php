@@ -19,7 +19,12 @@
 
 <hr>
 
-<h4> {{ $unapprovedTopicsCount }} topics are waiting to be approved </h4>
+<h4> 
+	<a href="{{ route('admintopics.index') }}">
+		{{ $unapprovedTopicsCount }} topics are waiting to be approved 
+	</a>
+	
+</h4>
 <h4> {{ $unapprovedPostsCount }} posts are waiting to be approved </h4>
 
 @endsection
