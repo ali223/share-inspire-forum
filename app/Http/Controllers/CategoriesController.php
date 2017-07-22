@@ -22,7 +22,8 @@ class CategoriesController extends Controller
     {
         $categories = Category::withCount(
                 ['topics' => function($query) {
-                    $query->where('approved', 1);
+                    $query->where('approved', 1)
+                          ->orWhere('user_id', auth()->id());
                 }
                 ])->get();
 

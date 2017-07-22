@@ -36,7 +36,13 @@
        <tbody>
           @foreach($category->topics as $topic)
           <tr>
-            <td><a href="{{ route('posts.index', $topic->id) }}">{{ $topic->title }}</a></td>
+            <td><a href="{{ route('posts.index', $topic->id) }}">
+              <strong>{{ $topic->title }}</strong>
+            <br>
+            @if (!$topic->approved)
+              <em>(Waiting for admin approval)</em>
+            @endif
+            </a></td>
             <td>
               <a href="{{ route('profiles.show', $topic->user->id) }}">
                 {{ $topic->user->name }}

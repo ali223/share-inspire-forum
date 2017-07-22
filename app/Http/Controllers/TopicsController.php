@@ -28,7 +28,8 @@ class TopicsController extends Controller
 
         $category = Category::with(
             ['topics' => function($query) {
-                $query->where('approved', 1);
+                $query->where('approved', 1)
+                      ->orWhere('user_id', auth()->id());
             }] 
         )->find($category_id);
 
