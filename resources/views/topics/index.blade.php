@@ -13,6 +13,8 @@
   </div>
 </div>
 
+@include('layouts.message')
+
 
 <div class="panel panel-default">
   <div class="panel-heading text-center">

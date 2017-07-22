@@ -27,7 +27,12 @@
         @forelse($user->topics as $topic)
           <li>
               <a href="{{ route('posts.index', $topic) }}">
-                {{ $topic->title }}
+                {{ $topic->title }} 
+              @if (!$topic->approved)
+                <em>
+                  (waiting for approval by website admin)
+                </em>
+              @endif
               </a>
               <em>
                 Created on {{ $topic->created_at->toDayDateTimeString() }}

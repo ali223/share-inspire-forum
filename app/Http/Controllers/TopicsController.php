@@ -74,7 +74,8 @@ class TopicsController extends Controller
         $topic->posts()->save($post);
 
 
-        return redirect()->route('topics.index', $category->id);
+        return redirect()->route('topics.index', $category->id)
+        ->withMessage('New topic created successfully - waiting for approval by website admin');
 
 
 

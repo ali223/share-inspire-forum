@@ -20,7 +20,11 @@ class CategoriesController extends Controller
 
     public function index()
     {
-        $categories = Category::withCount('topics')->get();
+        $categories = Category::withCount(
+                ['topics' => function($query) {
+                    $query->where('approved', 1);
+                }
+                ])->get();
 
         return view('categories.index', compact('categories'));
     }
