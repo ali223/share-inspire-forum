@@ -14,6 +14,10 @@
 </div>
 
 <div class="page-header">
+    @if (!empty($user->photourl))
+      <img src="{{ asset('storage/user_photos/' . $user->photourl) }}"
+      width = "300">
+    @endif
     <h2>{{ $user->name }} <small>Member since {{ $user->created_at->diffForHumans()  }}</small></h2>
 </div>    
 
