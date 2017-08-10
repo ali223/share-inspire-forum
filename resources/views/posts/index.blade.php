@@ -48,7 +48,10 @@
 <div class="panel panel-default">
   <div class="panel-heading text-center">
     <h3>Category: <strong>{{ $topic->category->name }}</strong></h3>
-    <h4>Topic: <strong>{{ $topic->title }}</strong></h3>
+    <h4>Topic: <strong>{{ $topic->title }}</strong></h4>
+    @if(isset($approvalMessage))
+      <strong><em>(Waiting for Admin Approval)</em></strong>
+    @endif
   </div>
 
   <div class="panel-body text-center">

@@ -25,8 +25,23 @@ class PostsController extends Controller
         // using Lazy Eager loading to retrieve all the related topics in one go 
         // and then pass to the views. This prevents n+1 query problem
 
+        $approvalMessage = "";
+
+        if((! $topic->approved)) {   
+            if(!($topic->user_id == auth()->id())) {
+                 return redirect()->route('home');
+            } 
+            $approvalMessage = "Waiting for Admin Approval";           
+        }
+            
+
         $topic->load('posts');
-        return view('posts.index', compact('topic'));
+
+        return view('posts.index', [
+            'topic' => $topic,
+            'approvalMessage' => $approvalMessage
+        ]);
+        
     }
 
     /**

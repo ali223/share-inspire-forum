@@ -23,7 +23,7 @@ class TopicsController extends Controller
     public function index($category_id)
     {
 
-        // using Lazy Eager loading to retrieve all the related topics in one go 
+        // using Eager loading to retrieve all the related topics in one go 
         // and then pass to the views. This prevents n+1 query problem
 
         $category = Category::with(
