@@ -27,11 +27,13 @@ class PostsController extends Controller
 
         $approvalMessage = "";
 
-        if((! $topic->approved)) {   
+        if(! ($topic->approved)) {   
             if(!($topic->user_id == auth()->id())) {
                  return redirect()->route('home');
             } 
+
             $approvalMessage = "Waiting for Admin Approval";           
+
         }
             
 
