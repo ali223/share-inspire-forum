@@ -15,11 +15,20 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
             <li class="active"><a href="{{ route('home') }}">Home <span class="sr-only">(current)</span></a></li>
-            <li><a href="#">Latest Posts</a></li>
+
+            <li>
+              <a href="{{ route('posts.latest') }}">Latest Posts</a>
+            </li>
+
             @if(!Auth::check())
-              <li><a href="{{ route('registrations.create') }}">Sign Up</a></li>
-              <li><a href="{{ route('sessions.create') }}">Login</a></li>
+              <li>
+                <a href="{{ route('registrations.create') }}">Sign Up</a>
+              </li>
+              <li>
+                <a href="{{ route('sessions.create') }}">Login</a>
+              </li>
             @endif
+
           </ul>
           <form class="navbar-form navbar-left">
             <div class="form-group">

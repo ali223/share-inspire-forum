@@ -46,6 +46,21 @@ class PostsController extends Controller
         
     }
 
+    public function latest()
+    {
+        $latestPosts =  Post::with(['user', 'topic'])
+                        ->latest()
+                        ->take(5)
+                        ->get();
+
+        $latestPosts = $latestPosts->filter(function($post) {
+            return $post->topic->approved;
+        });
+
+        return view('posts.latest', compact('latestPosts'));
+        
+    }
+
     /**
      * Show the form for creating a new resource.
      *

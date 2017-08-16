@@ -34,6 +34,8 @@ Route::prefix('admin')->group( function () {
 
 });
 
+Route::get('/posts/latest', 'PostsController@latest')->name('posts.latest');
+
 
 Route::get('/', 'CategoriesController@index')->name('home');
 
