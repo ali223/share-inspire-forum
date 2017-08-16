@@ -1,3 +1,6 @@
+@php
+  $route = Route::currentRouteName();
+@endphp
     <nav class="navbar navbar-inverse">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -8,23 +11,25 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="{{ route('home') }}">ShareInspire</a>
+          <a class="navbar-brand" href="{{ route('home') }}">ShareInspire</a>          
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="{{ route('home') }}">Home <span class="sr-only">(current)</span></a></li>
+            <li class="{{ $route == 'home' ? 'active' : ''}}">
+              <a href="{{ route('home') }}">Home </a>
+            </li>
 
-            <li>
+            <li class="{{ $route == 'posts.latest' ? 'active' : ''}}">
               <a href="{{ route('posts.latest') }}">Latest Posts</a>
             </li>
 
             @if(!Auth::check())
-              <li>
+              <li class="{{ $route == 'registrations.create' ? 'active' : ''}}">
                 <a href="{{ route('registrations.create') }}">Sign Up</a>
               </li>
-              <li>
+              <li class="{{ $route == 'sessions.create' ? 'active' : ''}}">
                 <a href="{{ route('sessions.create') }}">Login</a>
               </li>
             @endif
