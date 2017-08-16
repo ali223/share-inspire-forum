@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
+
     public function user()
     {
     	return $this->belongsTo(User::class);
@@ -14,6 +15,23 @@ class Post extends Model
     public function topic()
     {
     	return $this->belongsTo(Topic::class);
+    }
+
+    public function scopeWithTopicApproved($query) 
+    {
+        $query->whereHas('topic', 
+                        function($query) {
+                            $query->where('approved', 1);
+                        });
+    }
+
+    public function scopeSearchContent($query, $keywords = [])
+    {
+        $query->where( function($query) use ($keywords) {
+            foreach($keywords as $keyword) {
+                $query->orWhere('content', 'like', "%{$keyword}%");
+            }
+        });
     }
 
     public static function unapprovedCount()

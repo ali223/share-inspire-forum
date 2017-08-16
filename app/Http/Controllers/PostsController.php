@@ -8,16 +8,17 @@ use App\Topic;
 
 class PostsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
 
     public function __construct() 
     {
         $this->middleware('auth', ['only' => ['create', 'store', 'update', 'destroy'] ]);
     }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
 
     public function index(Topic $topic)
     {
@@ -49,16 +50,27 @@ class PostsController extends Controller
     public function latest()
     {
         $latestPosts =  Post::with(['user', 'topic'])
+                        ->withTopicApproved()        
                         ->latest()
                         ->take(5)
-                        ->get();
-
-        $latestPosts = $latestPosts->filter(function($post) {
-            return $post->topic->approved;
-        });
+                        ->get();       
 
         return view('posts.latest', compact('latestPosts'));
         
+    }
+
+    public function search()
+    {
+        $keywords = request()->input('keywords');
+
+        $keywords = explode(' ', $keywords);       
+
+        $searchedPosts = Post::with(['user', 'topic'])
+                        ->withTopicApproved()
+                        ->searchContent($keywords)
+                        ->get();
+
+        return view('posts.search', [ 'searchedPosts' => $searchedPosts]);
     }
 
     /**

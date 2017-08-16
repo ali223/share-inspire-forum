@@ -30,9 +30,9 @@
             @endif
 
           </ul>
-          <form class="navbar-form navbar-left">
+          <form class="navbar-form navbar-left" action="{{ route('posts.search') }}">
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="Search Posts">
+              <input type="text" name="keywords" class="form-control" placeholder="Search Posts" value="{{ request('keywords')}}">
             </div>
             <button type="submit" class="btn btn-default">Search</button>
           </form>

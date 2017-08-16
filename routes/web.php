@@ -35,6 +35,7 @@ Route::prefix('admin')->group( function () {
 });
 
 Route::get('/posts/latest', 'PostsController@latest')->name('posts.latest');
+Route::get('/posts/search', 'PostsController@search')->name('posts.search');
 
 
 Route::get('/', 'CategoriesController@index')->name('home');
