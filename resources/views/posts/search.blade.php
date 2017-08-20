@@ -12,25 +12,7 @@
   <div class="panel-body">
     <ul>
     @foreach ($searchedPosts as $post)
-      <li>
-        <p>
-          {{ $post->content }} 
-
-          <strong>Posted by</strong>
-
-          <a href="{{ route('profiles.show', $post->user->id) }}">
-            {{ $post->user->name }}
-          </a>
-
-          under the 
-          <strong>Topic</strong> 
-
-          <a href="{{ route('posts.index', $post->topic->id) }}">
-            {{$post->topic->title}}
-          </a>  
-        </p>
-      </li>
-
+      @include('layouts.postslistitem', $post)
     @endforeach
     </ul>
   </div>
