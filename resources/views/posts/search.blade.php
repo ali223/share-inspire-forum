@@ -11,9 +11,13 @@
 
   <div class="panel-body">
     <ul>
-    @foreach ($searchedPosts as $post)
+    @forelse ($searchedPosts as $post)
       @include('layouts.postslistitem', $post)
-    @endforeach
+    @empty      
+      <h3 class="text-center">
+        No matching posts found.
+      </h3>
+    @endforelse
     </ul>
   </div>
 </div>
