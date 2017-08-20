@@ -24,7 +24,11 @@
        <tbody>
           @foreach($categories as $category)
           <tr>
-            <td><a href="{{ route('topics.index', $category->id) }}">{{ $category->name }}</a></td>
+            <td>
+              <a href="{{ route('topics.index', $category->id) }}">
+                <strong>{{ $category->name }}</strong>
+              </a>
+            </td>
             <td>{{ $category->description }}</td>
             <td>
                 {{ $category->admin->name }}
