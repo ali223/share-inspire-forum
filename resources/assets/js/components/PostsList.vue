@@ -45,7 +45,7 @@ export default {
 
     methods: {
       fetchPosts() {
-        axios.get('/topics/' + this.topicId + '/posts')
+        axios.get(location.pathname)
             .then(response => {
                this.postsList = response.data.posts;
             });

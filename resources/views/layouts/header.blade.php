@@ -11,9 +11,9 @@
 
     <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
     
-    <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
-    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}">
 
     @yield('links')
 
