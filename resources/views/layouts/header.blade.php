@@ -8,6 +8,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title> @yield('title') </title>
+
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
     
     <link rel="stylesheet" href="/css/app.css">
 
