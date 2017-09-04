@@ -29,7 +29,11 @@
               {
                 content: this.content,
               }
-            );
+            )
+          .then(response => {
+              this.content = '';
+              this.$emit('postAdded');
+          })
         }
       }
     }

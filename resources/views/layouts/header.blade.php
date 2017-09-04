@@ -11,8 +11,6 @@
     
     <link rel="stylesheet" href="/css/app.css">
 
-    <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
-
     <link rel="stylesheet" type="text/css" href="/css/styles.css">
 
     @yield('links')

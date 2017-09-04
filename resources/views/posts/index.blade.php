@@ -21,34 +21,9 @@
   </div>
 
   <div class="panel-body text-center">
-    @foreach($topic->posts as $post)
+
+    <posts-list :topic-id="{{ $topic->id }}"></posts-list>
     
-      <div class="panel panel-info text-left">
-        <div class="panel-heading">
-          <strong>
-          Posted By
-            <a href="{{route('profiles.show', $post->user->id)}}">
-                {{ $post->user->name }} 
-            </a>
-            on 
-            {{ $post->created_at->toDayDateTimeString() }}
-          </strong>
-        </div>
-        <div class="panel-body">
-
-            <p>{{ $post->content }}</p>
-            @can('update', $post)
-              <div class="interaction">
-                <a href="#" class="edit">Edit</a> |
-                <a href="#" class="delete">Delete</a>
-              </div>
-            @endcan
-              </td>
-        </div>
-      </div>
-    @endforeach
-
-    <new-post></new-post>
     
     @if(Auth::check())
       <a href="{{ route('posts.create', $topic->id) }}" class="btn btn-primary">Create a New Post</a>

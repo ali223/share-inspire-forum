@@ -26,7 +26,7 @@ require('./bootstrap');
  */
 
 Vue.component('new-post', require('./components/NewPost.vue'));
-
+Vue.component('posts-list', require('./components/PostsList.vue'));
 
 const app = new Vue({
     el: '#app'
