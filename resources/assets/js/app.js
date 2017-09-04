@@ -5,7 +5,19 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
+window.Vue = require('vue');
+
+Vue.prototype.authorize = function (handler) {
+
+	let user = window.App.user;
+
+	return user ? handler(user) : false;
+
+};
+
 require('./bootstrap');
+
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -13,7 +25,8 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example', require('./components/Example.vue'));
+Vue.component('new-post', require('./components/NewPost.vue'));
+
 
 const app = new Vue({
     el: '#app'

@@ -102,6 +102,10 @@ class PostsController extends Controller
 
         $topic->posts()->save($post);
 
+        if($request->expectsJson()) {
+            return $post;
+        }
+
         return redirect()
                 ->route('posts.index', $topic->id)
                 ->with('message', 'New Post Created Successfully');
