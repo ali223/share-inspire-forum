@@ -3,7 +3,7 @@
     <div v-for="(post, index) in postsList" :key="post.id">
       <single-post 
         :initial-post-data="post" 
-        @postRemoved="removeFromPostsList(index)">        
+        @postRemoved="removeFromPostsList(index)"> 
       </single-post>
     </div>
     <new-post @postAdded="addToPostsList"></new-post>

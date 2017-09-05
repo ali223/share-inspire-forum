@@ -1,7 +1,6 @@
 <template>
     <div class="panel panel-info text-left">
       <div class="panel-heading">
-        <h3>{{postData.id}}</h3>
         <strong>
         Posted By
           <a :href="'/profiles/' + postData.user_id">
@@ -12,13 +11,29 @@
         </strong>
       </div>
       <div class="panel-body">
-          
-          <p>{{ postData.content }}</p>
+      		<div v-if="isEditing">
+      			<form>
+      				<div class="form-group">
+      					<textarea id="txtcontent" name="txtcontent" class="form-control" v-model="postData.content"></textarea>
+      				</div>
+				      <div class="interaction">
+		            <a href="#" class="btn btn-primary btn-xs" @click.prevent="update(postData.id)">Update</a>
 
-            <div class="interaction">
-              <a href="#" class="edit">Edit</a> |
-              <a href="#" class="delete" @click.prevent="remove(postData.id)">Delete</a>
-            </div>
+		            <a href="#" class="btn btn-danger btn-xs" @click.prevent="isEditing=false">Cancel</a>
+		          </div>
+
+      			</form>
+      		</div>
+          	<div v-else>
+          		<p>{{ postData.content }}</p>	
+					      <div class="interaction">
+			            <a href="#" class="btn btn-primary btn-xs" @click.prevent="isEditing=true">Edit</a>
+
+			            <a href="#" class="btn btn-danger btn-xs" @click.prevent="remove(postData.id)">Delete</a>
+			          </div>
+          	</div>
+          
+
 
       </div>
     </div>
@@ -29,7 +44,8 @@ export default {
 
 	data: function () {
 		return {
-			postData: this.initialPostData
+			postData: this.initialPostData,
+			isEditing: false
 		}
 	},
 	methods: {
@@ -38,6 +54,20 @@ export default {
             .then(response => {
               this.$emit('postRemoved');
             })
+      },
+      update: function (postId) {
+        if(this.content == '') {
+          return;
+        }
+
+        axios.put(location.pathname + '/' + postId, {
+        			content: this.postData.content
+        		})
+            .then(response => {
+            	this.isEditing = false;
+              this.$emit('postUpdated', this.postData.content);
+            })
+
       }
 
 	}

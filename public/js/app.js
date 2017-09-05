@@ -41890,6 +41890,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     addPost: function addPost() {
       var _this = this;
 
+      if (this.content == '') {
+        return;
+      }
       axios.post(location.pathname, {
         content: this.content
       }).then(function (response) {
@@ -42176,25 +42179,55 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-	props: ['initialPostData'],
+  props: ['initialPostData'],
 
-	data: function data() {
-		return {
-			postData: this.initialPostData
-		};
-	},
-	methods: {
-		remove: function remove(postId) {
-			var _this = this;
+  data: function data() {
+    return {
+      postData: this.initialPostData,
+      isEditing: false
+    };
+  },
+  methods: {
+    remove: function remove(postId) {
+      var _this = this;
 
-			axios.delete(location.pathname + '/' + postId).then(function (response) {
-				_this.$emit('postRemoved');
-			});
-		}
+      axios.delete(location.pathname + '/' + postId).then(function (response) {
+        _this.$emit('postRemoved');
+      });
+    },
+    update: function update(postId) {
+      var _this2 = this;
 
-	}
+      if (this.content == '') {
+        return;
+      }
+
+      axios.put(location.pathname + '/' + postId, {
+        content: this.postData.content
+      }).then(function (response) {
+        _this2.isEditing = false;
+        _this2.$emit('postUpdated', _this2.postData.content);
+      });
+    }
+
+  }
 });
 
 /***/ }),
@@ -42206,21 +42239,74 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "panel panel-info text-left"
   }, [_c('div', {
     staticClass: "panel-heading"
-  }, [_c('h3', [_vm._v(_vm._s(_vm.postData.id))]), _vm._v(" "), _c('strong', [_vm._v("\n    Posted By\n      "), _c('a', {
+  }, [_c('strong', [_vm._v("\n        Posted By\n          "), _c('a', {
     attrs: {
       "href": '/profiles/' + _vm.postData.user_id
     }
-  }, [_vm._v("\n          " + _vm._s(_vm.postData.user.name) + " \n      ")]), _vm._v("\n      on \n      " + _vm._s(_vm.postData.created_at) + "\n    ")])]), _vm._v(" "), _c('div', {
+  }, [_vm._v("\n              " + _vm._s(_vm.postData.user.name) + " \n          ")]), _vm._v("\n          on \n          " + _vm._s(_vm.postData.created_at) + "\n        ")])]), _vm._v(" "), _c('div', {
     staticClass: "panel-body"
-  }, [_c('p', [_vm._v(_vm._s(_vm.postData.content))]), _vm._v(" "), _c('div', {
+  }, [(_vm.isEditing) ? _c('div', [_c('form', [_c('div', {
+    staticClass: "form-group"
+  }, [_c('textarea', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.postData.content),
+      expression: "postData.content"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "id": "txtcontent",
+      "name": "txtcontent"
+    },
+    domProps: {
+      "value": (_vm.postData.content)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.postData.content = $event.target.value
+      }
+    }
+  })]), _vm._v(" "), _c('div', {
     staticClass: "interaction"
   }, [_c('a', {
-    staticClass: "edit",
+    staticClass: "btn btn-primary btn-xs",
     attrs: {
       "href": "#"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.update(_vm.postData.id)
+      }
     }
-  }, [_vm._v("Edit")]), _vm._v(" |\n          "), _c('a', {
-    staticClass: "delete",
+  }, [_vm._v("Update")]), _vm._v(" "), _c('a', {
+    staticClass: "btn btn-danger btn-xs",
+    attrs: {
+      "href": "#"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.isEditing = false
+      }
+    }
+  }, [_vm._v("Cancel")])])])]) : _c('div', [_c('p', [_vm._v(_vm._s(_vm.postData.content))]), _vm._v(" "), _c('div', {
+    staticClass: "interaction"
+  }, [_c('a', {
+    staticClass: "btn btn-primary btn-xs",
+    attrs: {
+      "href": "#"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.isEditing = true
+      }
+    }
+  }, [_vm._v("Edit")]), _vm._v(" "), _c('a', {
+    staticClass: "btn btn-danger btn-xs",
     attrs: {
       "href": "#"
     },
@@ -42230,7 +42316,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.remove(_vm.postData.id)
       }
     }
-  }, [_vm._v("Delete")])])])])
+  }, [_vm._v("Delete")])])])])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {

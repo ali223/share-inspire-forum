@@ -25,6 +25,9 @@
       },
       methods: {
         addPost: function () {
+          if(this.content == '') {
+            return;
+          }
           axios.post(location.pathname, 
               {
                 content: this.content,
