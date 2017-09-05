@@ -26,7 +26,7 @@
       		</div>
           	<div v-else>
           		<p>{{ postData.content }}</p>	
-					      <div class="interaction">
+					      <div class="interaction" v-if="canUpdate">
 			            <a href="#" class="btn btn-primary btn-xs" @click.prevent="isEditing=true">Edit</a>
 
 			            <a href="#" class="btn btn-danger btn-xs" @click.prevent="remove(postData.id)">Delete</a>
@@ -48,6 +48,11 @@ export default {
 			isEditing: false
 		}
 	},
+  computed: {
+    canUpdate: function () {
+      return this.authorize(user => this.postData.user_id == user.id);
+    }
+  },
 	methods: {
       remove: function (postId) {
         axios.delete(location.pathname + '/' + postId)

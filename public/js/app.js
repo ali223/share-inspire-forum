@@ -42177,18 +42177,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       isEditing: false
     };
   },
-  methods: {
-    remove: function remove(postId) {
+  computed: {
+    canUpdate: function canUpdate() {
       var _this = this;
 
+      return this.authorize(function (user) {
+        return _this.postData.user_id == user.id;
+      });
+    }
+  },
+  methods: {
+    remove: function remove(postId) {
+      var _this2 = this;
+
       axios.delete(location.pathname + '/' + postId).then(function (response) {
-        _this.$emit('postRemoved');
+        _this2.$emit('postRemoved');
       }).catch(function (error) {
         flashMessage('Error Deleting the Post', 'warning');
       });
     },
     update: function update(postId) {
-      var _this2 = this;
+      var _this3 = this;
 
       if (this.content == '') {
         return;
@@ -42197,8 +42206,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       axios.put(location.pathname + '/' + postId, {
         content: this.postData.content
       }).then(function (response) {
-        _this2.isEditing = false;
-        _this2.$emit('postUpdated', _this2.postData.content);
+        _this3.isEditing = false;
+        _this3.$emit('postUpdated', _this3.postData.content);
       }).catch(function (error) {
         flashMessage('Error Updating the Post', 'warning');
       });
@@ -42269,7 +42278,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.isEditing = false
       }
     }
-  }, [_vm._v("Cancel")])])])]) : _c('div', [_c('p', [_vm._v(_vm._s(_vm.postData.content))]), _vm._v(" "), _c('div', {
+  }, [_vm._v("Cancel")])])])]) : _c('div', [_c('p', [_vm._v(_vm._s(_vm.postData.content))]), _vm._v(" "), (_vm.canUpdate) ? _c('div', {
     staticClass: "interaction"
   }, [_c('a', {
     staticClass: "btn btn-primary btn-xs",
@@ -42293,7 +42302,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.remove(_vm.postData.id)
       }
     }
-  }, [_vm._v("Delete")])])])])])
+  }, [_vm._v("Delete")])]) : _vm._e()])])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
