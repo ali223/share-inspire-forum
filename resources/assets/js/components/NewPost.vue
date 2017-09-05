@@ -32,7 +32,7 @@
             )
           .then(response => {
               this.content = '';
-              this.$emit('postAdded');
+              this.$emit('postAdded', response.data);
           })
         }
       }

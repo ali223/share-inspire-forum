@@ -41894,7 +41894,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         content: this.content
       }).then(function (response) {
         _this.content = '';
-        _this.$emit('postAdded');
+        _this.$emit('postAdded', response.data);
       });
     }
   }
@@ -42033,6 +42033,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -42060,8 +42061,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       });
     },
 
-    reloadPostsList: function reloadPostsList() {
-      this.fetchPosts();
+    addToPostsList: function addToPostsList(newPostdata) {
+      this.postsList.push(newPostdata);
+    },
+    remove: function remove(postId, index) {
+      var _this2 = this;
+
+      axios.delete(location.pathname + '/' + postId).then(function (response) {
+        _this2.postsList.splice(index, 1);
+      });
     }
   }
 });
@@ -42071,38 +42079,42 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_vm._l((_vm.postsList), function(post) {
+  return _c('div', [_vm._l((_vm.postsList), function(post, index) {
     return _c('div', {
       staticClass: "panel panel-info text-left"
     }, [_c('div', {
       staticClass: "panel-heading"
-    }, [_c('strong', [_vm._v("\n      Posted By\n        "), _c('a', {
+    }, [_c('h3', [_vm._v(_vm._s(post.id))]), _vm._v(" "), _c('strong', [_vm._v("\n      Posted By\n        "), _c('a', {
       attrs: {
         "href": '/profiles/' + post.user_id
       }
     }, [_vm._v("\n            " + _vm._s(post.user.name) + " \n        ")]), _vm._v("\n        on \n        " + _vm._s(post.created_at) + "\n      ")])]), _vm._v(" "), _c('div', {
       staticClass: "panel-body"
-    }, [_c('p', [_vm._v(_vm._s(post.content))]), _vm._v(" "), _vm._m(0, true)])])
+    }, [_c('p', [_vm._v(_vm._s(post.content))]), _vm._v(" "), _c('div', {
+      staticClass: "interaction"
+    }, [_c('a', {
+      staticClass: "edit",
+      attrs: {
+        "href": "#"
+      }
+    }, [_vm._v("Edit")]), _vm._v(" |\n            "), _c('a', {
+      staticClass: "delete",
+      attrs: {
+        "href": "#"
+      },
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.remove(post.id, index)
+        }
+      }
+    }, [_vm._v("Delete")])])])])
   }), _vm._v(" "), _c('new-post', {
     on: {
-      "postAdded": _vm.reloadPostsList
+      "postAdded": _vm.addToPostsList
     }
   })], 2)
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "interaction"
-  }, [_c('a', {
-    staticClass: "edit",
-    attrs: {
-      "href": "#"
-    }
-  }, [_vm._v("Edit")]), _vm._v(" |\n            "), _c('a', {
-    staticClass: "delete",
-    attrs: {
-      "href": "#"
-    }
-  }, [_vm._v("Delete")])])
-}]}
+},staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()

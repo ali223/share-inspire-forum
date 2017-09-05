@@ -107,7 +107,7 @@ class PostsController extends Controller
         $topic->posts()->save($post);
 
         if($request->expectsJson()) {
-            return $post;
+            return $post->load('user');
         }
 
         return redirect()
