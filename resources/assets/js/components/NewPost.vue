@@ -1,5 +1,5 @@
 <template>
-    <div class="panel panel-info text-left">
+    <div class="panel panel-info text-left" v-if="signedIn">
       <div class="panel panel-heading">
         <strong>Create a New Post</strong>
       </div>
@@ -21,6 +21,11 @@
       data: function () {
         return {
           content: ''
+        }
+      },
+      computed: {
+        signedIn: function () {
+          return window.App.signedIn;
         }
       },
       methods: {

@@ -41892,6 +41892,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       content: ''
     };
   },
+  computed: {
+    signedIn: function signedIn() {
+      return window.App.signedIn;
+    }
+  },
   methods: {
     addPost: function addPost() {
       var _this = this;
@@ -41917,7 +41922,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
+  return (_vm.signedIn) ? _c('div', {
     staticClass: "panel panel-info text-left"
   }, [_vm._m(0), _vm._v(" "), _c('div', {
     staticClass: "panel-body"
@@ -41956,7 +41961,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.addPost($event)
       }
     }
-  }, [_vm._v("\n        Add Post\n      ")])])])])
+  }, [_vm._v("\n        Add Post\n      ")])])])]) : _vm._e()
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "panel panel-heading"

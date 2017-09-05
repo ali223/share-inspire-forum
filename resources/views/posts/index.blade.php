@@ -4,10 +4,8 @@
 
 @section('content')
 
-<div class="alert alert-success" id="message-alert" role="alert"></div>
-
-@if(Session::has('message'))
-  <div class="alert alert-success" id="add-message-alert" role="alert">{{ Session::get('message') }}</div>
+@if(session('message'))
+  <div class="alert alert-success" id="add-message-alert" role="alert">{{ session('message') }}</div>
 @endif
 
 
