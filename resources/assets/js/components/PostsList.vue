@@ -3,7 +3,8 @@
     <div v-for="(post, index) in postsList" :key="post.id">
       <single-post 
         :initial-post-data="post" 
-        @postRemoved="removeFromPostsList(index)"> 
+        @postRemoved="removeFromPostsList(index)"
+        @postUpdated="updateMessage"> 
       </single-post>
     </div>
     <new-post @postAdded="addToPostsList"></new-post>
@@ -39,9 +40,14 @@ export default {
       },
       addToPostsList: function (newPostdata) {
         this.postsList.push(newPostdata);
+        flashMessage('Success! New Post Added', 'success');
       },
       removeFromPostsList: function (index) {
         this.postsList.splice(index, 1);
+        flashMessage('Success! Post Deleted', 'success');
+      },
+      updateMessage: function () {
+        flashMessage('Success! Post Updated', 'success')
       }
     }
 }

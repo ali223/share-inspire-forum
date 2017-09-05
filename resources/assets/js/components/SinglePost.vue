@@ -54,6 +54,10 @@ export default {
             .then(response => {
               this.$emit('postRemoved');
             })
+            .catch(error => {
+              flashMessage('Error Deleting the Post', 'warning');
+            })
+
       },
       update: function (postId) {
         if(this.content == '') {
@@ -66,6 +70,9 @@ export default {
             .then(response => {
             	this.isEditing = false;
               this.$emit('postUpdated', this.postData.content);
+            })
+            .catch(error => {
+              flashMessage('Error Updating the Post', 'warning');
             })
 
       }

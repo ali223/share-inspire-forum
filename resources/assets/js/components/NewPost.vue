@@ -26,6 +26,7 @@
       methods: {
         addPost: function () {
           if(this.content == '') {
+            flashMessage('Error! Please enter the post text.', 'danger');
             return;
           }
           axios.post(location.pathname, 
@@ -36,7 +37,9 @@
           .then(response => {
               this.content = '';
               this.$emit('postAdded', response.data);
-          })
+          }).catch(error => {
+              flashMessage('Error Adding New Post', 'warning');
+          });
         }
       }
     }

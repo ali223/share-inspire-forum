@@ -33,5 +33,7 @@
   </div>
 </div>
 
+<flash-message></flash-message>
+
 @endsection
 

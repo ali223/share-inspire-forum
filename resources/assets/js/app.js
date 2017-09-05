@@ -25,8 +25,8 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('new-post', require('./components/NewPost.vue'));
 Vue.component('posts-list', require('./components/PostsList.vue'));
+Vue.component('flash-message', require('./components/FlashMessage.vue'));
 
 const app = new Vue({
     el: '#app'
