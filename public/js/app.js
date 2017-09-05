@@ -42006,6 +42006,8 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__NewPost_vue__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__NewPost_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__NewPost_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__SinglePost_vue__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__SinglePost_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__SinglePost_vue__);
 //
 //
 //
@@ -42018,29 +42020,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['topicId'],
 
-  components: { NewPost: __WEBPACK_IMPORTED_MODULE_0__NewPost_vue___default.a },
+  components: { NewPost: __WEBPACK_IMPORTED_MODULE_0__NewPost_vue___default.a, SinglePost: __WEBPACK_IMPORTED_MODULE_1__SinglePost_vue___default.a },
 
   data: function data() {
     return {
@@ -42064,12 +42052,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     addToPostsList: function addToPostsList(newPostdata) {
       this.postsList.push(newPostdata);
     },
-    remove: function remove(postId, index) {
-      var _this2 = this;
-
-      axios.delete(location.pathname + '/' + postId).then(function (response) {
-        _this2.postsList.splice(index, 1);
-      });
+    removeFromPostsList: function removeFromPostsList(index) {
+      this.postsList.splice(index, 1);
     }
   }
 });
@@ -42081,34 +42065,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', [_vm._l((_vm.postsList), function(post, index) {
     return _c('div', {
-      staticClass: "panel panel-info text-left"
-    }, [_c('div', {
-      staticClass: "panel-heading"
-    }, [_c('h3', [_vm._v(_vm._s(post.id))]), _vm._v(" "), _c('strong', [_vm._v("\n      Posted By\n        "), _c('a', {
+      key: post.id
+    }, [_c('single-post', {
       attrs: {
-        "href": '/profiles/' + post.user_id
-      }
-    }, [_vm._v("\n            " + _vm._s(post.user.name) + " \n        ")]), _vm._v("\n        on \n        " + _vm._s(post.created_at) + "\n      ")])]), _vm._v(" "), _c('div', {
-      staticClass: "panel-body"
-    }, [_c('p', [_vm._v(_vm._s(post.content))]), _vm._v(" "), _c('div', {
-      staticClass: "interaction"
-    }, [_c('a', {
-      staticClass: "edit",
-      attrs: {
-        "href": "#"
-      }
-    }, [_vm._v("Edit")]), _vm._v(" |\n            "), _c('a', {
-      staticClass: "delete",
-      attrs: {
-        "href": "#"
+        "initial-post-data": post
       },
       on: {
-        "click": function($event) {
-          $event.preventDefault();
-          _vm.remove(post.id, index)
+        "postRemoved": function($event) {
+          _vm.removeFromPostsList(index)
         }
       }
-    }, [_vm._v("Delete")])])])])
+    })], 1)
   }), _vm._v(" "), _c('new-post', {
     on: {
       "postAdded": _vm.addToPostsList
@@ -42128,6 +42095,150 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 43 */,
+/* 44 */,
+/* 45 */,
+/* 46 */,
+/* 47 */,
+/* 48 */,
+/* 49 */,
+/* 50 */,
+/* 51 */,
+/* 52 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(9)(
+  /* script */
+  __webpack_require__(53),
+  /* template */
+  __webpack_require__(54),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "C:\\Users\\Ali\\sites\\share-inspire-forum\\resources\\assets\\js\\components\\SinglePost.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] SinglePost.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-15f1c4b0", Component.options)
+  } else {
+    hotAPI.reload("data-v-15f1c4b0", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 53 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	props: ['initialPostData'],
+
+	data: function data() {
+		return {
+			postData: this.initialPostData
+		};
+	},
+	methods: {
+		remove: function remove(postId) {
+			var _this = this;
+
+			axios.delete(location.pathname + '/' + postId).then(function (response) {
+				_this.$emit('postRemoved');
+			});
+		}
+
+	}
+});
+
+/***/ }),
+/* 54 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "panel panel-info text-left"
+  }, [_c('div', {
+    staticClass: "panel-heading"
+  }, [_c('h3', [_vm._v(_vm._s(_vm.postData.id))]), _vm._v(" "), _c('strong', [_vm._v("\n    Posted By\n      "), _c('a', {
+    attrs: {
+      "href": '/profiles/' + _vm.postData.user_id
+    }
+  }, [_vm._v("\n          " + _vm._s(_vm.postData.user.name) + " \n      ")]), _vm._v("\n      on \n      " + _vm._s(_vm.postData.created_at) + "\n    ")])]), _vm._v(" "), _c('div', {
+    staticClass: "panel-body"
+  }, [_c('p', [_vm._v(_vm._s(_vm.postData.content))]), _vm._v(" "), _c('div', {
+    staticClass: "interaction"
+  }, [_c('a', {
+    staticClass: "edit",
+    attrs: {
+      "href": "#"
+    }
+  }, [_vm._v("Edit")]), _vm._v(" |\n          "), _c('a', {
+    staticClass: "delete",
+    attrs: {
+      "href": "#"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.remove(_vm.postData.id)
+      }
+    }
+  }, [_vm._v("Delete")])])])])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-15f1c4b0", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);
