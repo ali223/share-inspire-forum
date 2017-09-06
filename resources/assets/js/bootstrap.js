@@ -43,14 +43,15 @@ if (token) {
  * allows your team to easily build robust real-time web applications.
  */
 
-// import Echo from 'laravel-echo'
+import Echo from 'laravel-echo'
 
-// window.Pusher = require('pusher-js');
+window.Pusher = require('pusher-js');
 
-// window.Echo = new Echo({
-//     broadcaster: 'pusher',
-//     key: 'your-pusher-key'
-// });
+window.Echo = new Echo({
+    broadcaster: 'socket.io',
+    key: 'dcf673af90d652ee8bcfd43c30f4225b',
+    host: 'http://localhost:6001'
+});
 
 window.events = new Vue();
 

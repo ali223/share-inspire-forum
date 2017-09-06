@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\Topic;
+use App\Events\NewPostCreated;
+use App\Events\PostDeleted;
 
 class PostsController extends Controller
 {
@@ -106,8 +108,10 @@ class PostsController extends Controller
 
         $topic->posts()->save($post);
 
+        broadcast(new NewPostCreated($post->id))->toOthers();
+
         if($request->expectsJson()) {
-            return $post->load('user');
+            return ($post->load('user'));
         }
 
         return redirect()
@@ -165,8 +169,12 @@ class PostsController extends Controller
     public function destroy(Topic $topic, Post $post)
     {
         $this->authorize('update', $post);
+
+        $postId = $post->id;
         
         $post->delete();
+
+        broadcast(new PostDeleted($postId))->toOthers();
 
         return response()->json(['message' => 'The post has been deleted successfully'], 200);
 

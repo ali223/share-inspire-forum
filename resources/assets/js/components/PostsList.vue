@@ -29,6 +29,15 @@ export default {
 
     mounted: function () {
       this.fetchPosts();
+
+      Echo.channel('posts-channel')
+          .listen('NewPostCreated', event => {
+              this.postsList.push(event.post);
+          })
+          .listen('PostDeleted', event => {
+              this.fetchPosts();
+          });
+
     },
 
     methods: {
