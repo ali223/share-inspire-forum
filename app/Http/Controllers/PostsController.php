@@ -7,6 +7,7 @@ use App\Post;
 use App\Topic;
 use App\Events\NewPostCreated;
 use App\Events\PostDeleted;
+use App\Events\PostUpdated;
 
 class PostsController extends Controller
 {
@@ -155,6 +156,8 @@ class PostsController extends Controller
         $post->content = $request->content;
 
         $topic->posts()->save($post);
+
+        broadcast(new PostUpdated($post))->toOthers();
 
         return response()->json(['new_content' => $post->content], 200);
 

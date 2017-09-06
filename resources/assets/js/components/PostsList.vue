@@ -32,10 +32,21 @@ export default {
 
       Echo.channel('posts-channel')
           .listen('NewPostCreated', event => {
-              this.postsList.push(event.post);
+            this.postsList.push(event.post);
           })
           .listen('PostDeleted', event => {
-              this.fetchPosts();
+            let postIndex = this.getPostIndex(event.postId);
+
+            if(postIndex !== -1) {
+              this.postsList.splice(postIndex, 1);
+            }
+          })
+          .listen('PostUpdated', event => {
+            let postIndex = this.getPostIndex(event.post.id);
+
+            if(postIndex !== -1) {
+              this.postsList[postIndex].content = event.post.content;
+            }
           });
 
     },
@@ -57,6 +68,11 @@ export default {
       },
       updateMessage: function () {
         flashMessage('Success! Post Updated', 'success')
+      },
+      getPostIndex: function (postId) {
+        return this.postsList.findIndex(function(post) { 
+            return post.id == postId; 
+        });
       }
     }
 }

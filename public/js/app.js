@@ -46819,49 +46819,64 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['topicId'],
+  props: ['topicId'],
 
-    components: { NewPost: __WEBPACK_IMPORTED_MODULE_0__NewPost_vue___default.a, SinglePost: __WEBPACK_IMPORTED_MODULE_1__SinglePost_vue___default.a },
+  components: { NewPost: __WEBPACK_IMPORTED_MODULE_0__NewPost_vue___default.a, SinglePost: __WEBPACK_IMPORTED_MODULE_1__SinglePost_vue___default.a },
 
-    data: function data() {
-        return {
-            postsList: []
-        };
+  data: function data() {
+    return {
+      postsList: []
+    };
+  },
+
+  mounted: function mounted() {
+    var _this = this;
+
+    this.fetchPosts();
+
+    Echo.channel('posts-channel').listen('NewPostCreated', function (event) {
+      _this.postsList.push(event.post);
+    }).listen('PostDeleted', function (event) {
+      var postIndex = _this.getPostIndex(event.postId);
+
+      if (postIndex !== -1) {
+        _this.postsList.splice(postIndex, 1);
+      }
+    }).listen('PostUpdated', function (event) {
+      var postIndex = _this.getPostIndex(event.post.id);
+
+      if (postIndex !== -1) {
+        _this.postsList[postIndex].content = event.post.content;
+      }
+    });
+  },
+
+  methods: {
+    fetchPosts: function fetchPosts() {
+      var _this2 = this;
+
+      axios.get(location.pathname).then(function (response) {
+        _this2.postsList = response.data.posts;
+      });
     },
 
-    mounted: function mounted() {
-        var _this = this;
-
-        this.fetchPosts();
-
-        Echo.channel('posts-channel').listen('NewPostCreated', function (event) {
-            _this.postsList.push(event.post);
-        }).listen('PostDeleted', function (event) {
-            _this.fetchPosts();
-        });
+    addToPostsList: function addToPostsList(newPostdata) {
+      this.postsList.push(newPostdata);
+      flashMessage('Success! New Post Added', 'success');
     },
-
-    methods: {
-        fetchPosts: function fetchPosts() {
-            var _this2 = this;
-
-            axios.get(location.pathname).then(function (response) {
-                _this2.postsList = response.data.posts;
-            });
-        },
-
-        addToPostsList: function addToPostsList(newPostdata) {
-            this.postsList.push(newPostdata);
-            flashMessage('Success! New Post Added', 'success');
-        },
-        removeFromPostsList: function removeFromPostsList(index) {
-            this.postsList.splice(index, 1);
-            flashMessage('Success! Post Deleted', 'success');
-        },
-        updateMessage: function updateMessage() {
-            flashMessage('Success! Post Updated', 'success');
-        }
+    removeFromPostsList: function removeFromPostsList(index) {
+      this.postsList.splice(index, 1);
+      flashMessage('Success! Post Deleted', 'success');
+    },
+    updateMessage: function updateMessage() {
+      flashMessage('Success! Post Updated', 'success');
+    },
+    getPostIndex: function getPostIndex(postId) {
+      return this.postsList.findIndex(function (post) {
+        return post.id == postId;
+      });
     }
+  }
 });
 
 /***/ }),

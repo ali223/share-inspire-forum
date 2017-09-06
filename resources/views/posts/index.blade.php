@@ -22,11 +22,6 @@
 
     <posts-list :topic-id="{{ $topic->id }}"></posts-list>
     
-    
-    @if(Auth::check())
-      <a href="{{ route('posts.create', $topic->id) }}" class="btn btn-primary">Create a New Post</a>
-    @endif
-
     <a href="{{ route('topics.index', $topic->category->id) }}" class="btn btn-primary">Back to Topics List</a>
   </div>
 </div>
