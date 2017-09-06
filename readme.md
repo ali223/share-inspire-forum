@@ -1,6 +1,6 @@
 <h2>ShareInspire Forum</h2>
 <p>
-	ShareInspire Forum is a discussion forum website. It is meant to provide a platform, where people can come together and inspire eash other by sharing their thoughts and feelings. It is a personal project that I have built to learn and practise Vue.js and Laravel. 
+	ShareInspire Forum is a discussion forum website. It is meant to provide a platform, where people can come together and inspire eash other by sharing their thoughts and feelings. It is a personal project that I have built to learn and practise Vue.js and Laravel. You can visit the website at <a href="http://share-inspire-forum.herokuapp.com">http://share-inspire-forum.herokuapp.com</a>
 </p>
 <hr>
 <h3>Features</h3>
