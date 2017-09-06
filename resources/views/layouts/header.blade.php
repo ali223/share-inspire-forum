@@ -24,8 +24,9 @@
       !!}
     </script>
 
-    <script src="http://localhost:6001/socket.io/socket.io.js">
+<!--     <script src="http://localhost:6001/socket.io/socket.io.js">
     </script>
+ -->    
     @yield('links')
 
   </head>
