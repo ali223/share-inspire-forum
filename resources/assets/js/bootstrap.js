@@ -47,15 +47,10 @@ import Echo from 'laravel-echo'
 
 window.Pusher = require('pusher-js');
 
-// window.Echo = new Echo({
-//     broadcaster: 'socket.io',
-//     key: 'dcf673af90d652ee8bcfd43c30f4225b',
-//     host: 'http://localhost:6001'
-// });
-
 window.Echo = new Echo({
-    broadcaster: 'pusher',
-    key: '4a65d3c5ab3ac2f2a1b6'
+    broadcaster: 'socket.io',
+    key: 'dcf673af90d652ee8bcfd43c30f4225b',
+    host: 'http://localhost:6001'
 });
 
 
