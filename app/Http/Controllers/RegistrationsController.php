@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Mail\Welcome;
+use App\Events\UserRegistered;
 use Mail;
 
 class RegistrationsController extends Controller
@@ -38,8 +39,18 @@ class RegistrationsController extends Controller
     		'email' => 'required|email|unique:users',
     		'password' => 'required|min:6|confirmed',
     		'password_confirmation' => 'required',
-    		'about' => 'required'
+    		'about' => 'required',
+            'photofile' => 'image|max:50'
+
     	]);
+
+        $path = '';
+
+
+        if(!is_null($request->file('photofile'))) {
+            $path = $request->file('photofile')
+                            ->store('public/user_photos');
+        }
 
     	$user = new User;
 
@@ -47,12 +58,14 @@ class RegistrationsController extends Controller
     	$user->email = $request->email;
     	$user->password = bcrypt($request->password);
     	$user->about = $request->about;
+        $user->photourl = basename($path);
 
     	$user->save();
 
     	auth()->login($user);
 
-        //Mail::to($user)->send(new Welcome($user));
+        event(new UserRegistered($user));
+
 
 		return redirect()->route('home')->with('message', 'User signed up successfully');        
     }

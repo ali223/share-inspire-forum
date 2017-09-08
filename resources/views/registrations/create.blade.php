@@ -44,8 +44,8 @@
       </div>      
 
       <div class="form-group">
-        <label for="imagefile">Upload Your Photo (only .jpg)</label>
-        <input type="file" id="imagefile" name="imagefile" class="form-control">
+        <label for="photofile">Upload Your Photo (only .jpg)</label>
+        <input type="file" id="photofile" name="photofile" class="form-control">
       </div>
 
       <div class="form-group">
