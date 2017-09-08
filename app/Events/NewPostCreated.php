@@ -16,16 +16,16 @@ class NewPostCreated implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $postId;
+    public $post;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($postId)
+    public function __construct($post)
     {
-        $this->postId = $postId;
+        $this->post = $post;
     }
 
     /**
@@ -40,10 +40,11 @@ class NewPostCreated implements ShouldBroadcast
 
     public function broadcastWith()
     {
-        $postArray =  Post::with('user')
-                ->find($this->postId)
-                ->toArray();
 
-        return ['post' => $postArray];
+        $postArray =  [
+            'post' => $this->post->load('user')->toArray()
+            ];
+
+        return $postArray;
     }
 }

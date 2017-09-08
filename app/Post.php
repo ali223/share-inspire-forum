@@ -39,5 +39,4 @@ class Post extends Model
         return static::where('approved', 0)->count();
     }
     
-
 }
