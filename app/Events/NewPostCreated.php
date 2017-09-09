@@ -40,11 +40,15 @@ class NewPostCreated implements ShouldBroadcast
 
     public function broadcastWith()
     {
+        return $this->getPostsArray();
+    }
 
-        $postArray =  [
-            'post' => $this->post->load('user')->toArray()
-            ];
-
-        return $postArray;
+    protected function getPostsArray()
+    {
+        return [
+                'post' => $this->post
+                            ->load('user')
+                            ->toArray()
+                ];
     }
 }

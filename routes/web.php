@@ -69,6 +69,8 @@ Route::post('/login', 'SessionsController@store')->name('sessions.store');
 
 Route::get('/logout', 'SessionsController@destroy')->name('sessions.destroy');
 
+Route::get('/notifications', 'NotificationsController@index')->name('notifications.index');
+
 Route::get('/welcomemail', function () {
 	return new \App\Mail\WelcomeMail(\App\User::find(1));
 });

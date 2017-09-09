@@ -26,6 +26,7 @@ require('./bootstrap');
  */
 
 Vue.component('posts-list', require('./components/PostsList.vue'));
+Vue.component('notifications-list', require('./components/NotificationsList.vue'));
 Vue.component('flash-message', require('./components/FlashMessage.vue'));
 
 const app = new Vue({

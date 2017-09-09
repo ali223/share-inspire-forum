@@ -34,7 +34,7 @@ class NewPostInYourTopic extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['mail', 'database', 'broadcast'];
     }
 
     /**
@@ -59,8 +59,10 @@ class NewPostInYourTopic extends Notification
      */
     public function toArray($notifiable)
     {
-        return [
-            //
-        ];
+        return ['message' => 'New post in your topic ' . $this->post->topic->title . ' by ' . $this->post->user->name,
+                'url' => route('posts.index', $this->post->topic)
+                ];
     }
+
+
 }

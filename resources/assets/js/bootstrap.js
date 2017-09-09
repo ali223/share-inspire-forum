@@ -59,3 +59,4 @@ window.events = new Vue();
 window.flashMessage = function (message, type) {
 	window.events.$emit('flash', message, type);
 };
+

@@ -1,6 +1,7 @@
 @php
   $route = Route::currentRouteName();
 @endphp
+  <div id="app">
     <nav class="navbar navbar-inverse">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -44,7 +45,9 @@
 
           @if(Auth::check())
             <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a href="#">Welcome {{ Auth::user()->name }}</a></li>
+              <li class="active"><a href="#">Welcome {{ Auth::user()->name }}</a></li>
+
+              <notifications-list></notifications-list>
               
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
