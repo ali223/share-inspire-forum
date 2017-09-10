@@ -49,10 +49,7 @@ export default {
 		},
 		markRead(noteId)
 		{
-			axios.delete('/shareinspire/notifications/'+noteId)
-			.then(response => {
-				console.log(response);
-			});
+			axios.delete('/shareinspire/notifications/'+noteId);
 		}
 	}
 }

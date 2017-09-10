@@ -63,9 +63,7 @@ class NewPostInYourTopic extends Notification
             'message' => "New post in your topic {$this->post->topic->title} by {$this->post->user->name}",
 
             'url' => route('posts.index', $this->post->topic),
-
-
-            ];
+        ];
     }
 
 

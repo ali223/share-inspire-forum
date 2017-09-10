@@ -47398,9 +47398,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			});
 		},
 		markRead: function markRead(noteId) {
-			axios.delete('/shareinspire/notifications/' + noteId).then(function (response) {
-				console.log(response);
-			});
+			axios.delete('/shareinspire/notifications/' + noteId);
 		}
 	}
 });
