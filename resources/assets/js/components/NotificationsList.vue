@@ -1,11 +1,28 @@
 <template>
-	<li class="dropdown">
-		<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Notifications <span class="badge">{{ notesList.length }}</span><span class="caret"></span></a>
+	<li class="dropdown" v-if="notesList.length">
+		<a href="#" 
+			 class="dropdown-toggle" 
+			 data-toggle="dropdown" 
+			 role="button" 
+			 aria-haspopup="true" 
+			 aria-expanded="false">
+
+			 	Notifications 
+
+				<span class="badge">{{ notesList.length }}</span>
+				<span class="caret"></span>
+
+		</a>
+
 		<ul class="dropdown-menu">
 		  <li v-for="note in notesList">
-		  	<a :href="note.url">{{note.message}}</a>
+		  	<a :href="note.data.url"
+		  		 @click="markRead(note.id)">
+		  		 	{{note.data.message}}
+		  	</a>
 		  </li>
 		</ul>
+
 	</li>
 </template>
 
@@ -28,19 +45,14 @@ export default {
 		getNotifications() {
 
 			axios.get('/shareinspire/notifications')
-
+					.then(response => this.notesList = response.data);
+		},
+		markRead(noteId)
+		{
+			axios.delete('/shareinspire/notifications/'+noteId)
 			.then(response => {
-				
-				this.notesList = [];
-
-				let notes = response.data;
-
-				for(let i=0; i < notes.length; i++) {
-					this.notesList.push(notes[i]);
-				}
-
-			})
-			;
+				console.log(response);
+			});
 		}
 	}
 }

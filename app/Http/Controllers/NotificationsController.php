@@ -17,9 +17,19 @@ class NotificationsController extends Controller
     		return;
     	}
 
-    	$notifications = auth()->user()->notifications;
+    	$notifications = auth()->user()->unreadNotifications;
 
-    	return $notifications->pluck('data');
+    	return $notifications;
 
+    }
+
+    public function destroy($notificationId)
+    {
+    	auth()->user()
+    		->unreadNotifications()
+    		->find($notificationId)
+    		->markAsRead();
+
+    	return response()->json(['message' => 'Notification marked as read']);
     }
 }

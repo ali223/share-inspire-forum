@@ -47355,6 +47355,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	data: function data() {
@@ -47377,14 +47394,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			var _this2 = this;
 
 			axios.get('/shareinspire/notifications').then(function (response) {
-
-				_this2.notesList = [];
-
-				var notes = response.data;
-
-				for (var i = 0; i < notes.length; i++) {
-					_this2.notesList.push(notes[i]);
-				}
+				return _this2.notesList = response.data;
+			});
+		},
+		markRead: function markRead(noteId) {
+			axios.delete('/shareinspire/notifications/' + noteId).then(function (response) {
+				console.log(response);
 			});
 		}
 	}
@@ -47395,7 +47410,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('li', {
+  return (_vm.notesList.length) ? _c('li', {
     staticClass: "dropdown"
   }, [_c('a', {
     staticClass: "dropdown-toggle",
@@ -47406,19 +47421,24 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "aria-haspopup": "true",
       "aria-expanded": "false"
     }
-  }, [_vm._v("Notifications "), _c('span', {
+  }, [_vm._v("\n\n\t\t \tNotifications \n\n\t\t\t"), _c('span', {
     staticClass: "badge"
-  }, [_vm._v(_vm._s(_vm.notesList.length))]), _c('span', {
+  }, [_vm._v(_vm._s(_vm.notesList.length))]), _vm._v(" "), _c('span', {
     staticClass: "caret"
   })]), _vm._v(" "), _c('ul', {
     staticClass: "dropdown-menu"
   }, _vm._l((_vm.notesList), function(note) {
     return _c('li', [_c('a', {
       attrs: {
-        "href": note.url
+        "href": note.data.url
+      },
+      on: {
+        "click": function($event) {
+          _vm.markRead(note.id)
+        }
       }
-    }, [_vm._v(_vm._s(note.message))])])
-  }))])
+    }, [_vm._v("\n\t  \t\t \t" + _vm._s(note.data.message) + "\n\t  \t")])])
+  }))]) : _vm._e()
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {

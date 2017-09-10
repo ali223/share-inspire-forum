@@ -59,9 +59,13 @@ class NewPostInYourTopic extends Notification
      */
     public function toArray($notifiable)
     {
-        return ['message' => 'New post in your topic ' . $this->post->topic->title . ' by ' . $this->post->user->name,
-                'url' => route('posts.index', $this->post->topic)
-                ];
+        return [
+            'message' => "New post in your topic {$this->post->topic->title} by {$this->post->user->name}",
+
+            'url' => route('posts.index', $this->post->topic),
+
+
+            ];
     }
 
 

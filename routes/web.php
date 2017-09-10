@@ -71,6 +71,11 @@ Route::get('/logout', 'SessionsController@destroy')->name('sessions.destroy');
 
 Route::get('/notifications', 'NotificationsController@index')->name('notifications.index');
 
+Route::delete('/notifications/{id}', 
+	'NotificationsController@destroy')
+	->name('notifications.destroy');
+
+
 Route::get('/welcomemail', function () {
 	return new \App\Mail\WelcomeMail(\App\User::find(1));
 });
