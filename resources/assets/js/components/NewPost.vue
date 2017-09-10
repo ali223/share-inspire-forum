@@ -18,18 +18,18 @@
 
 <script>
     export default {
-      data: function () {
+      data() {
         return {
           content: ''
         }
       },
       computed: {
-        signedIn: function () {
+        signedIn() {
           return window.App.signedIn;
         }
       },
       methods: {
-        addPost: function () {
+        addPost() {
           if(this.content == '') {
             flashMessage('Error! Please enter the post text.', 'danger');
             return;

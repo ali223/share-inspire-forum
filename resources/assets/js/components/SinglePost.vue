@@ -49,12 +49,12 @@ export default {
 		}
 	},
   computed: {
-    canUpdate: function () {
+    canUpdate() {
       return this.authorize(user => this.postData.user_id == user.id);
     }
   },
 	methods: {
-      remove: function (postId) {
+      remove(postId) {
         axios.delete(location.pathname + '/' + postId)
             .then(response => {
               this.$emit('postRemoved');
@@ -64,7 +64,7 @@ export default {
             })
 
       },
-      update: function (postId) {
+      update(postId) {
         if(this.content == '') {
           return;
         }

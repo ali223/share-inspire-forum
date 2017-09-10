@@ -46829,7 +46829,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       postsList: []
     };
   },
-
   mounted: function mounted() {
     var _this = this;
 
@@ -46852,6 +46851,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     });
   },
 
+
   methods: {
     fetchPosts: function fetchPosts() {
       var _this2 = this;
@@ -46860,7 +46860,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         _this2.postsList = response.data.posts;
       });
     },
-
     addToPostsList: function addToPostsList(newPostdata) {
       this.postsList.push(newPostdata);
       flashMessage('Success! New Post Added', 'success');
@@ -46951,6 +46950,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       content: ''
     };
   },
+
   computed: {
     signedIn: function signedIn() {
       return window.App.signedIn;
@@ -47165,7 +47165,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         flashMessage('Error Updating the Post', 'warning');
       });
     }
-
   }
 });
 

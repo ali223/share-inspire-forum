@@ -21,13 +21,13 @@ export default {
 
     components: {NewPost, SinglePost},
 
-    data: function () {
+    data() {
       return {
         postsList: []
       }
     },
 
-    mounted: function () {
+    mounted() {
       this.fetchPosts();
 
       Echo.channel('posts-channel')
@@ -58,18 +58,18 @@ export default {
                this.postsList = response.data.posts;
             });
       },
-      addToPostsList: function (newPostdata) {
+      addToPostsList(newPostdata) {
         this.postsList.push(newPostdata);
         flashMessage('Success! New Post Added', 'success');
       },
-      removeFromPostsList: function (index) {
+      removeFromPostsList(index) {
         this.postsList.splice(index, 1);
         flashMessage('Success! Post Deleted', 'success');
       },
-      updateMessage: function () {
+      updateMessage() {
         flashMessage('Success! Post Updated', 'success')
       },
-      getPostIndex: function (postId) {
+      getPostIndex(postId) {
         return this.postsList.findIndex(function(post) { 
             return post.id == postId; 
         });
