@@ -26,14 +26,21 @@
               <a href="{{ route('posts.latest') }}">Latest Posts</a>
             </li>
 
-            @if(!Auth::check())
+            @auth
+              <li class="{{ $route == 'chatmessages.index' ? 'active' : ''}}">
+                <a href="{{ route('chatmessages.index') }}">Chat Room</a>
+              </li>
+
+            @endauth
+
+            @guest
               <li class="{{ $route == 'registrations.create' ? 'active' : ''}}">
                 <a href="{{ route('registrations.create') }}">Sign Up</a>
               </li>
               <li class="{{ $route == 'sessions.create' ? 'active' : ''}}">
                 <a href="{{ route('sessions.create') }}">Login</a>
               </li>
-            @endif
+            @endguest
 
           </ul>
           <form class="navbar-form navbar-left" action="{{ route('posts.search') }}">
@@ -43,7 +50,7 @@
             <button type="submit" class="btn btn-default">Search</button>
           </form>
 
-          @if(Auth::check())
+          @auth
             <ul class="nav navbar-nav navbar-right">
               <li class="active"><a href="#">Welcome {{ Auth::user()->name }}</a></li>
 
@@ -59,7 +66,7 @@
                 </ul>
               </li>
             </ul>
-          @endif
+          @endauth
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>

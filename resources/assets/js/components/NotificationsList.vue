@@ -34,7 +34,7 @@ export default {
 		}	
 	},
 	mounted() {
-		this.getNotifications();
+	  this.getNotifications();
 
 	  Echo.private('App.User.' + window.App.user.id)
 	  .notification( () => {
