@@ -48030,7 +48030,7 @@ exports = module.exports = __webpack_require__(9)(undefined);
 
 
 // module
-exports.push([module.i, "\ndiv.messages {\r\n\theight: 400px;\r\n\toverflow: scroll;\n}\t\r\n", ""]);
+exports.push([module.i, "\ndiv.messages {\r\n\theight: 400px;\r\n\toverflow: scroll;\n}\ndiv.messages ul {\r\n\tlist-style-type: none;\n}\r\n", ""]);
 
 // exports
 
@@ -48108,6 +48108,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 			_this.onlineUsers.splice(index, 1);
 		});
+	},
+	updated: function updated() {
+		this.$el.querySelector('.messages').scrollTop = this.$el.querySelector('.messages').scrollHeight;
 	},
 
 	methods: {

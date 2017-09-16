@@ -68,6 +68,10 @@
 						this.onlineUsers.splice(index, 1);
 					});
 		},
+		updated() {
+			this.$el.querySelector('.messages').scrollTop =
+			this.$el.querySelector('.messages').scrollHeight
+		},
 		methods: {
 			getMessages() {
 				axios.get(location.pathname)
@@ -94,4 +98,8 @@ div.messages {
 	height: 400px;
 	overflow: scroll;
 }	
+
+div.messages ul {
+	list-style-type: none;
+}
 </style>
