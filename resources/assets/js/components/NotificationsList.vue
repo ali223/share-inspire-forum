@@ -44,12 +44,12 @@ export default {
 	methods: {
 		getNotifications() {
 
-			axios.get('/shareinspire/notifications')
+			axios.get('/notifications')
 					.then(response => this.notesList = response.data);
 		},
 		markRead(noteId)
 		{
-			axios.delete('/shareinspire/notifications/'+noteId);
+			axios.delete('/notifications/'+noteId);
 		}
 	}
 }
