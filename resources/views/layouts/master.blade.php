@@ -1,17 +1,6 @@
 @include('layouts.header')
-
-@include('layouts.navbar')
-
-<div class="container">
-  <div class="row">
-  	<div class="col-md-12">  	
-
-  		@include('layouts.headerpanel')
-
-  		@yield('content')
-  		
-  	</div>
-  </div>	
+<div id="app">
+	@include('layouts.navbar')
+	@yield('content')  		
 </div>
-
 @include('layouts.footer')

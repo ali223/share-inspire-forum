@@ -1,0 +1,43 @@
+.navbar {
+	margin-bottom: 0;
+}
+.navbar-brand {
+	font-family: 'Dancing Script', Arial, sans-serif;
+	font-size: 50px;
+	text-shadow: 4px 4px 4px #333;	
+}
+
+.showcase {
+	background: url(../images/shareinspire4.jpeg) no-repeat 0 -150px;
+	height: 650px;
+	padding: 20 0;
+
+	h1 {
+		font-family: 'Great Vibes', Arial, sans-serif;
+		font-size: 60px;
+		color: #ddd;
+		text-shadow: 4px 4px 4px #111;
+	}
+
+	p {
+		font-style: italic;
+		font-weight: bold;
+		color: #ddd;
+	}
+
+	.slogan {
+		background-color: rgba(200, 200, 200, 0.5);
+		padding: 3px 8px 3px 5px;		
+	}
+}
+
+.margin-top {
+	margin-top: 20px;
+}
+
+footer {
+	background-color: $main-color;
+	color: #fff;
+	padding: 20px 0;
+	text-align: center;
+}

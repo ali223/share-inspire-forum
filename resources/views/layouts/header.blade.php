@@ -9,11 +9,9 @@
 
     <title> @yield('title') </title>
 
-    <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
-    
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script|Great+Vibes" rel="stylesheet">
 
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
     <script>
       window.App = {!!
