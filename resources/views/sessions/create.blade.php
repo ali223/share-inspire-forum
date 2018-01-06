@@ -18,12 +18,12 @@
 
             <div class="form-group">
               <label for="email">Your Email Address:</label>
-              <input type="text" id="email" name="email" class="form-control" value="{{ old('email') }}">
+              <input type="email" id="email" name="email" class="form-control" value="{{ old('email') }}" required>
             </div>      
 
             <div class="form-group">
               <label for="password">Your Password:</label>
-              <input type="password" id="password" name="password" class="form-control">
+              <input type="password" id="password" name="password" class="form-control" required>
             </div>      
 
             <div class="form-group">
