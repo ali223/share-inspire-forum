@@ -9,7 +9,7 @@
     <div class="col-md-8 col-md-offset-2">
       <div class="panel panel-default">
         <div class="panel-heading text-center">
-          <h3><strong>User Registration Form</strong></h3>
+          <h3>User Registration Form</h3>
         </div>
 
         @include('layouts.errors')

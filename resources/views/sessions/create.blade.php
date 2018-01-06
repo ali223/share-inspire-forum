@@ -8,7 +8,7 @@
     <div class="col-md-6 col-md-offset-3">
       <div class="panel panel-default">
         <div class="panel-heading text-center">
-          <h3><strong>User Login Form</strong></h3>
+          <h3>User Login Form</h3>
         </div>
         @include('layouts.errors')
         <div class="panel-body text-left">
