@@ -18,26 +18,41 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="{{ $route == 'home' ? 'active' : ''}}">
-          <a href="{{ route('home') }}">Home </a>
+          <a href="{{ route('home') }}">
+            <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+            Home
+          </a>
         </li>
 
         <li class="{{ $route == 'posts.latest' ? 'active' : ''}}">
-          <a href="{{ route('posts.latest') }}">Latest Posts</a>
+          <a href="{{ route('posts.latest') }}">
+            <span class="glyphicon glyphicon-book" aria-hidden="true"></span>
+            Latest Posts
+          </a>
         </li>
 
         @auth
           <li class="{{ $route == 'chatmessages.index' ? 'active' : ''}}">
-            <a href="{{ route('chatmessages.index') }}">Chat Room</a>
+            <a href="{{ route('chatmessages.index') }}">
+              <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+              Chat Room
+            </a>
           </li>
 
         @endauth
 
         @guest
           <li class="{{ $route == 'registrations.create' ? 'active' : ''}}">
-            <a href="{{ route('registrations.create') }}">Sign Up</a>
+            <a href="{{ route('registrations.create') }}">
+              <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+              Sign Up
+            </a>
           </li>
           <li class="{{ $route == 'sessions.create' ? 'active' : ''}}">
-            <a href="{{ route('sessions.create') }}">Login</a>
+            <a href="{{ route('sessions.create') }}">
+              <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+              Login
+            </a>
           </li>
         @endguest
 
