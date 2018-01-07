@@ -25,4 +25,11 @@ class Topic extends Model
     {
         return static::where('approved', 0)->count();
     }
+
+    public static function getLatestTopics()
+    {
+        return static::with('user')->latest()->take(5)->get();
+    }
+
+
 }

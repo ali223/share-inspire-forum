@@ -16,23 +16,17 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="{{ route('admins.index') }}">Admin Home <span class="sr-only">(current)</span></a></li>
+        <li class="active"><a href="{{ route('admins.index') }}">Home <span class="sr-only">(current)</span></a></li>
 
-          <li><a href="{{ route('admincategories.create') }}">Categories</a></li>
+          <li><a href="{{ route('admincategories.create') }}">New Category</a></li>
 
           <li><a href="{{ route('admintopics.index') }}">Topics</a></li>
 
-          <li><a href="{{ route('sessions.create') }}">Posts</a></li>
+          <li><a href="#">Posts</a></li>
 
-          <li><a href="{{ route('admintopics.index') }}">Users</a></li>
+          <li><a href="#">Users</a></li>
 
       </ul>
-      <form class="navbar-form navbar-left">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search Posts">
-        </div>
-        <button type="submit" class="btn btn-default">Search</button>
-      </form>
 
       @if(Auth::guard('admin')->check())
         <ul class="nav navbar-nav navbar-right">
