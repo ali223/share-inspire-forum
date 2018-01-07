@@ -4,27 +4,62 @@
 
 @section('content')
 
-<div class="panel panel-info">
-  <div class="panel-heading">
-    <h1>ShareInspire</h1>
+<header id="header">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>
+          <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+          Admin Dashboard
+        </h1>
+      </div>
+    </div>
   </div>
-  <div class="panel-body">
-    <p>ADMIN Dashboard</p>
+</header>
+
+<div class="container margin-top">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      @include('adminlayouts.message')
+
+      <div class="row">
+        <div class="col-md-4">
+          <div class="well dash-box">
+            <h3>
+              <span class="glyphicon glyphicon-book"></span>
+              Topics 
+            </h3>
+            <p>
+              <a href="{{ route('admintopics.index') }}">
+                {{ $unapprovedTopicsCount }} topics are waiting to be approved 
+              </a>
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="well dash-box">
+            <h3>
+              <span class="glyphicon glyphicon-pencil"></span>
+              Posts
+            </h3>
+            <p> {{ $unapprovedPostsCount }} posts are waiting to be approved </p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="well dash-box">
+            <h3>
+              <span class="glyphicon glyphicon-user"></span>
+              Users 
+            </h3>
+            <p>Total users registered</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
   </div>
 </div>
-
-@include('adminlayouts.message')
-
-<h3>You are logged in as ADMIN!</h3>
-
-<hr>
-
-<h4> 
-	<a href="{{ route('admintopics.index') }}">
-		{{ $unapprovedTopicsCount }} topics are waiting to be approved 
-	</a>
-	
-</h4>
-<h4> {{ $unapprovedPostsCount }} posts are waiting to be approved </h4>
 
 @endsection

@@ -98,7 +98,8 @@ class AdminSessionsController extends Controller
     public function destroy()
     {
         auth()->guard('admin')->logout();
-        return redirect()->route('home')->withMessage('Admin has been logged out successfully.');
+
+        return redirect()->route('adminsessions.create')->withMessage('Admin has been logged out successfully.');
     }
         
 }
