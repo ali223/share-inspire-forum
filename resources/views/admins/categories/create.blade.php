@@ -4,38 +4,41 @@
 
 @section('content')
 
-<div class="page-header">
-<h1>ADMIN Dashboard</h1>
-</div>
-	
-</div>
-@include('adminlayouts.message')
+<div class="container margin-top">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      @include('adminlayouts.message')
+      @include('adminlayouts.errors')
 
+      <div class="panel panel-default">
+        <div class="panel-heading text-center">
+          <h3>Create a New Category</h3>
 
-<div class="panel panel-default">
-  <div class="panel-heading text-center">
-    <h3><strong>Create a New Category</strong></h3>
+        </div>
 
-  </div>
+        <div class="panel-body text-left">
+          <form method="POST" action=" {{ route('admincategories.store') }}">
 
-  <div class="panel-body text-left">
-    <form method="POST" action=" {{ route('admincategories.store') }}">
-      {{ csrf_field() }}
-      <div class="form-group">
-        <label for="name">Category Name:</label>
-        <input type="text" id="name" name="name" class="form-control">
-      </div>      
-      <div class="form-group">
-        <label for="description">Category Description:</label>
-        <textarea id="description" name="description" class="form-control"></textarea>
-      </div>      
+            {{ csrf_field() }}
 
-      <div class="form-group">
-        <input type="submit" value="Create" class="btn btn-primary" class="form-control">
-      </div>      
+            <div class="form-group">
+              <label for="name">Category Name:</label>
+              <input type="text" id="name" name="name" value="{{ old('name') }}" class="form-control" required>
+            </div>
 
+            <div class="form-group">
+              <label for="description">Category Description:</label>
+              <textarea id="description" name="description" class="form-control" required>{{ old('description') }}</textarea>
+            </div>
 
-    </form>
+            <div class="form-group">
+              <input type="submit" value="Create" class="btn btn-primary" class="form-control">
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
