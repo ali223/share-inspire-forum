@@ -18,7 +18,7 @@
       <ul class="nav navbar-nav">
         <li class="active"><a href="{{ route('admins.index') }}">Home <span class="sr-only">(current)</span></a></li>
 
-          <li><a href="{{ route('admincategories.create') }}">New Category</a></li>
+          <li><a href="{{ route('admincategories.index') }}">Categories</a></li>
 
           <li><a href="{{ route('admintopics.index') }}">Topics</a></li>
 

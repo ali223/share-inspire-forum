@@ -29,6 +29,7 @@ Vue.component('posts-list', require('./components/PostsList.vue'));
 Vue.component('notifications-list', require('./components/NotificationsList.vue'));
 Vue.component('flash-message', require('./components/FlashMessage.vue'));
 Vue.component('chat-messages', require('./components/ChatMessages.vue'));
+Vue.component('categories-list', require('./components/CategoriesList.vue'));
 
 const app = new Vue({
     el: '#app'
