@@ -20,6 +20,9 @@ Route::prefix('admin')->group( function () {
 
 	Route::post('/categories', 'AdminCategoriesController@store')->name('admincategories.store');
 
+	Route::patch('/categories/{category}', 'AdminCategoriesController@update')->name('admincategories.update');
+
+
 	Route::get('/topics', 'AdminTopicsController@index')->name('admintopics.index');
 
 	Route::get('/topics/approve/{topic}', 'AdminTopicsController@approve')->name('admintopics.approve');

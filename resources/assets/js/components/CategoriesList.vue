@@ -18,11 +18,16 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr v-for="category in categories">
+							<tr :class="{'success' : isSelected(category) }"
+								v-for="category in categories">
 								<td>{{ category.id }}</td>
 								<td>{{ category.name }}</td>
 								<td>{{ category.description }}</td>
-								<td></td>
+								<td>
+									<button class="btn btn-primary" @click="showEditForm(category)">
+										Edit
+									</button>
+								</td>
 							</tr>
 						</tbody>
 					</table>
@@ -30,7 +35,14 @@
 			</div>
 		</div>
 		<div class="col-md-4">
-			<new-category @categoryAdded="addToCategoriesList"></new-category>
+			<new-category @categoryAdded="addToCategoriesList"
+						v-if="!editing">
+			</new-category>
+			<edit-category v-else
+						:category-data="selectedCategory"
+						@categoryUpdated="updateCategoriesList"
+						@cancelled="cancelEditForm">
+			</edit-category>
 		</div>
 	</div>
 </div>
@@ -39,13 +51,16 @@
 <script>
 
 import NewCategory from './NewCategory.vue';
+import EditCategory from './EditCategory.vue';
 
 export default {
-	components: { NewCategory },
+	components: { NewCategory, EditCategory },
 
 	data() {
 		return {
-			categories: []
+			categories: [],
+			editing: false,
+			selectedCategory: null
 		}
 	},
 
@@ -67,10 +82,43 @@ export default {
 							flashMessage('Error retrieving categories', 'danger');
 					});
 		},
+
 		addToCategoriesList(newCategoryData) {
 			this.categories.push(newCategoryData);
 			flashMessage('New category added successfully', 'success');
+		},
+
+		updateCategoriesList(updatedCategoryData) {
+			this.editing = false;
+			this.selectedCategory = null;
+
+			for (let category of this.categories) {
+				if (category.id == updatedCategoryData.id) {
+					category.name = updatedCategoryData.name;
+					category.description = updatedCategoryData.description;
+				}
+			}
+		},
+
+		showEditForm(category) {
+			this.editing = true;
+			this.selectedCategory = category;
+		},
+
+		cancelEditForm() {
+			this.editing = false;
+			this.selectedCategory = null;
+		},
+
+		isSelected(category) {
+			if (this.selectedCategory) {
+				return category.id == this.selectedCategory.id;
+			}
+
+			return false;
 		}
+
+
 	}
 }
 </script>

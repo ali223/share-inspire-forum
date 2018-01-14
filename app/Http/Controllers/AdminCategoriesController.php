@@ -47,15 +47,7 @@ class AdminCategoriesController extends Controller
             'admin_id' => auth()->guard('admin')->id()
         ]);
 
-        if ($request->expectsJson()) {
-            return $category;
-        }
-
-        return redirect()
-            ->back()
-            ->with('message', 
-                    "Category {$request->name} has been created successfully.");
-
+        return $category;
     }
     /**
      * Display the specified resource.
@@ -69,17 +61,6 @@ class AdminCategoriesController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Category $category)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -88,7 +69,18 @@ class AdminCategoriesController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'description' => 'required'
+        ]);
+
+        $category->fill([
+            'name' => $request->name,
+            'description' => $request->description,
+            'admin_id' => auth()->guard('admin')->id()
+        ])->save();
+
+        return $category;
     }
 
     /**
