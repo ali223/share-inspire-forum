@@ -10,7 +10,7 @@ class AdminCategoriesController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth:admin', ['only' => ['create', 'store']]);
+        $this->middleware('auth:admin');
     }
 
     /**
@@ -28,16 +28,6 @@ class AdminCategoriesController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('admins.categories.create');
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -51,11 +41,15 @@ class AdminCategoriesController extends Controller
         ]);
 
 
-        Category::create([
+        $category = Category::create([
             'name' => $request->name,
             'description' => $request->description,
             'admin_id' => auth()->guard('admin')->id()
         ]);
+
+        if ($request->expectsJson()) {
+            return $category;
+        }
 
         return redirect()
             ->back()

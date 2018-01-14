@@ -13,6 +13,15 @@
 
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
+    <script>
+      window.App = {!!
+          json_encode([
+              'user' => Auth::guard('admin')->user(),
+              'signedIn' => Auth::guard('admin')->check()
+          ])
+      !!}
+    </script>
+
     @yield('links')
 
   </head>
