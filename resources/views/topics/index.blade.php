@@ -52,7 +52,9 @@
               class="btn btn-primary">Create a New Topic</a>
           @endif
 
-          <a href="{{ route('categories.index') }}" class="btn btn-primary">Back to Categories List</a>
+          <a href="{{ route('categories.index') }}#list" class="btn btn-primary">
+						Back to Categories List
+          </a>
         </div>
       </div>
     </div>
