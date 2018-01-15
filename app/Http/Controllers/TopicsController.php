@@ -9,17 +9,17 @@ use App\Post;
 
 class TopicsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
 
     public function __construct()
     {
         $this->middleware('auth', ['only' => ['create', 'store'] ]);
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index($category_id)
     {
 
@@ -77,8 +77,6 @@ class TopicsController extends Controller
 
         return redirect()->route('topics.index', $category->id)
         ->withMessage('New topic created successfully - waiting for approval by website admin');
-
-
 
     }
 
