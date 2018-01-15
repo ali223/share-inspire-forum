@@ -37,8 +37,8 @@
                     {{ $categoriesCount }} Categories
                   </h3>
                   <p>
-                    <a href="{{ route('admincategories.create') }}">
-                      Create a New Category
+                    <a href="{{ route('admincategories.index') }}">
+                      Create / Edit / View Categories
                     </a>
                   </p>
                 </div>
