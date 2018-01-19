@@ -8,7 +8,6 @@ use App\Topic;
 use App\Events\NewPostCreated;
 use App\Events\PostDeleted;
 use App\Events\PostUpdated;
-use App\Notifications\NewPostInYourTopic;
 
 class PostsController extends Controller
 {
@@ -110,10 +109,6 @@ class PostsController extends Controller
                 );
 
         broadcast(new NewPostCreated($post))->toOthers();
-
-        if ($post->user_id != $topic->user_id) {
-            $topic->user->notify(new NewPostInYourTopic($post));
-        }
 
         if($request->expectsJson()) {
             return ($post->load('user'));

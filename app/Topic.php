@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Notifications\NewPostInYourTopic;
 use Illuminate\Database\Eloquent\Model;
 
 class Topic extends Model
@@ -36,11 +37,20 @@ class Topic extends Model
 
     public function addPost($content, $userId)
     {
-        return $this->posts()->create([
+        $post = $this->posts()->create([
             'content' => $content,
             'user_id' => $userId
         ]);
+
+        $this->notifyTopicCreator($post);
+
+        return $post;
     }
 
-
+    protected function notifyTopicCreator($post)
+    {
+        if ($post->user_id != $this->user_id) {
+            $this->user->notify(new NewPostInYourTopic($post));
+        }
+    }
 }
