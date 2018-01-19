@@ -112,7 +112,9 @@ class PostsController extends Controller
 
         broadcast(new NewPostCreated($post))->toOthers();
 
-        $topic->user->notify(new NewPostInYourTopic($post));
+        if ($post->user_id != $topic->user_id) {
+            $topic->user->notify(new NewPostInYourTopic($post));
+        }
 
         if($request->expectsJson()) {
             return ($post->load('user'));
