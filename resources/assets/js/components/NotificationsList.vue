@@ -7,8 +7,8 @@
 			 aria-haspopup="true" 
 			 aria-expanded="false">
 
-			 	Notifications 
-
+			 	<span class="glyphicon glyphicon-bell"></span>
+			 	
 				<span class="badge">{{ notesList.length }}</span>
 				<span class="caret"></span>
 
