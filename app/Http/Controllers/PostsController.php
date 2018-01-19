@@ -104,11 +104,10 @@ class PostsController extends Controller
             'content' => 'required'
         ]);
 
-        $post = new Post;
-        $post->content = $request->content;
-        $post->user_id = auth()->user()->id;
-
-        $topic->posts()->save($post);
+        $post = $topic->addPost(
+                    $request->content,
+                    auth()->id()
+                );
 
         broadcast(new NewPostCreated($post))->toOthers();
 

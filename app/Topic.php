@@ -34,5 +34,13 @@ class Topic extends Model
         return static::with('user')->latest()->take(5)->get();
     }
 
+    public function addPost($content, $userId)
+    {
+        return $this->posts()->create([
+            'content' => $content,
+            'user_id' => $userId
+        ]);
+    }
+
 
 }
