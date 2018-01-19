@@ -6,6 +6,7 @@
 <div class="container margin-top">
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
+
       <div class="panel panel-default">
         <div class="panel-heading text-center">
           <h3>Category: <strong>{{ $category->name }}</strong></h3>
@@ -14,6 +15,9 @@
         </div>
 
         <div class="panel-body text-left">
+
+          @include('layouts.errors')
+
           <form method="POST" action=" {{ route('topics.store', $category->id) }}">
             {{ csrf_field() }}
             <div class="form-group">
