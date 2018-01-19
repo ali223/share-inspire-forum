@@ -22,11 +22,11 @@
             {{ csrf_field() }}
             <div class="form-group">
               <label for="title">Topic Title:</label>
-              <input type="text" id="title" name="title" class="form-control">
+              <input type="text" id="title" name="title" class="form-control" required>
             </div>      
             <div class="form-group">
               <label for="content">Topic Post:</label>
-              <textarea id="content" name="content" class="form-control"></textarea>
+              <textarea id="content" name="content" class="form-control" required></textarea>
             </div>      
 
             <div class="form-group">
