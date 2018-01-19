@@ -61,23 +61,14 @@ class TopicsController extends Controller
             'content' => 'required'
         ]);
 
-        $post = new Post;
-        $post->content = $request->content;
-        $post->user_id = auth()->user()->id;
-
-
-        $topic = new Topic;
-        $topic->title = $request->title;
-        $topic->user_id = auth()->user()->id;
-
-        $category->topics()->save($topic);
-
-        $topic->posts()->save($post);
-
+        $category->addTopic(
+            $request->title, 
+            $request->content,
+            auth()->id()
+        );
 
         return redirect()->route('topics.index', $category->id)
         ->withMessage('New topic created successfully - waiting for approval by website admin');
-
     }
 
     /**

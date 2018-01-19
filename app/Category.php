@@ -22,4 +22,19 @@ class Category extends Model
     {
     	return $this->hasManyThrough(Post::class, Topic::class);
     }
+
+    public function addTopic($title, $content, $userId)
+    {
+        $topic = $this->topics()->create([
+            'title' => $title,
+            'user_id' => $userId
+        ]);
+
+        $topic->posts()->create([
+            'content' => $content,
+            'user_id' => $userId
+        ]);
+
+        return $topic;
+    }
 }
