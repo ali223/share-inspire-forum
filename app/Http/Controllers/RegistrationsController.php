@@ -40,16 +40,14 @@ class RegistrationsController extends Controller
     		'password' => 'required|min:6|confirmed',
     		'password_confirmation' => 'required',
     		'about' => 'required',
-            'photofile' => 'image|max:50'
+            'photofile' => 'image|max:500'
 
     	]);
 
         $path = '';
 
-
-        if(!is_null($request->file('photofile'))) {
-            $path = $request->file('photofile')
-                            ->store('public/user_photos');
+        if( $request->hasFile('photofile') ) {
+            $path = $request->file('photofile')->store('images');
         }
 
     	$user = new User;
@@ -58,7 +56,7 @@ class RegistrationsController extends Controller
     	$user->email = $request->email;
     	$user->password = bcrypt($request->password);
     	$user->about = $request->about;
-        $user->photourl = basename($path);
+        $user->photourl = $path;
 
     	$user->save();
 

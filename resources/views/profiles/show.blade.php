@@ -7,10 +7,7 @@
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
       <div class="page-header">
-          @if (!empty($user->photourl))
-            <img src="{{ asset('storage/user_photos/' . $user->photourl) }}"
-            width = "300">
-          @endif
+          @include('profiles.userimage', ['width' => 125]);
           <h2>{{ $user->name }} <small>Member since {{ $user->created_at->diffForHumans()  }}</small></h2>
       </div>    
 
