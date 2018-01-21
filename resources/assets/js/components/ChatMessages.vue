@@ -11,14 +11,13 @@
 					</li>
 				</ul>
 			</div>
-			<form>
+			<form @submit.prevent="sendMessage">
 				<div class="form-group">
-					<textarea class="form-control" v-model="newMessage"></textarea>
+					<textarea class="form-control" v-model="newMessage" required></textarea>
 				</div>
 				<div class="form-group">
-					<button class="btn btn-primary" type="submit" @click.prevent="sendMessage">Send Message</button>
+					<button class="btn btn-primary" type="submit">Send Message</button>
 				</div>
-
 			</form>
 		</div>
 		<div class="col-md-4">
@@ -88,6 +87,9 @@
 					.then(response => {
 							this.getMessages();
 							this.newMessage = '';
+					})
+					.catch(error => {
+						flashMessage('Error sending message', 'danger');
 					});
 			}
 		}

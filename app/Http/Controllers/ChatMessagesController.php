@@ -20,7 +20,7 @@ class ChatMessagesController extends Controller
      */
     public function index(Request $request)
     {
-        if($request->expectsJson()) {
+        if ($request->expectsJson()) {
             return ChatMessage::with('user')->get();
         }
 
@@ -35,9 +35,13 @@ class ChatMessagesController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'text' => 'required'
+        ]);
+
         $chatMessage = ChatMessage::create([
             'text' => $request->text,
-            'user_id' => $request->user_id
+            'user_id' => auth()->id()
         ]);
 
         broadcast(new NewChatMessage($chatMessage))->toOthers();
