@@ -6,20 +6,10 @@ use Illuminate\Http\Request;
 
 class SessionsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
 
     public function __construct() 
     {
         $this->middleware('guest', ['except' => ['destroy'] ]);
-    }
-
-    public function index()
-    {
-        //
     }
 
     /**
@@ -56,40 +46,6 @@ class SessionsController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
@@ -98,7 +54,10 @@ class SessionsController extends Controller
     public function destroy()
     {
         auth()->logout();
-        return redirect()->route('home')->withMessage('You have been logged out successfully.');
+        
+        return redirect()
+            ->route('home')
+            ->withMessage('You have been logged out successfully.');
     }
         
 }

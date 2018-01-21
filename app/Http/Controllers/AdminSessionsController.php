@@ -6,20 +6,10 @@ use Illuminate\Http\Request;
 
 class AdminSessionsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
 
     public function __construct() 
     {
         $this->middleware('guest:admin', ['except' => 'destroy']);
-    }
-
-    public function index()
-    {
-        //
     }
 
     /**
@@ -53,40 +43,6 @@ class AdminSessionsController extends Controller
 
         return redirect()->route('admins.index');
             
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
     }
 
     /**

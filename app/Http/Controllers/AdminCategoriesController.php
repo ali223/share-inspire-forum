@@ -49,16 +49,6 @@ class AdminCategoriesController extends Controller
 
         return $category;
     }
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Category $category)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -83,14 +73,4 @@ class AdminCategoriesController extends Controller
         return $category;
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Category $category)
-    {
-        //
-    }
 }
