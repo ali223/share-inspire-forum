@@ -25,25 +25,19 @@ class PostsController extends Controller
 
     public function index(Topic $topic)
     {
-
-        // using Lazy Eager loading to retrieve all the related topics in one go 
-        // and then pass to the views. This prevents n+1 query problem
-
         $approvalMessage = "";
 
-        if(! ($topic->approved)) {   
-            if(!($topic->user_id == auth()->id())) {
+        if (!$topic->approved) {
+            if (!($topic->user_id == auth()->id())) {
                  return redirect()->route('home');
             } 
 
-            $approvalMessage = "Waiting for Admin Approval";           
-
+            $approvalMessage = "Waiting for Admin Approval";
         }
             
-
         $topic->load(['posts', 'posts.user']);
 
-        if(request()->expectsJson()) {
+        if (request()->expectsJson()) {
             return $topic;
         }
 
@@ -63,7 +57,6 @@ class PostsController extends Controller
                         ->get();       
 
         return view('posts.latest', compact('latestPosts'));
-        
     }
 
     public function search()
@@ -77,7 +70,9 @@ class PostsController extends Controller
                         ->searchContent($keywords)
                         ->get();
 
-        return view('posts.search', [ 'searchedPosts' => $searchedPosts]);
+        return view('posts.search', [
+            'searchedPosts' => $searchedPosts
+        ]);
     }
 
     /**
@@ -88,6 +83,7 @@ class PostsController extends Controller
     public function create(Topic $topic)
     {
         $topic->load('category');
+
         return view('posts.create', compact('topic'));
     }
 
@@ -156,7 +152,8 @@ class PostsController extends Controller
 
         broadcast(new PostDeleted($postId))->toOthers();
 
-        return response()->json(['message' => 'The post has been deleted successfully'], 200);
-
+        return response()->json([
+            'message' => 'The post has been deleted successfully'
+            ], 200);
     }
 }
