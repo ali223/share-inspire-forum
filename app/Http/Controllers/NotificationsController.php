@@ -6,30 +6,30 @@ use Illuminate\Http\Request;
 
 class NotificationsController extends Controller
 {
-	public function __construct()
-	{
-		$this->middleware('auth');
-	}
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function index(Request $request)
     {
-    	if(!$request->expectsJson()) {
-    		return;
-    	}
+        if (!$request->expectsJson()) {
+            return;
+        }
 
-    	$notifications = auth()->user()->unreadNotifications;
+        $notifications = auth()->user()->unreadNotifications;
 
-    	return $notifications;
+        return $notifications;
 
     }
 
     public function destroy($notificationId)
     {
-    	auth()->user()
-    		->unreadNotifications()
-    		->find($notificationId)
-    		->markAsRead();
+        auth()->user()
+            ->unreadNotifications()
+            ->find($notificationId)
+            ->markAsRead();
 
-    	return response()->json(['message' => 'Notification marked as read']);
+        return response()->json(['message' => 'Notification marked as read']);
     }
 }
