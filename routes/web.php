@@ -67,6 +67,8 @@ Route::delete('/topics/{topic}/posts/{post}', 'PostsController@destroy')->name('
 Route::get('/registrations/create', 'RegistrationsController@create')->name('registrations.create');
 Route::post('/registrations', 'RegistrationsController@store')->name('registrations.store');
 
+Route::get('/profiles/edit/{user}', 'ProfilesController@edit')->name('profiles.edit');
+Route::patch('/profiles/{user}', 'ProfilesController@update')->name('profiles.update');
 Route::get('/profiles/{id}', 'ProfilesController@show')->name('profiles.show');
 
 Route::get('/login', 'SessionsController@create')->name('sessions.create');

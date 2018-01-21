@@ -74,7 +74,7 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="{{ route('profiles.show', auth()->id()) }}">Your Profile</a></li>
-              <li><a href="#">Settings</a></li>
+              <li><a href="{{ route('profiles.edit', auth()->user()) }}">Edit Profile</a></li>
               <li role="separator" class="divider"></li>
               <li><a href="{{ route('sessions.destroy') }}">Logout</a></li>
             </ul>

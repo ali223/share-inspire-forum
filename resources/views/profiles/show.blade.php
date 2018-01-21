@@ -17,7 +17,15 @@
           {{ $user->name }}
           <small>Member since {{ $user->created_at->diffForHumans() }}</small>
         </h2>
+        @can('update', $user)
+          <a href="{{ route('profiles.edit', $user) }}"
+            class="btn btn-sm btn-primary">
+            Edit Profile    
+          </a>
+        @endcan
       </div>    
+
+      @include('layouts.message')
 
       <div class="panel panel-info">
         <div class="panel-heading">

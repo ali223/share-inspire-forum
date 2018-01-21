@@ -8,6 +8,12 @@ use Illuminate\Support\Facades\Storage;
 
 class ProfilesController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth', ['only' => ['edit', 'update']]);
+    }
+
     /**
      * Display the specified resource.
      *
@@ -24,6 +30,56 @@ class ProfilesController extends Controller
             'user' => $user,
             'profileImageUrl' => $profileImageUrl
         ]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(User $user)
+    {
+        $this->authorize('update', $user);
+
+        $profileImageUrl = $this->getProfileImageUrl($user->photourl);
+
+        return view('profiles.edit', [
+            'user' => $user,
+            'profileImageUrl' => $profileImageUrl
+        ]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, User $user)
+    {
+        $this->authorize('update', $user);
+
+        $this->validate($request, [
+            'about' => 'required',
+            'photofile' => 'image|max:500'
+        ]);
+
+        $path = $user->photourl;
+
+        if ($request->hasFile('photofile')) {
+            $path = $request->file('photofile')->store('images', 'dropbox');
+        }
+
+        $user->update([
+            'about' => $request->about,
+            'photourl' => $path
+        ]);
+
+        return redirect()
+            ->route('profiles.show', $user)
+            ->with('message', 'Profile updated successfully');        
     }
 
     protected function getProfileImageUrl($imageFile)
