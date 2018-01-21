@@ -47,7 +47,7 @@ class RegistrationsController extends Controller
         $path = '';
 
         if( $request->hasFile('photofile') ) {
-            $path = $request->file('photofile')->store('images');
+            $path = $request->file('photofile')->store('images', 'dropbox');
         }
 
     	$user = new User;
@@ -64,7 +64,6 @@ class RegistrationsController extends Controller
 
         event(new UserRegistered($user));
 
-
-		return redirect()->route('home')->with('message', 'User signed up successfully');        
+		return redirect()->route('home')->with('message', 'User signed up successfully');
     }
 }

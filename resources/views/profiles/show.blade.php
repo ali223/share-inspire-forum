@@ -7,8 +7,14 @@
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
       <div class="page-header">
-          @include('profiles.userimage', ['width' => 125]);
-          <h2>{{ $user->name }} <small>Member since {{ $user->created_at->diffForHumans()  }}</small></h2>
+        @if ($profileImageUrl)
+          <img class="profile-image" width="125" src="{{ $profileImageUrl }}">
+        @else
+          <span class="glyphicon glyphicon-user profile-icon"></span>
+        @endif
+
+        <h2>{{ $user->name }} <small>Member since {{ $user->created_at->diffForHumans()  }}</small></h2>
+
       </div>    
 
 

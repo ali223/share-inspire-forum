@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\User;
-
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProfilesController extends Controller
 {
@@ -49,7 +49,12 @@ class ProfilesController extends Controller
     {
         $user = User::with(['topics','posts'])->find($id);
 
-        return view('profiles.show', compact('user'));
+        $profileImageUrl = $this->getProfileImageUrl($user->photourl);
+
+        return view('profiles.show', [
+            'user' => $user,
+            'profileImageUrl' => $profileImageUrl
+        ]);
     }
 
     /**
@@ -84,5 +89,16 @@ class ProfilesController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    protected function getProfileImageUrl($imageFile)
+    {
+        if (Storage::disk('dropbox')->exists($imageFile)) {
+                return Storage::disk('dropbox')
+                             ->getAdapter()
+                             ->getTemporaryLink($imageFile);
+        }
+
+        return null;
     }
 }

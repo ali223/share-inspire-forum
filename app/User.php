@@ -46,7 +46,4 @@ class User extends Authenticatable
     {
         return static::latest()->take(5)->get();
     }
-
-
-
 }
