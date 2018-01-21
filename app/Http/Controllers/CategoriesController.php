@@ -14,13 +14,8 @@ class CategoriesController extends Controller
      */    
     public function index()
     {
-        $categories = Category::withCount(
-                ['topics' => function($query) {
-                    $query->where('approved', 1)
-                          ->orWhere('user_id', auth()->id());
-                }
-                ])->get();
-
+        $categories = Category::getCategoriesWithTopicsCount();
+        
         return view('categories.index', compact('categories'));
     }
 }
