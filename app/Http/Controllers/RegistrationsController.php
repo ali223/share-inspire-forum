@@ -41,12 +41,11 @@ class RegistrationsController extends Controller
     		'password_confirmation' => 'required',
     		'about' => 'required',
             'photofile' => 'image|max:500'
-
     	]);
 
         $path = '';
 
-        if( $request->hasFile('photofile') ) {
+        if ($request->hasFile('photofile')) {
             $path = $request->file('photofile')->store('images', 'dropbox');
         }
 
