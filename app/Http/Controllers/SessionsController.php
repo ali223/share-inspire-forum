@@ -35,7 +35,7 @@ class SessionsController extends Controller
             'password' => 'required'
         ]);
 
-        if(!auth()->attempt( [ 'email' => $request->email, 'password' => $request->password ] ) ) {
+        if (!auth()->attempt($request->only('email', 'password'))) {
             return back()->withErrors([
                 'message' => 'Please check your credentials and try again.'
             ]);
