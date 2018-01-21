@@ -35,7 +35,7 @@ class AdminSessionsController extends Controller
             'password' => 'required'
         ]);
 
-        if(!auth()->guard('admin')->attempt( [ 'email' => $request->email, 'password' => $request->password ] ) ) {
+        if (!auth()->guard('admin')->attempt($request->only('email', 'password'))) {
             return back()->withErrors([
                 'message' => 'Please check your credentials and try again.'
             ]);
@@ -55,7 +55,9 @@ class AdminSessionsController extends Controller
     {
         auth()->guard('admin')->logout();
 
-        return redirect()->route('adminsessions.create')->withMessage('Admin has been logged out successfully.');
+        return redirect()
+            ->route('adminsessions.create')
+            ->withMessage('Admin has been logged out successfully.');
     }
         
 }
