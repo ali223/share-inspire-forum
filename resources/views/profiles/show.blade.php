@@ -13,10 +13,22 @@
           <span class="glyphicon glyphicon-user profile-icon"></span>
         @endif
 
-        <h2>{{ $user->name }} <small>Member since {{ $user->created_at->diffForHumans()  }}</small></h2>
-
+        <h2>
+          {{ $user->name }}
+          <small>Member since {{ $user->created_at->diffForHumans() }}</small>
+        </h2>
       </div>    
 
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h4>About {{ $user->name }}</h4>
+        </div>
+        <div class="panel-body">
+          <p>
+            {{ $user->about }}
+          </p>
+        </div>
+      </div>
 
       <div class="panel panel-info">
         <div class="panel-heading">
