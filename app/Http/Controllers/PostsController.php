@@ -106,7 +106,7 @@ class PostsController extends Controller
 
         broadcast(new NewPostCreated($post))->toOthers();
 
-        if($request->expectsJson()) {
+        if ($request->expectsJson()) {
             return ($post->load('user'));
         }
 
