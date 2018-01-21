@@ -34,14 +34,14 @@ class RegistrationsController extends Controller
      */
     public function store(Request $request)
     {
-    	$this->validate($request, [
-    		'name' => 'required',
-    		'email' => 'required|email|unique:users',
-    		'password' => 'required|min:6|confirmed',
-    		'password_confirmation' => 'required',
-    		'about' => 'required',
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:6|confirmed',
+            'password_confirmation' => 'required',
+            'about' => 'required',
             'photofile' => 'image|max:500'
-    	]);
+        ]);
 
         $path = '';
 
@@ -49,20 +49,22 @@ class RegistrationsController extends Controller
             $path = $request->file('photofile')->store('images', 'dropbox');
         }
 
-    	$user = new User;
+        $user = new User;
 
-    	$user->name = $request->name;
-    	$user->email = $request->email;
-    	$user->password = bcrypt($request->password);
-    	$user->about = $request->about;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->about = $request->about;
         $user->photourl = $path;
 
-    	$user->save();
+        $user->save();
 
-    	auth()->login($user);
+        auth()->login($user);
 
         event(new UserRegistered($user));
 
-		return redirect()->route('home')->with('message', 'User signed up successfully');
+        return redirect()
+            ->route('home')
+            ->with('message', 'User signed up successfully');
     }
 }
