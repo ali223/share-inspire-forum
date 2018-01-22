@@ -47,4 +47,16 @@ class Category extends Model
                     }
             ])->get();
     }
+
+    public function loadApprovedTopicsAndAllByUser($userId = null)
+    {
+        $this->load([
+            'topics' => function($query) use ($userId) {
+                    $query->where('approved', 1);
+                    if ($userId) {
+                        $query->orWhere('user_id', $userId);
+                    }
+                }
+        ]);
+    }
 }

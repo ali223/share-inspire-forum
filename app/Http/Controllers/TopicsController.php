@@ -20,19 +20,11 @@ class TopicsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($category_id)
+    public function index(Category $category)
     {
-
-        // using Eager loading to retrieve all the related topics in one go 
-        // and then pass to the views. This prevents n+1 query problem
-
-        $category = Category::with(
-            ['topics' => function($query) {
-                $query->where('approved', 1)
-                      ->orWhere('user_id', auth()->id());
-            }] 
-        )->find($category_id);
-
+        $category->loadApprovedTopicsAndAllByUser(
+                    auth()->check() ? auth()->id() : null
+                );
                 
         return view('topics.index', compact('category'));
     }
@@ -44,7 +36,6 @@ class TopicsController extends Controller
      */
     public function create(Category $category)
     {
-
         return view('topics.create', compact('category'));
     }
 
@@ -67,8 +58,9 @@ class TopicsController extends Controller
             auth()->id()
         );
 
-        return redirect()->route('topics.index', $category->id)
-        ->withMessage('New topic created successfully - waiting for approval by website admin');
+        return redirect()
+            ->route('topics.index', $category)
+            ->withMessage('New topic created successfully - waiting for approval by website admin');
     }
     
 }
