@@ -16,8 +16,6 @@ Route::prefix('admin')->group( function () {
 
 	Route::get('/categories', 'AdminCategoriesController@index')->name('admincategories.index');
 
-	Route::get('/categories/create', 'AdminCategoriesController@create')->name('admincategories.create');
-
 	Route::post('/categories', 'AdminCategoriesController@store')->name('admincategories.store');
 
 	Route::patch('/categories/{category}', 'AdminCategoriesController@update')->name('admincategories.update');
