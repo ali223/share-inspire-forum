@@ -9,7 +9,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Tests\TestCase;
 
-class TopicsTest extends TestCase
+class CreateTopicsTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -26,11 +26,8 @@ class TopicsTest extends TestCase
     }
 
     /** @test */
-
     public function an_authenticated_user_can_create_new_topics()
-    {
-        $this->withoutExceptionHandling();
-
+    {        
         $user = factory(User::class)->create();
         $this->actingAs($user);
 
@@ -59,6 +56,4 @@ class TopicsTest extends TestCase
         ]);
 
     }
-
-
 }
