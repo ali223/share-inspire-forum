@@ -28,34 +28,34 @@ class NewPostNotificationTest extends TestCase
     /** @test */
     public function the_topic_creator_gets_notified_when_a_new_post_is_added_by_another_user()
     {
-
-        $user = factory(User::class)->create();
+        $topicCreator = factory(User::class)->create();
+        $topic = factory(Topic::class)->create(['user_id' => $topicCreator->id]);
 
         $anotherUser = factory(User::class)->create();
         $this->actingAs($anotherUser);
 
-        $topic = factory(Topic::class)->create(['user_id' => $user->id]);
         $post = factory(Post::class)->make(['topic_id' => $topic->id]);
 
         $response = $this->postJson("topics/{$topic->id}/posts", $post->toArray());
         $response->assertStatus(200);
 
-        Notification::assertSentTo($user, NewPostInYourTopic::class);
+        Notification::assertSentTo($topicCreator, NewPostInYourTopic::class);
     }
 
     /** @test */
-    public function the_topic_creator_does_not_get_notified_when_he_adds_a_new_post()
+    public function the_topic_creator_does_not_get_notified_when_he_adds_a_new_post_himself()
     {
-        $user = factory(User::class)->create();
-        $this->actingAs($user);
+        $topicCreator = factory(User::class)->create();
+        $this->actingAs($topicCreator);
 
-        $topic = factory(Topic::class)->create(['user_id' => $user->id]);
+        $topic = factory(Topic::class)->create(['user_id' => auth()->id()]);
+
         $post = factory(Post::class)->make(['topic_id' => $topic->id]);
 
         $response = $this->postJson("topics/{$topic->id}/posts", $post->toArray());
         $response->assertStatus(200);
 
-        Notification::assertNotSentTo($user, NewPostInYourTopic::class);
+        Notification::assertNotSentTo($topicCreator, NewPostInYourTopic::class);
 
     }
 }
