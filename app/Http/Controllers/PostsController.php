@@ -51,10 +51,10 @@ class PostsController extends Controller
     public function latest()
     {
         $latestPosts =  Post::with(['user', 'topic'])
-                        ->withTopicApproved()        
-                        ->latest()
-                        ->take(5)
-                        ->get();       
+                            ->belongingToApprovedTopic()        
+                            ->latest()
+                            ->take(5)
+                            ->get();       
 
         return view('posts.latest', compact('latestPosts'));
     }
@@ -66,9 +66,9 @@ class PostsController extends Controller
         $keywords = explode(' ', $keywords);       
 
         $searchedPosts = Post::with(['user', 'topic'])
-                        ->withTopicApproved()
-                        ->searchContent($keywords)
-                        ->get();
+                            ->belongingToApprovedTopic()
+                            ->searchContent($keywords)
+                            ->get();
 
         return view('posts.search', [
             'searchedPosts' => $searchedPosts

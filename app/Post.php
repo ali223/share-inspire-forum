@@ -19,19 +19,18 @@ class Post extends Model
     	return $this->belongsTo(Topic::class);
     }
 
-    public function scopeWithTopicApproved($query) 
+    public function scopeBelongingToApprovedTopic($query) 
     {
-        $query->whereHas('topic', 
-                        function($query) {
-                            $query->where('approved', 1);
-                        });
+        return $query->whereHas('topic', function($topicQuery) {
+            $topicQuery->where('approved', 1);
+        });
     }
 
     public function scopeSearchContent($query, $keywords = [])
     {
-        $query->where( function($query) use ($keywords) {
+        return $query->where(function($subQuery) use ($keywords) {
             foreach($keywords as $keyword) {
-                $query->orWhere('content', 'like', "%{$keyword}%");
+                $subQuery->orWhere('content', 'like', "%{$keyword}%");
             }
         });
     }

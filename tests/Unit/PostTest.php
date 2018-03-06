@@ -35,14 +35,16 @@ class PostTest extends TestCase
 	public function it_can_return_all_posts_which_belong_to_an_approved_topic()
 	{
 		$unapprovedTopic = factory('App\Topic')->create(['approved' => 0]);
-		$postsInUnapprovedTopic = factory('App\Post', 3)
-								->create(['topic_id' => $unapprovedTopic->id]);
+		$postsInUnapprovedTopic = factory('App\Post', 3)->create([
+			'topic_id' => $unapprovedTopic->id
+		]);
 
 		$approvedTopic = factory('App\Topic')->create(['approved' => 1]);
-		$postsInApprovedTopic = factory('App\Post', 3)
-								->create(['topic_id' => $approvedTopic->id]);
+		$postsInApprovedTopic = factory('App\Post', 3)->create([
+			'topic_id' => $approvedTopic->id
+		]);
 
-		$retrievedPosts = Post::withTopicApproved()->get();
+		$retrievedPosts = Post::belongingToApprovedTopic()->get();
 
 		$this->assertEquals(
 			$postsInApprovedTopic->toArray(),
