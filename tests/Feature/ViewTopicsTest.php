@@ -27,6 +27,22 @@ class ViewTopicsTest extends TestCase
     }
 
     /** @test */
+    public function guests_cannot_view_unapproved_topics_within_a_category()
+    {
+        $category = factory(Category::class)->create();
+
+        $unapprovedTopics = factory(Topic::class, 2)->create([
+            'approved' => 0,
+            'category_id' => $category->id
+        ]);
+
+        $this->get("/categories/{$category->id}/topics")
+            ->assertDontSee($unapprovedTopics[0]->title)
+            ->assertDontSee($unapprovedTopics[1]->title);
+    }
+
+
+    /** @test */
     public function authenticated_users_can_also_view_their_unapproved_topics_within_a_category()
     {
         $user = factory(User::class)->create();
