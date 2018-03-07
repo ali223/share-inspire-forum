@@ -3,8 +3,7 @@
 ShareInspire Forum is a discussion forum website. It is meant to provide a
 platform, where people can come together and inspire eash other by sharing
 their thoughts and feelings. It is a personal project that I have built to
-learn and practise Vue.js and Laravel. You can visit the website at https
-://share-inspire-forum.herokuapp.com
+learn and practise Vue.js and Laravel. You can visit the website at https://share-inspire-forum.herokuapp.com
 
 * * *
 
