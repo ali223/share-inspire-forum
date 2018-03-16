@@ -44,22 +44,19 @@ class TopicTest extends TestCase
 		$unapprovedTopics = factory('App\Topic', 3)->create(['approved' => 0]);
 		$approvedTopics = factory('App\Topic', 3)->create(['approved' => 1]);
 
-		$this->assertEquals(
-			$unapprovedTopics->count(),
-			Topic::unapprovedCount()
-		);
+		$this->assertEquals($unapprovedTopics->count(), Topic::unapprovedCount());
 	}
 
 	/** @test */
 	public function it_returns_latest_five_topics()
 	{
-		$newTopics = factory('App\Topic', 5)
-				->create(['created_at' => Carbon::now()])
-				->load('user');
+		$newTopics = factory('App\Topic', 5)->create([
+			'created_at' => Carbon::now()
+		])->load('user');
 
-		$oldTopics = factory('App\Topic', 5)
-				->create(['created_at' => Carbon::now()->subDays(5)])
-				->load('user');
+		$oldTopics = factory('App\Topic', 5)->create([
+			'created_at' => Carbon::now()->subDays(5)
+		])->load('user');
 
 		$latestTopics = Topic::getLatestTopics();
 
