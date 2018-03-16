@@ -80,11 +80,6 @@ Route::delete('/notifications/{id}',
 	'NotificationsController@destroy')
 	->name('notifications.destroy');
 
-
-Route::get('/welcomemail', function () {
-	return new \App\Mail\WelcomeMail(\App\User::find(1));
-});
-
 Route::get('/chatmessages', 'ChatMessagesController@index')->name('chatmessages.index');
 
 Route::post('/chatmessages', 'ChatMessagesController@store')->name('chatmessages.store');
