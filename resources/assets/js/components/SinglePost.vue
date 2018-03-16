@@ -2,13 +2,34 @@
     <div class="panel panel-info text-left">
       <div class="panel-heading">
         <strong>
-        Posted By
+          Posted By
           <a :href="'/profiles/' + postData.user_id">
               {{ postData.user.name }} 
           </a>
           on 
           {{ postData.created_at }}
         </strong>
+
+        <button id="like_btn" 
+                class="btn btn-link" 
+                :title="likeTitle" 
+                :disabled="!canLike || !signedIn"
+                @click="likePost"
+                v-if="!postData.is_liked"> 
+          <span class="glyphicon glyphicon-heart-empty"></span>
+        </button>
+
+        <button id="unlike_btn" 
+                class="btn btn-link" 
+                title="Unlike Post"
+                @click="unlikePost"
+                v-else>
+          <span class="glyphicon glyphicon-heart"></span>
+        </button>
+        <span title="likes">
+          {{ postData.likes_count }} Likes
+        </span>
+        
       </div>
       <div class="panel-body">
       		<div v-if="isEditing">
@@ -32,9 +53,6 @@
 			            <a href="#" class="btn btn-danger btn-xs" @click.prevent="remove(postData.id)">Delete</a>
 			          </div>
           	</div>
-          
-
-
       </div>
     </div>
 </template>
@@ -50,7 +68,24 @@ export default {
 	},
   computed: {
     canUpdate() {
-      return this.authorize(user => this.postData.user_id == user.id);
+      return this.authorize(user => this.postData.user_id === user.id);
+    },
+    canLike() {
+      return this.authorize(user => this.postData.user_id !== user.id);
+    },
+    signedIn() {
+      return window.App.signedIn;
+    },
+    likeTitle() {
+      if (! this.signedIn) {
+        return 'You must be signed in to like the post';
+      }
+
+      if (! this.canLike) {
+        return 'You cannot like your own posts';
+      }
+
+      return 'Like the post';
     }
   },
 	methods: {
@@ -78,10 +113,39 @@ export default {
             })
             .catch(error => {
               flashMessage('Error Updating the Post', 'warning');
+            });
+      },
+      likePost() {
+        axios.post('/posts/' + this.postData.id + '/like')
+            .then(response => {
+              this.postData.is_liked = true;
+              this.postData.likes_count++;
+              flashMessage('Post Liked Successfully', 'success');
             })
-
+            .catch(error => {
+              flashMessage('An Error occurred while trying to like the post', 'warning')
+            })
+      },
+      unlikePost() {
+        axios.delete('/posts/' + this.postData.id + '/like')
+            .then(response => {
+              this.postData.is_liked = false;
+              this.postData.likes_count--;
+              flashMessage('Post Unliked Successfully', 'success');
+            })
+            .catch(error => {
+              flashMessage('An Error occurred while trying to unlike the post', 'warning')
+            })        
       }
 
 	}
 }
 </script>
+<style scoped>
+#like_btn, #unlike_btn {
+  color: red;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+</style>

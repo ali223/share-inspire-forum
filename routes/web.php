@@ -88,3 +88,6 @@ Route::get('/welcomemail', function () {
 Route::get('/chatmessages', 'ChatMessagesController@index')->name('chatmessages.index');
 
 Route::post('/chatmessages', 'ChatMessagesController@store')->name('chatmessages.store');
+
+Route::post('/posts/{post}/like', 'LikesController@store');
+Route::delete('/posts/{post}/like', 'LikesController@destroy');

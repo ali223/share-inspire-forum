@@ -42,6 +42,11 @@ class User extends Authenticatable
         return $this->hasMany(Post::class);
     }
 
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
+
     public static function getLatestUsers()
     {
         return static::latest()->take(5)->get();
