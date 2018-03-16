@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Mail\WelcomeMail;
 use App\User;
-use App\Mail\Welcome;
-use App\Events\UserRegistered;
-use Mail;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class RegistrationsController extends Controller
 {
@@ -61,7 +60,8 @@ class RegistrationsController extends Controller
 
         auth()->login($user);
 
-        event(new UserRegistered($user));
+        Mail::to($user)
+            ->send(new WelcomeMail($user));
 
         return redirect()
             ->route('home')
