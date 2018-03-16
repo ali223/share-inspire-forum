@@ -9,7 +9,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 
 use App\Post;
 
-class NewPostInYourTopic extends Notification
+class NewPostInYourTopic extends Notification implements ShouldQueue
 {
     use Queueable;
 
