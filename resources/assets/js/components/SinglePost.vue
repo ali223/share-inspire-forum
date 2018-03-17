@@ -6,8 +6,7 @@
         <a :href="'/profiles/' + postData.user_id">
             {{ postData.user.name }} 
         </a>
-        on 
-        {{ postData.created_at }}
+        {{ postData.created_at | moment("from")}}
       </strong>
       <likes :initial-post-data="initialPostData"></likes>
     </div>
