@@ -12,6 +12,8 @@
       <likes :initial-post-data="initialPostData"></likes>
     </div>
     <div class="panel-body">
+        <loading :active.sync="isLoading"></loading>
+
     		<div v-if="isEditing">
     			<form>
     				<div class="form-group">
@@ -36,20 +38,24 @@
     </div>
   </div>
 </template>
+
 <script>
 import Likes from './Likes';
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/vue-loading.min.css';
 
 export default {
 	props: ['initialPostData'],
 
   components: {
-    Likes
+    Likes, Loading
   },
 
-	data: function () {
+	data() {
 		return {
 			postData: this.initialPostData,
-			isEditing: false
+			isEditing: false,
+      isLoading: false
 		}
 	},
   computed: {
@@ -59,12 +65,15 @@ export default {
   },
 	methods: {
       remove(postId) {
+        this.isLoading = true;
         axios.delete(location.pathname + '/' + postId)
             .then(response => {
               this.$emit('postRemoved');
+              this.isLoading = false;
             })
             .catch(error => {
               flashMessage('Error Deleting the Post', 'warning');
+              this.isLoading = false;
             })
 
       },
@@ -72,16 +81,18 @@ export default {
         if(this.content == '') {
           return;
         }
-
+        this.isLoading = true;
         axios.put(location.pathname + '/' + postId, {
         			content: this.postData.content
         		})
             .then(response => {
             	this.isEditing = false;
               this.$emit('postUpdated', this.postData.content);
+              this.isLoading = false;
             })
             .catch(error => {
               flashMessage('Error Updating the Post', 'warning');
+              this.isLoading = false;
             });
       }
 	}
