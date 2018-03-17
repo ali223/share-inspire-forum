@@ -1,35 +1,47 @@
 <template>
-  <button id="like_btn" 
-          class="btn btn-link" 
-          :title="likeTitle" 
-          :disabled="!canLike || !signedIn"
-          @click="likePost"
-          v-if="!postData.is_liked"> 
-    <span class="glyphicon glyphicon-heart-empty"></span>
-    <span title="likes">
-      {{ postData.likes_count }} Likes
-    </span>
-  </button>
+  <div id="likes_div">
+    <loading :active.sync="isLoading"></loading>
 
-  <button id="unlike_btn" 
-          class="btn btn-link" 
-          title="Unlike Post"
-          @click="unlikePost"
-          v-else>
-    <span class="glyphicon glyphicon-heart"></span>
-    <span title="likes">
-      {{ postData.likes_count }} Likes
-    </span>          
-  </button> 
+    <button id="like_btn" 
+            class="btn btn-link" 
+            :title="likeTitle" 
+            :disabled="!canLike || !signedIn"
+            @click="likePost"
+            v-if="!postData.is_liked"> 
+      <span class="glyphicon glyphicon-heart-empty"></span>
+      <span title="likes">
+        {{ postData.likes_count }} Likes
+      </span>
+    </button>
+
+    <button id="unlike_btn" 
+            class="btn btn-link" 
+            title="Unlike Post"
+            @click="unlikePost"
+            v-else>
+      <span class="glyphicon glyphicon-heart"></span>
+      <span title="likes">
+        {{ postData.likes_count }} Likes
+      </span>          
+    </button> 
+  </div>
 </template>
 
 <script>
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/vue-loading.min.css';
+
 export default {
   props: ['initialPostData'],
 
+  components: {
+    Loading
+  },
+
   data() {
     return {
-      postData: this.initialPostData
+      postData: this.initialPostData,
+      isLoading: false
     }
   },
   computed: {
@@ -52,28 +64,34 @@ export default {
     }
   },
   methods: {
-      likePost() {
-        axios.post('/posts/' + this.postData.id + '/like')
-            .then(response => {
-              this.postData.is_liked = true;
-              this.postData.likes_count++;
-              flashMessage('Post Liked Successfully', 'success');
-            })
-            .catch(error => {
-              flashMessage('An Error occurred while trying to like the post', 'warning')
-            })
-      },
-      unlikePost() {
-        axios.delete('/posts/' + this.postData.id + '/like')
-            .then(response => {
-              this.postData.is_liked = false;
-              this.postData.likes_count--;
-              flashMessage('Post Unliked Successfully', 'success');
-            })
-            .catch(error => {
-              flashMessage('An Error occurred while trying to unlike the post', 'warning')
-            })        
-      }    
+    likePost() {
+      this.isLoading = true;
+      axios.post('/posts/' + this.postData.id + '/like')
+          .then(response => {
+            this.postData.is_liked = true;
+            this.postData.likes_count++;
+            flashMessage('Post Liked Successfully', 'success');
+            this.isLoading = false;
+          })
+          .catch(error => {
+            flashMessage('An Error occurred while trying to like the post', 'warning')
+            this.isLoading = false;
+          })
+    },
+    unlikePost() {
+      this.isLoading = true;
+      axios.delete('/posts/' + this.postData.id + '/like')
+          .then(response => {
+            this.postData.is_liked = false;
+            this.postData.likes_count--;
+            flashMessage('Post Unliked Successfully', 'success');
+            this.isLoading = false;
+          })
+          .catch(error => {
+            flashMessage('An Error occurred while trying to unlike the post', 'warning')
+            this.isLoading = false;
+          })        
+    }    
   }
 }
 </script>
@@ -84,5 +102,8 @@ export default {
   font-size: 14px;
   font-weight: bold;
   text-decoration: none;
+}
+#likes_div {
+  display: inline-block;
 }
 </style>
