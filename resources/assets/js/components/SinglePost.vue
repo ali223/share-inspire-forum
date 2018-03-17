@@ -17,6 +17,9 @@
                 @click="likePost"
                 v-if="!postData.is_liked"> 
           <span class="glyphicon glyphicon-heart-empty"></span>
+          <span title="likes">
+            {{ postData.likes_count }} Likes
+          </span>
         </button>
 
         <button id="unlike_btn" 
@@ -25,11 +28,10 @@
                 @click="unlikePost"
                 v-else>
           <span class="glyphicon glyphicon-heart"></span>
-        </button>
-        <span title="likes">
-          {{ postData.likes_count }} Likes
-        </span>
-        
+          <span title="likes">
+            {{ postData.likes_count }} Likes
+          </span>          
+        </button>        
       </div>
       <div class="panel-body">
       		<div v-if="isEditing">
@@ -146,6 +148,7 @@ export default {
   color: red;
   font-size: 14px;
   font-weight: bold;
+  text-decoration: none;
 }
 
 </style>
