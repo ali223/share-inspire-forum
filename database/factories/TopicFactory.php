@@ -2,9 +2,10 @@
 
 use App\Category;
 use App\User;
+use App\Topic;
 use Faker\Generator as Faker;
 
-$factory->define(App\Topic::class, function (Faker $faker) {
+$factory->define(Topic::class, function (Faker $faker) {
     return [
         'title' => $faker->sentence,
         'approved' => 0,
@@ -16,3 +17,7 @@ $factory->define(App\Topic::class, function (Faker $faker) {
         }
     ];
 });
+
+$factory->state(Topic::class, 'approved', [
+    'approved' => 1
+]);
