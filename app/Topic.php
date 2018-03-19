@@ -35,6 +35,16 @@ class Topic extends Model
         return static::with('user')->latest()->take(5)->get();
     }
 
+    public function isApproved()
+    {
+        return (bool) $this->approved;
+    }
+
+    public function isNotApproved()
+    {
+        return ! $this->isApproved();
+    }
+
     public function addPost($content, $userId)
     {
         $post = $this->posts()->create([
