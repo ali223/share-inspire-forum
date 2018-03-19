@@ -4,9 +4,11 @@ namespace App;
 
 use App\Notifications\NewPostInYourTopic;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class Topic extends Model
 {
+    use Searchable;
     
     protected $fillable = ['title', 'user_id'];
 
@@ -44,6 +46,11 @@ class Topic extends Model
     {
         return ! $this->isApproved();
     }
+
+    public function shouldBeSearchable()
+    {
+        return $this->isApproved();
+    }    
 
     public function addPost($content, $userId)
     {

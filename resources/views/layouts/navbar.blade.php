@@ -56,7 +56,7 @@
         @endguest
 
       </ul>
-      <form class="navbar-form navbar-left" action="{{ route('posts.search') }}">
+      <form class="navbar-form navbar-left" action="{{ route('topics.search') }}">
         <div class="form-group">
           <search-box initial-value="{{ request('keywords') }}"></search-box>
         </div>

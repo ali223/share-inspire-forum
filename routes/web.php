@@ -62,6 +62,8 @@ Route::put('/topics/{topic}/posts/{post}', 'PostsController@update')->name('post
 
 Route::delete('/topics/{topic}/posts/{post}', 'PostsController@destroy')->name('posts.destroy');
 
+Route::get('/topics/search', 'TopicsSearchController@index')->name('topics.search');
+
 Route::get('/registrations/create', 'RegistrationsController@create')->name('registrations.create');
 Route::post('/registrations', 'RegistrationsController@store')->name('registrations.store');
 

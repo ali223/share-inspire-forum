@@ -3,7 +3,7 @@
          id="keywords" 
          name="keywords" 
          class="form-control" 
-         placeholder="Search Posts"
+         placeholder="Search Topics"
          :value="initialValue">
 </template>
 
@@ -15,14 +15,14 @@ export default {
   props: ['initialValue'],
   mounted() {
     let client = AlgoliaSearch('0NC2E8BUFM', 'ba6eb225eea0a108ba211a85b51f4fe8');
-    let index = client.initIndex('posts');
+    let index = client.initIndex('topics');
     autocomplete('#keywords', { hint: false }, [
       {
         source: autocomplete.sources.hits(index, { hitsPerPage: 5 }),
-        displayKey: 'content',
+        displayKey: 'title',
         templates: {
           suggestion: function(suggestion) {
-            return suggestion._highlightResult.content.value;
+            return suggestion._highlightResult.title.value;
           }
         }
       }
