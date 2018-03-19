@@ -47,13 +47,13 @@ class PostTest extends TestCase
 		$retrievedPosts = Post::belongingToApprovedTopic()->get();
 
 		$this->assertEquals(
-			$postsInApprovedTopic->toArray(),
-			$retrievedPosts->toArray()
+			$postsInApprovedTopic->pluck('id'),
+			$retrievedPosts->pluck('id')
 		);
 
 		$this->assertNotEquals(
-			$postsInUnapprovedTopic->toArray(),
-			$retrievedPosts->toArray()
+			$postsInUnapprovedTopic->pluck('id'),
+			$retrievedPosts->pluck('id')
 		);
 	}
 }
