@@ -38,7 +38,6 @@
               Chat Room
             </a>
           </li>
-
         @endauth
 
         @guest
@@ -59,9 +58,10 @@
       </ul>
       <form class="navbar-form navbar-left" action="{{ route('posts.search') }}">
         <div class="form-group">
-          <input type="text" name="keywords" class="form-control" placeholder="Search Posts" value="{{ request('keywords')}}">
+          <search-box initial-value="{{ request('keywords') }}"></search-box>
         </div>
-        <button type="submit" class="btn btn-default">Search</button>
+        <button type="submit" class="btn btn-default">Search</button>        
+        <img id="algolia-logo" src="{{ asset("images/search-by-algolia.png") }}">        
       </form>
 
       @auth

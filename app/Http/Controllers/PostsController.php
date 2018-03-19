@@ -63,13 +63,8 @@ class PostsController extends Controller
     {
         $keywords = request()->input('keywords');
 
-        $keywords = explode(' ', $keywords);       
-
-        $searchedPosts = Post::with(['user', 'topic'])
-                            ->belongingToApprovedTopic()
-                            ->searchContent($keywords)
-                            ->get();
-
+        $searchedPosts = Post::search($keywords)->get();
+        
         return view('posts.search', [
             'searchedPosts' => $searchedPosts
         ]);

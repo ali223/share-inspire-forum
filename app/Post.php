@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class Post extends Model
 {
+    use Searchable;
 
     protected $fillable = ['content', 'user_id'];
 
@@ -38,15 +40,6 @@ class Post extends Model
         });
     }
 
-    public function scopeSearchContent($query, $keywords = [])
-    {
-        return $query->where(function($subQuery) use ($keywords) {
-            foreach($keywords as $keyword) {
-                $subQuery->orWhere('content', 'like', "%{$keyword}%");
-            }
-        });
-    }
-
     public static function unapprovedCount()
     {
         return static::where('approved', 0)->count();
@@ -69,5 +62,10 @@ class Post extends Model
     public function getLikesCountAttribute()
     {
         return $this->likes()->count();
+    }
+
+    public function shouldBeSearchable()
+    {
+        return $this->topic->isApproved();
     }
 }

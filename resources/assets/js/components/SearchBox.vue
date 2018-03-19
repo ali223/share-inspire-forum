@@ -1,0 +1,62 @@
+<template>
+  <input type="text" 
+         id="keywords" 
+         name="keywords" 
+         class="form-control" 
+         placeholder="Search Posts"
+         :value="initialValue">
+</template>
+
+<script>
+import AlgoliaSearch from 'algoliasearch';
+import autocomplete from 'autocomplete.js';
+
+export default {
+  props: ['initialValue'],
+  mounted() {
+    let client = AlgoliaSearch('0NC2E8BUFM', 'ba6eb225eea0a108ba211a85b51f4fe8');
+    let index = client.initIndex('posts');
+    autocomplete('#keywords', { hint: false }, [
+      {
+        source: autocomplete.sources.hits(index, { hitsPerPage: 5 }),
+        displayKey: 'content',
+        templates: {
+          suggestion: function(suggestion) {
+            return suggestion._highlightResult.content.value;
+          }
+        }
+      }
+    ]);      
+  }
+}
+</script>
+<style>
+.algolia-autocomplete {
+  width: 100%;
+}
+.algolia-autocomplete .aa-input, .algolia-autocomplete .aa-hint {
+  width: 100%;
+}
+.algolia-autocomplete .aa-hint {
+  color: #999;
+}
+.algolia-autocomplete .aa-dropdown-menu {
+  color: #fff;
+  width: 100%;
+  background-color: #324447;
+  border: 1px solid #999;
+  border-top: none;
+}
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
+  cursor: pointer;
+  padding: 5px 4px;
+}
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
+  background-color: #B2D7FF;
+  color: #000;
+}
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion em {
+  font-weight: bold;
+  font-style: normal;
+}
+</style>
