@@ -66,7 +66,7 @@
 
       @auth
         <ul class="nav navbar-nav navbar-right">
-          <li class="active"><a href="#">Welcome {{ Auth::user()->name }}</a></li>
+          <li class="active"><a href="#">{{ Auth::user()->name }}</a></li>
 
           <notifications-list></notifications-list>
           
