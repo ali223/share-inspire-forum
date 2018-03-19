@@ -16,18 +16,22 @@
         <div class="panel-body">
           <ul>
           @forelse ($searchedTopics as $topic)
-            <strong>
-              Topic
-            </strong>
-            <a href="{{ route('posts.index', $topic->id) }}" class="link-underline">
-              {{$topic->title}}
-            </a>  
-          
-            <strong>Created by</strong>
-            <a href="{{ route('profiles.show', $topic->user->id) }}" class="link-underline">
-              {{ $topic->user->name }}
-            </a>
-            {{ $topic->created_at->diffForHumans() }}
+            <li>
+              <p>
+                <strong>
+                  Topic
+                </strong>
+                <a href="{{ route('posts.index', $topic->id) }}" class="link-underline">
+                  {{$topic->title}}
+                </a>  
+              
+                <strong>Created by</strong>
+                <a href="{{ route('profiles.show', $topic->user->id) }}" class="link-underline">
+                  {{ $topic->user->name }}
+                </a>
+                {{ $topic->created_at->diffForHumans() }}
+                </p>
+            </li>
           @empty
             <h3 class="text-center">
               No matching topics found.
