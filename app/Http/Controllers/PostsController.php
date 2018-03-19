@@ -59,17 +59,6 @@ class PostsController extends Controller
         return view('posts.latest', compact('latestPosts'));
     }
 
-    public function search()
-    {
-        $keywords = request()->input('keywords');
-
-        $searchedPosts = Post::search($keywords)->get();
-        
-        return view('posts.search', [
-            'searchedPosts' => $searchedPosts
-        ]);
-    }
-
     /**
      * Show the form for creating a new resource.
      *

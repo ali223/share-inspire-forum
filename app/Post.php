@@ -7,8 +7,6 @@ use Laravel\Scout\Searchable;
 
 class Post extends Model
 {
-    use Searchable;
-
     protected $fillable = ['content', 'user_id'];
 
     protected $appends = ['is_liked', 'likes_count'];
@@ -62,10 +60,5 @@ class Post extends Model
     public function getLikesCountAttribute()
     {
         return $this->likes()->count();
-    }
-
-    public function shouldBeSearchable()
-    {
-        return $this->topic->isApproved();
     }
 }
