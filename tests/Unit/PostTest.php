@@ -56,19 +56,4 @@ class PostTest extends TestCase
 			$retrievedPosts->toArray()
 		);
 	}
-
-	/** @test */
-	public function it_can_search_posts_containing_any_of_the_specified_keywords()
-	{
-		$firstPost = factory('App\Post')->create(['content' => 'this is a first post']);
-		$secondPost1 = factory('App\Post')->create(['content' => 'this is my second post']);
-		$secondPost2 = factory('App\Post')->create(['content' => 'this is my second post again']);
-
-		$searchedPosts = Post::searchContent(['my', 'second'])->get();
-
-		$this->assertContains($secondPost1->toArray(), $searchedPosts->toArray());
-		$this->assertContains($secondPost2->toArray(), $searchedPosts->toArray());
-
-		$this->assertNotContains($firstPost->toArray(), $searchedPosts->toArray());
-	}
 }
