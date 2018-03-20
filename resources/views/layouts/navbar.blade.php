@@ -67,7 +67,7 @@
       @auth
         <ul class="nav navbar-nav navbar-right">
           <li class="active">
-            <a href="#">
+            <a href="{{ route('profiles.show', Auth::user()) }}">
               <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
               {{ Auth::user()->name }}
             </a>
