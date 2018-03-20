@@ -1,7 +1,9 @@
 <template>
   <div>
-    <div v-for="(post, index) in postsList" :key="post.id">
-      <single-post 
+    <div v-for="(post, index) in postsList" 
+         :key="post.id"
+         :ref="'#post' + post.id">
+      <single-post         
         :initial-post-data="post" 
         @postRemoved="removeFromPostsList(index)"
         @postUpdated="updateMessage"> 
@@ -48,15 +50,24 @@ export default {
               this.postsList[postIndex].content = event.post.content;
             }
           });
-
     },
-
     methods: {
       fetchPosts() {
         axios.get(location.pathname)
             .then(response => {
-               this.postsList = response.data.posts;
+              this.postsList = response.data.posts;
+
+              this.$nextTick(() => {
+                this.scrollToPost(window.location.hash);
+              });
             });
+      },
+      scrollToPost(bookmarkHash) {        
+        if (bookmarkHash && this.$refs.hasOwnProperty(bookmarkHash)) {
+          let postDiv = this.$refs[bookmarkHash][0];
+          let top = postDiv.offsetTop;
+          window.scrollTo(0, top);
+        }
       },
       addToPostsList(newPostdata) {
         this.postsList.push(newPostdata);

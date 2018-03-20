@@ -1,6 +1,9 @@
 <li>
   <p>
-    {{ $post->content }} 
+    <a href="{{ route('posts.index', $post->topic) . "#post{$post->id}" }}" 
+       class="link-underline">
+      {{ $post->content }} 
+    </a>
 
     <strong>Posted {{ $post->created_at->diffForHumans() }} by
       <a href="{{ route('profiles.show', $post->user->id) }}">
