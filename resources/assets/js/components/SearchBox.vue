@@ -58,5 +58,6 @@ export default {
 .algolia-autocomplete .aa-dropdown-menu .aa-suggestion em {
   font-weight: bold;
   font-style: normal;
+  color: #FF8C00;
 }
 </style>
