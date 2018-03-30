@@ -10,17 +10,17 @@ class Category extends Model
 
     public function admin()
     {
-    	return $this->belongsTo(Admin::class);
+        return $this->belongsTo(Admin::class);
     }
 
     public function topics()
     {
-    	return $this->hasMany(Topic::class);
+        return $this->hasMany(Topic::class);
     }
 
     public function posts()
     {
-    	return $this->hasManyThrough(Post::class, Topic::class);
+        return $this->hasManyThrough(Post::class, Topic::class);
     }
 
     public function addTopic($title, $content, $userId)
@@ -41,22 +41,22 @@ class Category extends Model
     public static function getCategoriesWithTopicsCount()
     {
         return static::withCount([
-                'topics' => function($query) {
-                        $query->where('approved', 1)
+                'topics' => function ($query) {
+                    $query->where('approved', 1)
                         ->orWhere('user_id', auth()->id());
-                    }
+                }
             ])->get();
     }
 
     public function loadApprovedTopicsAndAllByUser($userId = null)
     {
         $this->load([
-            'topics' => function($query) use ($userId) {
-                    $query->where('approved', 1);
-                    if ($userId) {
-                        $query->orWhere('user_id', $userId);
-                    }
+            'topics' => function ($query) use ($userId) {
+                $query->where('approved', 1);
+                if ($userId) {
+                    $query->orWhere('user_id', $userId);
                 }
+            }
         ]);
     }
 }

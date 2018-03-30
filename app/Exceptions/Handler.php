@@ -64,7 +64,7 @@ class Handler extends ExceptionHandler
 
         $guard = array_get($exception->guards(), 0);
 
-        if($guard == 'admin') {
+        if ($guard == 'admin') {
             $route = 'adminsessions.create';
         }
 

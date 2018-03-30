@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Topic;
-use Illuminate\Http\Request;
 
 class AdminTopicsController extends Controller
 {
@@ -36,5 +35,4 @@ class AdminTopicsController extends Controller
 
         return redirect()->back();
     }
-    
 }
