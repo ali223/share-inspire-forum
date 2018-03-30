@@ -1,4 +1,4 @@
-## ShareInspire Forum [![Build Status](https://travis-ci.org/ali223/share-inspire-forum.svg?branch=master)](https://travis-ci.org/ali223/share-inspire-forum)
+## ShareInspire Forum [![Build Status](https://travis-ci.org/ali223/share-inspire-forum.svg?branch=master)](https://travis-ci.org/ali223/share-inspire-forum) [![StyleCI](https://styleci.io/repos/83811382/shield?branch=master)](https://styleci.io/repos/83811382)
 
 ShareInspire Forum is a discussion forum website. It is meant to provide a
 platform, where people can come together and inspire eash other by sharing
