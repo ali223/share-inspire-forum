@@ -3,7 +3,6 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Laravel\Scout\Searchable;
 
 class Post extends Model
 {
@@ -13,12 +12,12 @@ class Post extends Model
 
     public function user()
     {
-    	return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
 
     public function topic()
     {
-    	return $this->belongsTo(Topic::class);
+        return $this->belongsTo(Topic::class);
     }
 
     public function likes()
@@ -31,9 +30,9 @@ class Post extends Model
         return (bool) $this->likes->where('user_id', auth()->id())->count();
     }
 
-    public function scopeBelongingToApprovedTopic($query) 
+    public function scopeBelongingToApprovedTopic($query)
     {
-        return $query->whereHas('topic', function($topicQuery) {
+        return $query->whereHas('topic', function ($topicQuery) {
             $topicQuery->where('approved', 1);
         });
     }
@@ -42,7 +41,7 @@ class Post extends Model
     {
         return static::where('approved', 0)->count();
     }
-    
+
     public function markAsLikedBy($userId)
     {
         $this->likes()->create([
@@ -54,7 +53,7 @@ class Post extends Model
     {
         $this->likes()
             ->where('user_id', $userId)
-            ->delete();        
+            ->delete();
     }
 
     public function getLikesCountAttribute()

@@ -2,19 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Post;
 use App\Topic;
-use App\Events\NewPostCreated;
 use App\Events\PostDeleted;
 use App\Events\PostUpdated;
+use Illuminate\Http\Request;
+use App\Events\NewPostCreated;
 
 class PostsController extends Controller
 {
-
-    public function __construct() 
+    public function __construct()
     {
-        $this->middleware('auth', ['only' => ['create', 'store', 'update', 'destroy'] ]);
+        $this->middleware('auth', ['only' => ['create', 'store', 'update', 'destroy']]);
     }
 
     /**
@@ -22,19 +21,18 @@ class PostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
     public function index(Topic $topic)
     {
-        $approvalMessage = "";
+        $approvalMessage = '';
 
-        if (!$topic->approved) {
-            if (!($topic->user_id == auth()->id())) {
-                 return redirect()->route('home');
-            } 
+        if (! $topic->approved) {
+            if (! ($topic->user_id == auth()->id())) {
+                return redirect()->route('home');
+            }
 
-            $approvalMessage = "Waiting for Admin Approval";
+            $approvalMessage = 'Waiting for Admin Approval';
         }
-            
+
         $topic->load(['posts', 'posts.user']);
 
         if (request()->expectsJson()) {
@@ -45,16 +43,15 @@ class PostsController extends Controller
             'topic' => $topic,
             'approvalMessage' => $approvalMessage
         ]);
-        
     }
 
     public function latest()
     {
-        $latestPosts =  Post::with(['user', 'topic'])
-                            ->belongingToApprovedTopic()        
+        $latestPosts = Post::with(['user', 'topic'])
+                            ->belongingToApprovedTopic()
                             ->latest()
                             ->take(5)
-                            ->get();       
+                            ->get();
 
         return view('posts.latest', compact('latestPosts'));
     }
@@ -91,7 +88,7 @@ class PostsController extends Controller
         broadcast(new NewPostCreated($post))->toOthers();
 
         if ($request->expectsJson()) {
-            return ($post->load('user'));
+            return $post->load('user');
         }
 
         return redirect()
@@ -117,7 +114,6 @@ class PostsController extends Controller
         broadcast(new PostUpdated($post))->toOthers();
 
         return response()->json(['new_content' => $post->content], 200);
-
     }
 
     /**
@@ -131,7 +127,7 @@ class PostsController extends Controller
         $this->authorize('update', $post);
 
         $postId = $post->id;
-        
+
         $post->delete();
 
         broadcast(new PostDeleted($postId))->toOthers();

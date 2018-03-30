@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
+use League\Flysystem\Filesystem;
+use GuzzleHttp\Client as GuzzleClient;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\ServiceProvider;
-use GuzzleHttp\Client as GuzzleClient;
-use League\Flysystem\Filesystem;
 use Spatie\Dropbox\Client as DropboxClient;
 use Spatie\FlysystemDropbox\DropboxAdapter;
 
@@ -19,7 +19,6 @@ class DropboxServiceProvider extends ServiceProvider
     public function boot()
     {
         Storage::extend('dropbox', function ($app, $config) {
-
             $authorizationToken = $config['authorizationToken'];
 
             $guzzleClient = new GuzzleClient([
@@ -30,12 +29,11 @@ class DropboxServiceProvider extends ServiceProvider
             ]);
 
             $dropboxClient = new DropboxClient(
-                $authorizationToken, 
+                $authorizationToken,
                 $guzzleClient
             );
 
             return new Filesystem(new DropboxAdapter($dropboxClient));
-
         });
     }
 
