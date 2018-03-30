@@ -24,6 +24,6 @@ class LikedPostsController extends Controller
     {
         $likedPosts = Post::getPostsLikedByUser(auth()->id());
 
-        return view('likedPosts.index', compact('likedPosts'));
+        return view('likedposts.index', compact('likedPosts'));
     }
 }
