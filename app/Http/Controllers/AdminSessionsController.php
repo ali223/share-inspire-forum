@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers; 
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
 class AdminSessionsController extends Controller
 {
-
-    public function __construct() 
+    public function __construct()
     {
         $this->middleware('guest:admin', ['except' => 'destroy']);
     }
@@ -35,14 +34,13 @@ class AdminSessionsController extends Controller
             'password' => 'required'
         ]);
 
-        if (!auth()->guard('admin')->attempt($request->only('email', 'password'))) {
+        if (! auth()->guard('admin')->attempt($request->only('email', 'password'))) {
             return back()->withErrors([
                 'message' => 'Please check your credentials and try again.'
             ]);
         }
 
         return redirect()->route('admins.index');
-            
     }
 
     /**
@@ -59,6 +57,4 @@ class AdminSessionsController extends Controller
             ->route('adminsessions.create')
             ->withMessage('Admin has been logged out successfully.');
     }
-        
 }
-

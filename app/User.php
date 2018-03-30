@@ -27,7 +27,7 @@ class User extends Authenticatable
         'password', 'remember_token', 'email'
     ];
 
-    // public function categories() 
+    // public function categories()
     // {
     //     return $this->hasMany(Category::class);
     // }

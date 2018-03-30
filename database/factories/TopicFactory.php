@@ -1,8 +1,8 @@
 <?php
 
-use App\Category;
 use App\User;
 use App\Topic;
+use App\Category;
 use Faker\Generator as Faker;
 
 $factory->define(Topic::class, function (Faker $faker) {
@@ -10,10 +10,10 @@ $factory->define(Topic::class, function (Faker $faker) {
         'title' => $faker->sentence,
         'approved' => 0,
         'category_id' => function () {
-        	return factory(Category::class)->create()->id;
+            return factory(Category::class)->create()->id;
         },
         'user_id' => function () {
-        	return factory(User::class)->create()->id;
+            return factory(User::class)->create()->id;
         }
     ];
 });

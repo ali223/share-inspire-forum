@@ -2,12 +2,11 @@
 
 namespace App\Notifications;
 
+use App\Post;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-
-use App\Post;
 
 class NewPostInYourTopic extends Notification implements ShouldQueue
 {
@@ -23,7 +22,6 @@ class NewPostInYourTopic extends Notification implements ShouldQueue
     public function __construct(Post $post)
     {
         $this->post = $post->load('topic');
-
     }
 
     /**
@@ -46,7 +44,7 @@ class NewPostInYourTopic extends Notification implements ShouldQueue
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('Hi, ' . $notifiable->name . ' A new post has been created in your topic ' . $this->post->topic->title)
+                    ->line('Hi, '.$notifiable->name.' A new post has been created in your topic '.$this->post->topic->title)
                     ->action('View Topic Posts', route('posts.index', $this->post->topic))
                     ->line('Thank you for being part of ShareInspire!');
     }
@@ -65,6 +63,4 @@ class NewPostInYourTopic extends Notification implements ShouldQueue
             'url' => route('posts.index', $this->post->topic),
         ];
     }
-
-
 }

@@ -11,42 +11,36 @@
 |
 */
 
-Route::prefix('admin')->group( function () {
-	Route::get('/', 'AdminController@index')->name('admins.index');
+Route::prefix('admin')->group(function () {
+    Route::get('/', 'AdminController@index')->name('admins.index');
 
-	Route::get('/categories', 'AdminCategoriesController@index')->name('admincategories.index');
+    Route::get('/categories', 'AdminCategoriesController@index')->name('admincategories.index');
 
-	Route::post('/categories', 'AdminCategoriesController@store')->name('admincategories.store');
+    Route::post('/categories', 'AdminCategoriesController@store')->name('admincategories.store');
 
-	Route::patch('/categories/{category}', 'AdminCategoriesController@update')->name('admincategories.update');
+    Route::patch('/categories/{category}', 'AdminCategoriesController@update')->name('admincategories.update');
 
+    Route::get('/topics', 'AdminTopicsController@index')->name('admintopics.index');
 
-	Route::get('/topics', 'AdminTopicsController@index')->name('admintopics.index');
+    Route::get('/topics/approve/{topic}', 'AdminTopicsController@approve')->name('admintopics.approve');
 
-	Route::get('/topics/approve/{topic}', 'AdminTopicsController@approve')->name('admintopics.approve');
+    Route::get('/topics/disapprove/{topic}', 'AdminTopicsController@disapprove')->name('admintopics.disapprove');
 
-	Route::get('/topics/disapprove/{topic}', 'AdminTopicsController@disapprove')->name('admintopics.disapprove');
+    Route::get('/login', 'AdminSessionsController@create')->name('adminsessions.create');
 
+    Route::post('/login', 'AdminSessionsController@store')->name('adminsessions.store');
 
-	Route::get('/login', 'AdminSessionsController@create')->name('adminsessions.create');
-
-	Route::post('/login', 'AdminSessionsController@store')->name('adminsessions.store');
-
-	Route::get('/logout', 'AdminSessionsController@destroy')->name('adminsessions.destroy');
-
-
+    Route::get('/logout', 'AdminSessionsController@destroy')->name('adminsessions.destroy');
 });
 
 Route::get('/posts/latest', 'PostsController@latest')->name('posts.latest');
 Route::get('/posts/search', 'PostsController@search')->name('posts.search');
 
-
 Route::get('/', 'CategoriesController@index')->name('home');
 
 Route::get('/categories', 'CategoriesController@index')->name('categories.index');
 
-
-Route::get('/categories/{category}/topics', 'TopicsController@index')->name('topics.index'); 
+Route::get('/categories/{category}/topics', 'TopicsController@index')->name('topics.index');
 
 Route::get('/categories/{category}/topics/create', 'TopicsController@create')->name('topics.create');
 
@@ -78,9 +72,9 @@ Route::get('/logout', 'SessionsController@destroy')->name('sessions.destroy');
 
 Route::get('/notifications', 'NotificationsController@index')->name('notifications.index');
 
-Route::delete('/notifications/{id}', 
-	'NotificationsController@destroy')
-	->name('notifications.destroy');
+Route::delete('/notifications/{id}',
+    'NotificationsController@destroy')
+    ->name('notifications.destroy');
 
 Route::get('/chatmessages', 'ChatMessagesController@index')->name('chatmessages.index');
 
