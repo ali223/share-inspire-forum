@@ -12,9 +12,9 @@ class TopicsSearchController extends Controller
         $keywords = $request->input('keywords');
 
         $searchedTopics = Topic::search($keywords)->get();
-        
+
         return view('topics.search', [
             'searchedTopics' => $searchedTopics
-        ]);     
+        ]);
     }
 }

@@ -13,14 +13,13 @@ class NotificationsController extends Controller
 
     public function index(Request $request)
     {
-        if (!$request->expectsJson()) {
+        if (! $request->expectsJson()) {
             return;
         }
 
         $notifications = auth()->user()->unreadNotifications;
 
         return $notifications;
-
     }
 
     public function destroy($notificationId)

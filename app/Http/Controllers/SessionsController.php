@@ -6,10 +6,9 @@ use Illuminate\Http\Request;
 
 class SessionsController extends Controller
 {
-
-    public function __construct() 
+    public function __construct()
     {
-        $this->middleware('guest', ['except' => ['destroy'] ]);
+        $this->middleware('guest', ['except' => ['destroy']]);
     }
 
     /**
@@ -35,14 +34,13 @@ class SessionsController extends Controller
             'password' => 'required'
         ]);
 
-        if (!auth()->attempt($request->only('email', 'password'))) {
+        if (! auth()->attempt($request->only('email', 'password'))) {
             return back()->withErrors([
                 'message' => 'Please check your credentials and try again.'
             ]);
         }
 
         return redirect()->route('home');
-            
     }
 
     /**
@@ -54,10 +52,9 @@ class SessionsController extends Controller
     public function destroy()
     {
         auth()->logout();
-        
+
         return redirect()
             ->route('home')
             ->withMessage('You have been logged out successfully.');
     }
-        
 }
