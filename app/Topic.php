@@ -2,29 +2,29 @@
 
 namespace App;
 
-use App\Notifications\NewPostInYourTopic;
-use Illuminate\Database\Eloquent\Model;
 use Laravel\Scout\Searchable;
+use Illuminate\Database\Eloquent\Model;
+use App\Notifications\NewPostInYourTopic;
 
 class Topic extends Model
 {
     use Searchable;
-    
+
     protected $fillable = ['title', 'user_id'];
 
     public function user()
     {
-    	return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
 
     public function posts()
     {
-    	return $this->hasMany(Post::class);
+        return $this->hasMany(Post::class);
     }
 
     public function category()
     {
-    	return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class);
     }
 
     public static function unapprovedCount()
@@ -50,7 +50,7 @@ class Topic extends Model
     public function shouldBeSearchable()
     {
         return $this->isApproved();
-    }    
+    }
 
     public function addPost($content, $userId)
     {

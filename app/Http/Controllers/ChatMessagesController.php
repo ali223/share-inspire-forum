@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\ChatMessage;
-use App\Events\NewChatMessage;
 use Illuminate\Http\Request;
+use App\Events\NewChatMessage;
 
 class ChatMessagesController extends Controller
 {
@@ -48,5 +48,4 @@ class ChatMessagesController extends Controller
 
         return $chatMessage;
     }
-
 }

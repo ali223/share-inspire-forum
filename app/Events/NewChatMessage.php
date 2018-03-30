@@ -2,15 +2,12 @@
 
 namespace App\Events;
 
-use Illuminate\Broadcasting\Channel;
+use App\ChatMessage;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-
-use App\ChatMessage;
 
 class NewChatMessage implements ShouldBroadcast
 {
@@ -40,6 +37,6 @@ class NewChatMessage implements ShouldBroadcast
 
     public function broadcastWith()
     {
-        return [ 'message' => $this->message->load('user')];
+        return ['message' => $this->message->load('user')];
     }
 }

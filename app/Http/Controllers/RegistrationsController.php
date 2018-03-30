@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\WelcomeMail;
 use App\User;
+use App\Mail\WelcomeMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -14,10 +14,9 @@ class RegistrationsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
     public function __construct()
     {
-        $this->middleware('guest');        
+        $this->middleware('guest');
     }
 
     public function create()

@@ -2,17 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Topic;
 use App\Category;
-use App\Post;
+use Illuminate\Http\Request;
 
 class TopicsController extends Controller
 {
-
     public function __construct()
     {
-        $this->middleware('auth', ['only' => ['create', 'store'] ]);
+        $this->middleware('auth', ['only' => ['create', 'store']]);
     }
 
     /**
@@ -25,7 +23,7 @@ class TopicsController extends Controller
         $category->loadApprovedTopicsAndAllByUser(
                     auth()->check() ? auth()->id() : null
                 );
-                
+
         return view('topics.index', compact('category'));
     }
 
@@ -53,7 +51,7 @@ class TopicsController extends Controller
         ]);
 
         $category->addTopic(
-            $request->title, 
+            $request->title,
             $request->content,
             auth()->id()
         );
@@ -62,5 +60,4 @@ class TopicsController extends Controller
             ->route('topics.index', $category)
             ->withMessage('New topic created successfully - waiting for approval by website admin');
     }
-    
 }
