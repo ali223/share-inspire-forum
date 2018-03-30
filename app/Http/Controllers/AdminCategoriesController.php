@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 
 class AdminCategoriesController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('auth:admin');
@@ -19,7 +18,7 @@ class AdminCategoriesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {        
+    {
         if ($request->expectsJson()) {
             return Category::all();
         }
@@ -39,7 +38,6 @@ class AdminCategoriesController extends Controller
             'name' => 'required',
             'description' => 'required'
         ]);
-
 
         $category = Category::create([
             'name' => $request->name,
@@ -72,5 +70,4 @@ class AdminCategoriesController extends Controller
 
         return $category;
     }
-
 }

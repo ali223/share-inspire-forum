@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Storage;
 
 class ProfilesController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('auth', ['only' => ['edit', 'update']]);
@@ -22,7 +21,7 @@ class ProfilesController extends Controller
      */
     public function show($id)
     {
-        $user = User::with(['topics','posts'])->find($id);
+        $user = User::with(['topics', 'posts'])->find($id);
 
         $profileImageUrl = $this->getProfileImageUrl($user->photourl);
 
@@ -79,17 +78,15 @@ class ProfilesController extends Controller
 
         return redirect()
             ->route('profiles.show', $user)
-            ->with('message', 'Profile updated successfully');        
+            ->with('message', 'Profile updated successfully');
     }
 
     protected function getProfileImageUrl($imageFile)
     {
         if (Storage::disk('dropbox')->exists($imageFile)) {
-                return Storage::disk('dropbox')
+            return Storage::disk('dropbox')
                              ->getAdapter()
                              ->getTemporaryLink($imageFile);
         }
-
-        return null;
     }
 }

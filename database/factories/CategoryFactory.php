@@ -8,7 +8,7 @@ $factory->define(App\Category::class, function (Faker $faker) {
         'name' => $faker->word,
         'description' => $faker->paragraph,
         'admin_id' => function () {
-        	return factory(Admin::class)->create()->id;
+            return factory(Admin::class)->create()->id;
         }
     ];
 });
