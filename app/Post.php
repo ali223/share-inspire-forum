@@ -61,4 +61,11 @@ class Post extends Model
     {
         return $this->likes()->count();
     }
+
+    public static function getPostsLikedByUser($userId)
+    {
+        return static::whereHas('likes', function ($query) use ($userId) {
+            $query->where('user_id', $userId);
+        })->get();
+    }
 }

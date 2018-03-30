@@ -88,3 +88,5 @@ Route::post('/chatmessages', 'ChatMessagesController@store')->name('chatmessages
 
 Route::post('/posts/{post}/like', 'LikesController@store');
 Route::delete('/posts/{post}/like', 'LikesController@destroy');
+
+Route::get('/likedposts', 'LikedPostsController@index')->name('likedposts.index');
