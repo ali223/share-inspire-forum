@@ -14,7 +14,7 @@ import autocomplete from 'autocomplete.js';
 export default {
   props: ['initialValue'],
   mounted() {
-    let client = AlgoliaSearch('0NC2E8BUFM', 'ba6eb225eea0a108ba211a85b51f4fe8');
+    let client = AlgoliaSearch('JGHPOXGN3H', 'e55c67b9b81853935a3431847f397e47');
     let index = client.initIndex('topics');
     autocomplete('#keywords', { hint: false }, [
       {
