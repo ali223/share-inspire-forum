@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
-use App\Post;
-use App\User;
 use App\Policies\PostPolicy;
 use App\Policies\UserPolicy;
+use App\Post;
+use App\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider

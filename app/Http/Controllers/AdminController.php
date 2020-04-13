@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Post;
-use App\User;
-use App\Topic;
 use App\Category;
+use App\Post;
+use App\Topic;
+use App\User;
 
 class AdminController extends Controller
 {

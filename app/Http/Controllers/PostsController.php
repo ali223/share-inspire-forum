@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Post;
-use App\Topic;
+use App\Events\NewPostCreated;
 use App\Events\PostDeleted;
 use App\Events\PostUpdated;
+use App\Post;
+use App\Topic;
 use Illuminate\Http\Request;
-use App\Events\NewPostCreated;
 
 class PostsController extends Controller
 {
@@ -134,6 +134,6 @@ class PostsController extends Controller
 
         return response()->json([
             'message' => 'The post has been deleted successfully'
-            ], 200);
+        ], 200);
     }
 }
