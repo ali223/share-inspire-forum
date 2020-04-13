@@ -3,10 +3,10 @@
 namespace App\Events;
 
 use Illuminate\Broadcasting\Channel;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Foundation\Events\Dispatchable;
+use Illuminate\Queue\SerializesModels;
 
 class NewPostCreated implements ShouldBroadcast
 {
@@ -42,9 +42,9 @@ class NewPostCreated implements ShouldBroadcast
     protected function getPostsArray()
     {
         return [
-                'post' => $this->post
-                            ->load('user')
-                            ->toArray()
-                ];
+            'post' => $this->post
+                        ->load('user')
+                        ->toArray()
+        ];
     }
 }

@@ -41,11 +41,11 @@ class Category extends Model
     public static function getCategoriesWithTopicsCount()
     {
         return static::withCount([
-                'topics' => function ($query) {
-                    $query->where('approved', 1)
-                        ->orWhere('user_id', auth()->id());
-                }
-            ])->get();
+            'topics' => function ($query) {
+                $query->where('approved', 1)
+                    ->orWhere('user_id', auth()->id());
+            }
+        ])->get();
     }
 
     public function loadApprovedTopicsAndAllByUser($userId = null)

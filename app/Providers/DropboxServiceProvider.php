@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
-use League\Flysystem\Filesystem;
 use GuzzleHttp\Client as GuzzleClient;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\ServiceProvider;
+use League\Flysystem\Filesystem;
 use Spatie\Dropbox\Client as DropboxClient;
 use Spatie\FlysystemDropbox\DropboxAdapter;
 
