@@ -12,9 +12,13 @@ import AlgoliaSearch from 'algoliasearch';
 import autocomplete from 'autocomplete.js';
 
 export default {
-  props: ['initialValue'],
+  props: [
+    'initialValue',
+    'algoliaAppId',
+    'algoliaSearchApiKey',
+  ],
   mounted() {
-    let client = AlgoliaSearch('JGHPOXGN3H', 'e55c67b9b81853935a3431847f397e47');
+    let client = AlgoliaSearch(this.algoliaAppId, this.algoliaSearchApiKey);
     let index = client.initIndex('topics');
     autocomplete('#keywords', { hint: false }, [
       {

@@ -58,7 +58,11 @@
       </ul>
       <form class="navbar-form navbar-left" action="{{ route('topics.search') }}">
         <div class="form-group">
-          <search-box initial-value="{{ request('keywords') }}"></search-box>
+          <search-box 
+            initial-value="{{ request('keywords') }}"
+            algolia-app-id="{{ config('scout.algolia.id') }}"
+            algolia-search-api-key="{{ config('scout.algolia.search_api_key') }}">
+          </search-box>
         </div>
         <button type="submit" class="btn btn-default">Search</button>        
         <img id="algolia-logo" src="{{ asset("images/search-by-algolia.png") }}">        
