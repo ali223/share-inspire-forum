@@ -11,7 +11,7 @@
 
     <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
 
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
 
     <script>
       window.App = {!!
