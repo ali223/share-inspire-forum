@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Category;
+use App\Http\Controllers\Controller;
 use App\Post;
 use App\Topic;
 use App\User;
 
-class AdminController extends Controller
+class DashboardController extends Controller
 {
     public function __construct()
     {
@@ -27,7 +28,7 @@ class AdminController extends Controller
         $categoriesCount = Category::count();
         $postsCount = Post::count();
 
-        return view('admins.index', [
+        return view('admin.dashboard.index', [
             'topicsCount' => $topicsCount,
             'usersCount' => $usersCount,
             'categoriesCount' => $categoriesCount,

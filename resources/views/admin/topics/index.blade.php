@@ -39,11 +39,11 @@
                   <td>{{ $topic->approved == 0 ? 'Not Approved' : 'Approved' }}</td>
                   <td>
                     @if ($topic->approved == 0) 
-                      <a href="{{ route('admintopics.approve', $topic) }}">
+                      <a href="{{ route('admin.topics.approve', $topic) }}">
                         Approve
                       </a>
                     @else
-                      <a href="{{ route('admintopics.disapprove', $topic) }}"> 
+                      <a href="{{ route('admin.topics.disapprove', $topic) }}"> 
                         Disapprove
                       </a>
                     @endif

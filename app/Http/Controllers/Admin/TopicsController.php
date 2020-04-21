@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Topic;
 
-class AdminTopicsController extends Controller
+class TopicsController extends Controller
 {
     public function __construct()
     {
@@ -15,7 +16,7 @@ class AdminTopicsController extends Controller
     {
         $topics = Topic::with('category')->get();
 
-        return view('admins.topics.index', [
+        return view('admin.topics.index', [
             'topics' => $topics
         ]);
     }

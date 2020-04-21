@@ -11,26 +11,24 @@
 |
 */
 
-Route::prefix('admin')->group(function () {
-    Route::get('/', 'AdminController@index')->name('admins.index');
+Route::group([
+    'namespace' => 'Admin',
+    'as' => 'admin.',
+    'prefix' => '/admin',
+], function ($router) {
+    $router->get('/', 'DashboardController@index')->name('dashboard.index');
 
-    Route::get('/categories', 'AdminCategoriesController@index')->name('admincategories.index');
+    $router->get('/categories', 'CategoriesController@index')->name('categories.index');
+    $router->post('/categories', 'CategoriesController@store')->name('categories.store');
+    $router->patch('/categories/{category}', 'CategoriesController@update')->name('categories.update');
 
-    Route::post('/categories', 'AdminCategoriesController@store')->name('admincategories.store');
+    $router->get('/topics', 'TopicsController@index')->name('topics.index');
+    $router->get('/topics/approve/{topic}', 'TopicsController@approve')->name('topics.approve');
+    $router->get('/topics/disapprove/{topic}', 'TopicsController@disapprove')->name('topics.disapprove');
 
-    Route::patch('/categories/{category}', 'AdminCategoriesController@update')->name('admincategories.update');
-
-    Route::get('/topics', 'AdminTopicsController@index')->name('admintopics.index');
-
-    Route::get('/topics/approve/{topic}', 'AdminTopicsController@approve')->name('admintopics.approve');
-
-    Route::get('/topics/disapprove/{topic}', 'AdminTopicsController@disapprove')->name('admintopics.disapprove');
-
-    Route::get('/login', 'AdminSessionsController@create')->name('adminsessions.create');
-
-    Route::post('/login', 'AdminSessionsController@store')->name('adminsessions.store');
-
-    Route::get('/logout', 'AdminSessionsController@destroy')->name('adminsessions.destroy');
+    $router->get('/login', 'SessionsController@create')->name('sessions.create');
+    $router->post('/login', 'SessionsController@store')->name('sessions.store');
+    $router->get('/logout', 'SessionsController@destroy')->name('sessions.destroy');
 });
 
 Route::get('/posts/latest', 'PostsController@latest')->name('posts.latest');

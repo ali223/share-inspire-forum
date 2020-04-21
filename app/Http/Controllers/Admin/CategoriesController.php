@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Category;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class AdminCategoriesController extends Controller
+class CategoriesController extends Controller
 {
     public function __construct()
     {
@@ -23,7 +24,7 @@ class AdminCategoriesController extends Controller
             return Category::all();
         }
 
-        return view('admins.categories.index');
+        return view('admin.categories.index');
     }
 
     /**

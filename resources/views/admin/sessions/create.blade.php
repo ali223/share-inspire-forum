@@ -14,7 +14,7 @@
         @include('layouts.errors')
 
         <div class="panel-body text-left">
-          <form method="POST" action=" {{ route('adminsessions.store') }}" enctype="multipart/form-data">
+          <form method="POST" action=" {{ route('admin.sessions.store') }}" enctype="multipart/form-data">
 
             {{ csrf_field() }}
 

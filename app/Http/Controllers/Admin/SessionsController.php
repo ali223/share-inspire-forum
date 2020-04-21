@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class AdminSessionsController extends Controller
+class SessionsController extends Controller
 {
     public function __construct()
     {
@@ -18,7 +19,7 @@ class AdminSessionsController extends Controller
      */
     public function create()
     {
-        return view('adminsessions.create');
+        return view('admin.sessions.create');
     }
 
     /**
@@ -40,7 +41,7 @@ class AdminSessionsController extends Controller
             ]);
         }
 
-        return redirect()->route('admins.index');
+        return redirect()->route('admin.dashboard.index');
     }
 
     /**
@@ -54,7 +55,7 @@ class AdminSessionsController extends Controller
         auth()->guard('admin')->logout();
 
         return redirect()
-            ->route('adminsessions.create')
+            ->route('admin.sessions.create')
             ->withMessage('Admin has been logged out successfully.');
     }
 }

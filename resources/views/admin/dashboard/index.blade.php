@@ -37,7 +37,7 @@
                     {{ $categoriesCount }} Categories
                   </h3>
                   <p>
-                    <a href="{{ route('admincategories.index') }}">
+                    <a href="{{ route('admin.categories.index') }}">
                       Create / Edit / View Categories
                     </a>
                   </p>
@@ -51,7 +51,7 @@
                     {{ $topicsCount }} Topics 
                   </h3>
                   <p>
-                    <a href="{{ route('admintopics.index') }}">
+                    <a href="{{ route('admin.topics.index') }}">
                       {{ $unapprovedTopicsCount }} topics, pending approval
                     </a>
                   </p>
@@ -95,7 +95,7 @@
             Newly Created Topics (Last 5)
 
             <span class="pull-right">
-              <a class="view-all-link" href="{{ route('admintopics.index') }}">
+              <a class="view-all-link" href="{{ route('admin.topics.index') }}">
                 View All
               </a>
             </span>

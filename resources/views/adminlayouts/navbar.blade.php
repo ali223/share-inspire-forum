@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="{{ route('admins.index') }}">
+      <a class="navbar-brand" href="{{ route('admin.dashboard.index') }}">
         ShareInspire        
       </a>      
     </div>
@@ -16,11 +16,11 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="{{ route('admins.index') }}">Home <span class="sr-only">(current)</span></a></li>
+        <li class="active"><a href="{{ route('admin.dashboard.index') }}">Home <span class="sr-only">(current)</span></a></li>
 
-          <li><a href="{{ route('admincategories.index') }}">Categories</a></li>
+          <li><a href="{{ route('admin.categories.index') }}">Categories</a></li>
 
-          <li><a href="{{ route('admintopics.index') }}">Topics</a></li>
+          <li><a href="{{ route('admin.topics.index') }}">Topics</a></li>
 
           <li><a href="#">Posts</a></li>
 
@@ -42,7 +42,7 @@
               <li><a href="{{ route('profiles.show', auth()->id()) }}">Your Profile</a></li>
               <li><a href="#">Settings</a></li>
               <li role="separator" class="divider"></li>
-              <li><a href="{{ route('adminsessions.destroy') }}">Logout</a></li>
+              <li><a href="{{ route('admin.sessions.destroy') }}">Logout</a></li>
             </ul>
           </li>
         </ul>
