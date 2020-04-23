@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Categories;
 
 use App\Category;
 use App\Topic;
@@ -8,7 +8,7 @@ use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class ViewCategoriesTest extends TestCase
+class IndexTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -17,7 +17,7 @@ class ViewCategoriesTest extends TestCase
     {
         $categories = factory(Category::class, 2)->create();
 
-        $this->get('/')
+        $this->get(route('home'))
             ->assertSee($categories[0]->name)
             ->assertSee($categories[0]->description)
             ->assertSee($categories[1]->name)            
