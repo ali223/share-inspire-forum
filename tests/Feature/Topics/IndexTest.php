@@ -8,7 +8,7 @@ use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class ViewTopicsTest extends TestCase
+class IndexTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -21,7 +21,7 @@ class ViewTopicsTest extends TestCase
             'category_id' => $category->id
         ]);
 
-        $this->get("/categories/{$category->id}/topics")
+        $this->get(route('topics.index', $category))
             ->assertSee($topics[0]->title)
             ->assertSee($topics[1]->title);
     }
@@ -36,32 +36,32 @@ class ViewTopicsTest extends TestCase
             'category_id' => $category->id
         ]);
 
-        $this->get("/categories/{$category->id}/topics")
+        $this->get(route('topics.index', $category))
             ->assertDontSee($unapprovedTopics[0]->title)
             ->assertDontSee($unapprovedTopics[1]->title);
     }
 
 
     /** @test */
-    public function authenticated_users_can_also_view_their_unapproved_topics_within_a_category()
+    public function non_admin_users_can_also_view_their_unapproved_topics_within_a_category()
     {
         $user = factory(User::class)->create();
-        $this->actingAs($user);
-
         $category = factory(Category::class)->create();
 
         $approvedTopic = factory(Topic::class)->create([
             'approved' => 1,
-            'category_id' => $category->id
+            'category_id' => $category->id,
+            'user_id' => $user->id
         ]);
 
         $unapprovedTopic = factory(Topic::class)->create([
             'approved' => 0,
             'category_id' => $category->id,
-            'user_id' => auth()->id()
+            'user_id' => $user->id
         ]);
 
-        $this->get("/categories/{$category->id}/topics")
+        $this->actingAs($user)
+            ->get(route('topics.index', $category))
             ->assertSee($approvedTopic->title)
             ->assertSee($unapprovedTopic->title);
     }
