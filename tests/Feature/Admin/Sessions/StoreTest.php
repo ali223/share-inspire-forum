@@ -12,7 +12,7 @@ class StoreTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    public function when_logging_in_email_and_password_are_required()
+    public function when_admin_is_logging_in_email_and_password_are_required()
     {
         $data = [
             'email' => '',
