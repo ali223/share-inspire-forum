@@ -16,19 +16,28 @@ Route::group([
     'as' => 'admin.',
     'prefix' => '/admin',
 ], function ($router) {
-    $router->get('/', 'DashboardController@index')->name('dashboard.index');
+    $router->group([
+        'middleware' => 'guest:admin',
+    ], function ($router) {
+        $router->get('/login', 'SessionsController@create')->name('sessions.create');
+        $router->post('/login', 'SessionsController@store')->name('sessions.store');
+    });
 
-    $router->get('/categories', 'CategoriesController@index')->name('categories.index');
-    $router->post('/categories', 'CategoriesController@store')->name('categories.store');
-    $router->patch('/categories/{category}', 'CategoriesController@update')->name('categories.update');
+    $router->group([
+        'middleware' => 'auth:admin',
+    ], function ($router) {
+        $router->get('/', 'DashboardController@index')->name('dashboard.index');
 
-    $router->get('/topics', 'TopicsController@index')->name('topics.index');
-    $router->get('/topics/approve/{topic}', 'TopicsController@approve')->name('topics.approve');
-    $router->get('/topics/disapprove/{topic}', 'TopicsController@disapprove')->name('topics.disapprove');
+        $router->get('/categories', 'CategoriesController@index')->name('categories.index');
+        $router->post('/categories', 'CategoriesController@store')->name('categories.store');
+        $router->patch('/categories/{category}', 'CategoriesController@update')->name('categories.update');
 
-    $router->get('/login', 'SessionsController@create')->name('sessions.create');
-    $router->post('/login', 'SessionsController@store')->name('sessions.store');
-    $router->get('/logout', 'SessionsController@destroy')->name('sessions.destroy');
+        $router->get('/topics', 'TopicsController@index')->name('topics.index');
+        $router->get('/topics/approve/{topic}', 'TopicsController@approve')->name('topics.approve');
+        $router->get('/topics/disapprove/{topic}', 'TopicsController@disapprove')->name('topics.disapprove');
+
+        $router->get('/logout', 'SessionsController@destroy')->name('sessions.destroy');
+    });
 });
 
 Route::get('/posts/latest', 'PostsController@latest')->name('posts.latest');

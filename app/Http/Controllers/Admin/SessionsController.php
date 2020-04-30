@@ -7,11 +7,6 @@ use Illuminate\Http\Request;
 
 class SessionsController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('guest:admin', ['except' => 'destroy']);
-    }
-
     /**
      * Show the form for creating a new resource.
      *
