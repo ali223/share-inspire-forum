@@ -14,11 +14,6 @@ class RegistrationsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->middleware('guest');
-    }
-
     public function create()
     {
         return view('registrations.create');

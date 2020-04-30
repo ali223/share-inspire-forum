@@ -7,14 +7,6 @@ use App\Post;
 class LikedPostsController extends Controller
 {
     /**
-     * Create a new LikedPostsController instance.
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response

@@ -8,11 +8,6 @@ use Illuminate\Support\Facades\Storage;
 
 class ProfilesController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth', ['only' => ['edit', 'update']]);
-    }
-
     /**
      * Display the specified resource.
      *
