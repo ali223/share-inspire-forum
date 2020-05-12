@@ -36,7 +36,7 @@ Route::group([
         $router->get('/topics/approve/{topic}', 'TopicsController@approve')->name('topics.approve');
         $router->get('/topics/disapprove/{topic}', 'TopicsController@disapprove')->name('topics.disapprove');
 
-        $router->get('/logout', 'SessionsController@destroy')->name('sessions.destroy');
+        $router->delete('/logout', 'SessionsController@destroy')->name('sessions.destroy');
     });
 });
 
@@ -74,7 +74,7 @@ Route::group([
     $router->get('/profiles/edit/{user}', 'ProfilesController@edit')->name('profiles.edit');
     $router->patch('/profiles/{user}', 'ProfilesController@update')->name('profiles.update');
 
-    $router->get('/logout', 'SessionsController@destroy')->name('sessions.destroy');
+    $router->delete('/logout', 'SessionsController@destroy')->name('sessions.destroy');
 });
 
 Route::get('/posts/latest', 'PostsController@latest')->name('posts.latest');

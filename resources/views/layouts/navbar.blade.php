@@ -86,7 +86,9 @@
               <li><a href="{{ route('profiles.edit', auth()->id()) }}">Edit Profile</a></li>
               <li><a href="{{ route('likedposts.index') }}">Posts Liked By You</a></li>
               <li role="separator" class="divider"></li>
-              <li><a href="{{ route('sessions.destroy') }}">Logout</a></li>
+
+              <logout-link action-url="{{ route('sessions.destroy') }}" csrf-token="{{ csrf_token() }}">
+              </logout-link>
             </ul>
           </li>
         </ul>

@@ -31,6 +31,7 @@ Vue.component('flash-message', require('./components/FlashMessage.vue'));
 Vue.component('chat-messages', require('./components/ChatMessages.vue'));
 Vue.component('categories-list', require('./components/CategoriesList.vue'));
 Vue.component('search-box', require('./components/SearchBox.vue'));
+Vue.component('logout-link', require('./components/LogoutLink.vue'));
 
 Vue.use(require('vue-moment'));
 

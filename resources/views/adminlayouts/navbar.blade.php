@@ -42,7 +42,9 @@
               <li><a href="{{ route('profiles.show', auth()->id()) }}">Your Profile</a></li>
               <li><a href="#">Settings</a></li>
               <li role="separator" class="divider"></li>
-              <li><a href="{{ route('admin.sessions.destroy') }}">Logout</a></li>
+
+              <logout-link action-url="{{ route('admin.sessions.destroy') }}" csrf-token="{{ csrf_token() }}">
+              </logout-link>
             </ul>
           </li>
         </ul>
