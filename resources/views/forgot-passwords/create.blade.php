@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', "ShareInspire Forum | User Login")
+@section('title', "ShareInspire Forum | Forgot Password")
 
 @section('content')
 <div class="container margin-top">
