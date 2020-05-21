@@ -5,7 +5,8 @@
       {{ $post->content }} 
     </a>
 
-    <strong>Posted {{ $post->created_at->diffForHumans() }} by
+    <strong>
+      Posted {{ $post->created_at->diffForHumans() }} by
       <a href="{{ route('profiles.show', $post->user->id) }}">
         {{ $post->user->name }}
       </a>
@@ -18,7 +19,6 @@
       <a href="{{ route('posts.index', $post->topic->id) }}">
         {{$post->topic->title}}
       </a>  
-    </strong> 
-    
+    </strong>
   </p>
 </li>

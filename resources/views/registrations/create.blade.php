@@ -3,8 +3,6 @@
 @section('title', "ShareInspire Forum | User Registration")
 
 @section('content')
-
-<div class="container margin-top">
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
       <div class="panel panel-default">
@@ -12,11 +10,8 @@
           <h3>User Registration Form</h3>
         </div>
 
-        @include('layouts.errors')
-
         <div class="panel-body text-left">
           <form method="POST" action=" {{ route('registrations.store') }}" enctype="multipart/form-data">
-
             {{ csrf_field() }}
 
             <div class="form-group">
@@ -51,12 +46,10 @@
 
             <div class="form-group">
               <input type="submit" value="Register" class="btn btn-primary" class="form-control">
-            </div>      
-
+            </div>
           </form>
         </div>
       </div>
     </div>
   </div>
-</div>
 @endsection

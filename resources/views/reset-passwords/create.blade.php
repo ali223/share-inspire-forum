@@ -3,15 +3,12 @@
 @section('title', "ShareInspire Forum | Reset Password")
 
 @section('content')
-<div class="container margin-top">
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
       <div class="panel panel-default">
         <div class="panel-heading text-center">
           <h3>Reset Password</h3>
         </div>
-
-        @include('layouts.errors')
 
         <div class="panel-body text-left">
           <form method="POST" action="{{ route('reset-passwords.store') }}">
@@ -45,5 +42,4 @@
       </div>
     </div>
   </div>
-</div>
 @endsection

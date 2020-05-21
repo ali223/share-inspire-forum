@@ -2,50 +2,53 @@
 
 @section('title', 'ShareInspire Forum | Categories')
 
+@section('showcase')
+  @include('layouts.showcase')
+@endsection
+
 @section('content')
-
-@include('layouts.showcase')
-
-<div class="container margin-top">
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
-      @include('layouts.message')
       <a name="list"></a>
+
       <div class="panel panel-default">
-        <div class="panel-heading text-center"><h3>Forum Categories</h3></div>
+        <div class="panel-heading text-center">
+          <h3>Forum Categories</h3>
+        </div>
 
         <div class="panel-body text-center">
-          <!-- Table -->
           <table class="table text-left">
-             <thead>
-               <tr>
-                 <th>Category Name</th>
-                 <th>Category Description</th>
-                 <th>Created By</th>
-                 <th>No. of Topics</th>
-               </tr>
-             </thead>
-
-             <tbody>
-                @foreach($categories as $category)
+            <thead>
+              <tr>
+                <th>Category Name</th>
+                <th>Category Description</th>
+                <th>Created By</th>
+                <th>No. of Topics</th>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach($categories as $category)
                 <tr>
                   <td>
                     <a href="{{ route('topics.index', $category->id) }}">
                       <strong>{{ $category->name }}</strong>
                     </a>
                   </td>
-                  <td>{{ $category->description }}</td>
+                  <td>
+                    {{ $category->description }}
+                  </td>
                   <td>
                       {{ $category->admin->name }}
                   </td>
-                  <td>{{ $category->topics_count }}</td>
+                  <td>
+                    {{ $category->topics_count }}
+                  </td>
                 </tr>
-                @endforeach
-             </tbody>
+              @endforeach
+            </tbody>
           </table>
         </div>
       </div>
     </div>
   </div>
-</div>
 @endsection

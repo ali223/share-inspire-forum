@@ -3,9 +3,6 @@
 @section('title', 'ShareInspire Forum | Search Results')
 
 @section('content')
-
-@include('layouts.message')
-<div class="container margin-top">
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
       <div class="panel panel-default">
@@ -18,19 +15,17 @@
           @forelse ($searchedTopics as $topic)
             <li>
               <p>
-                <strong>
-                  Topic
-                </strong>
+                <strong>Topic</strong>
                 <a href="{{ route('posts.index', $topic->id) }}" class="link-underline">
                   {{$topic->title}}
-                </a>  
+                </a>
               
                 <strong>Created by</strong>
                 <a href="{{ route('profiles.show', $topic->user->id) }}" class="link-underline">
                   {{ $topic->user->name }}
                 </a>
                 {{ $topic->created_at->diffForHumans() }}
-                </p>
+              </p>
             </li>
           @empty
             <h3 class="text-center">
@@ -42,5 +37,4 @@
       </div>
     </div>
   </div>
-</div>
 @endsection
