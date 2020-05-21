@@ -46,4 +46,9 @@ class User extends Authenticatable
     {
         return static::latest()->take(5)->get();
     }
+
+    public static function findByEmail($email)
+    {
+        return static::where('email', $email)->first();
+    }
 }
