@@ -48,6 +48,12 @@ Route::group([
 
     $router->get('/registrations/create', 'RegistrationsController@create')->name('registrations.create');
     $router->post('/registrations', 'RegistrationsController@store')->name('registrations.store');
+
+    $router->get('forgot-passwords/create', 'ForgotPasswordsController@create')->name('forgot-passwords.create');
+    $router->post('forgot-passwords', 'ForgotPasswordsController@store')->name('forgot-passwords.store');
+
+    $router->get('reset-passwords/create', 'ResetPasswordsController@create')->name('reset-passwords.create');
+    $router->post('reset-passwords', 'ResetPasswordsController@store')->name('reset-passwords.store');
 });
 
 Route::group([
