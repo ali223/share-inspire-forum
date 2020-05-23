@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Topics;
 
 use App\Category;
 use App\Topic;

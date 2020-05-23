@@ -60,7 +60,7 @@ class StoreTest extends TestCase
 
         $this->actingAs($admin, 'admin')
             ->postJson(route('admin.categories.store'), $categoryData)
-            ->assertStatus(Response::HTTP_OK);
+            ->assertStatus(Response::HTTP_CREATED);
 
         $this->assertDatabaseHas('categories', $categoryData);
     }

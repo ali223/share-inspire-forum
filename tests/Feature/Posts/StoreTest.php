@@ -56,7 +56,7 @@ class StoreTest extends TestCase
 
         $this->actingAs($user)
             ->postJson(route('posts.store', $topic), $postData)
-            ->assertStatus(Response::HTTP_OK);
+            ->assertStatus(Response::HTTP_CREATED);
 
         $this->assertDatabaseHas('posts', [
             'content' => $postData['content'],
@@ -84,7 +84,7 @@ class StoreTest extends TestCase
 
         $this->actingAs($anotherUser)
             ->postJson(route('posts.store', $topic), $postData)
-            ->assertStatus(Response::HTTP_OK);
+            ->assertStatus(Response::HTTP_CREATED);
 
         Notification::assertSentTo($topicCreator, NewPostInYourTopic::class);
     }
@@ -105,7 +105,7 @@ class StoreTest extends TestCase
 
         $this->actingAs($topicCreator)
             ->postJson(route('posts.store', $topic), $postData)
-            ->assertStatus(Response::HTTP_OK);
+            ->assertStatus(Response::HTTP_CREATED);
 
         Notification::assertNotSentTo($topicCreator, NewPostInYourTopic::class);
     }

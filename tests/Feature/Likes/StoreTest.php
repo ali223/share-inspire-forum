@@ -1,6 +1,6 @@
 <?php
 
-namespace Feature;
+namespace Tests\Feature\Likes;
 
 use App\Post;
 use App\User;
