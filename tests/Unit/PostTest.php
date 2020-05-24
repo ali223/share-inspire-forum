@@ -12,7 +12,7 @@ class PostTest extends TestCase
 
 	protected $post;
 
-	public function setUp()
+	protected function setUp(): void
 	{
 		parent::setUp();
 

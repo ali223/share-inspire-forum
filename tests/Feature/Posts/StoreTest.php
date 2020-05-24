@@ -19,7 +19,7 @@ class StoreTest extends TestCase
     use RefreshDatabase,
         WithFaker;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 

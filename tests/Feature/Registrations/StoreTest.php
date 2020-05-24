@@ -22,8 +22,8 @@ class StoreTest extends TestCase
         $userRegistrationData = [
             'name' => $this->faker->name,
             'email' => $this->faker->email,
-            'password' => 'secret',
-            'password_confirmation' => 'secret',
+            'password' => 'secret123',
+            'password_confirmation' => 'secret123',
             'about' => $this->faker->paragraph
         ];
 

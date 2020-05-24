@@ -30,7 +30,7 @@ class RegistrationsController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users',
-            'password' => 'required|min:6|confirmed',
+            'password' => 'required|min:8|confirmed',
             'password_confirmation' => 'required',
             'about' => 'required',
             'photofile' => 'image|max:500'
