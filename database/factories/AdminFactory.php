@@ -1,6 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
+use Illuminate\Support\Str;
 
 $factory->define(App\Admin::class, function (Faker $faker) {
     static $password;
@@ -10,6 +11,6 @@ $factory->define(App\Admin::class, function (Faker $faker) {
         'email' => $faker->unique()->safeEmail,
         'job_title' => $faker->jobTitle,
         'password' => $password ?: $password = bcrypt('secret'),
-        'remember_token' => str_random(10)
+        'remember_token' => Str::random(10)
     ];
 });

@@ -109,7 +109,7 @@
             </tr>
             @foreach ($latestTopics as $topic)
               <tr>
-                <td>{{ str_limit($topic->title, 40) }}</td>
+                <td>{{ $topic->title }}</td>
                 <td>{{ $topic->user->name }}</td>
                 <td>{{ $topic->created_at->diffForHumans() }}</td>
               </tr>

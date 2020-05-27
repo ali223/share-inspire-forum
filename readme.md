@@ -75,6 +75,6 @@ ShareInspire Forum has been built using the following:-
   * Pusher
   * Laravel Echo
   * PHP
-  * Laravel Framework 5.8
+  * Laravel Framework 6.x
   * MYSQL
 
