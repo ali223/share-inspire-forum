@@ -41,15 +41,15 @@ class IndexTest extends TestCase
             ->get(route('admin.topics.index'))
             ->assertStatus(Response::HTTP_OK)
 
-            ->assertSee(e($topics[0]->title))
-            ->assertSee(e($topics[0]->user->name))
-            ->assertSee(e($topics[0]->category->name))
+            ->assertSee($topics[0]->title)
+            ->assertSee($topics[0]->user->name)
+            ->assertSee($topics[0]->category->name)
             ->assertSee($topics[0]->created_at->toDayDateTimeString())
             ->assertSee($topics[0]->isApproved() ? 'Approved' : 'Not Approved')
 
-            ->assertSee(e($topics[1]->title))
-            ->assertSee(e($topics[1]->user->name))
-            ->assertSee(e($topics[1]->category->name))
+            ->assertSee($topics[1]->title)
+            ->assertSee($topics[1]->user->name)
+            ->assertSee($topics[1]->category->name)
             ->assertSee($topics[1]->created_at->toDayDateTimeString())
             ->assertSee($topics[1]->isApproved() ? 'Approved' : 'Not Approved');
     }
