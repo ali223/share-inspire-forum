@@ -31,7 +31,16 @@
             </div>
 
             <div class="form-group">
-              <input type="submit" value="Login" class="btn btn-primary" class="form-control">
+              <button type="submit" class="btn btn-primary form-control">
+                Login with Email and Password
+              </button>
+            </div>
+
+            <div class="form-group">
+              <a href="{{ route('social-logins.redirect-to-provider', 'github') }}" class="btn btn-primary form-control">
+                Sign In with GitHub
+                <img src="{{ asset('images/github-icon.png') }}" width="20">
+              </a>              
             </div>
           </form>
         </div>

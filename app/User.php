@@ -42,6 +42,11 @@ class User extends Authenticatable
         return $this->hasMany(Like::class);
     }
 
+    public function socialIdentities()
+    {
+        return $this->hasMany(SocialIdentity::class);
+    }
+
     public static function getLatestUsers()
     {
         return static::latest()->take(5)->get();
