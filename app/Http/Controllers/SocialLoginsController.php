@@ -6,7 +6,6 @@ use App\Mail\WelcomeMail;
 use App\SocialIdentity;
 use App\User;
 use Exception;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Socialite;
@@ -82,7 +81,7 @@ class SocialLoginsController extends Controller
 
     protected function sendWelcomeEmailIfNewUser(User $user)
     {
-        if (!$user->wasRecentlyCreated) {
+        if (! $user->wasRecentlyCreated) {
             return;
         }
 
