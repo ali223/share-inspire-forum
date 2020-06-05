@@ -46,6 +46,9 @@ Route::group([
     $router->get('/login', 'SessionsController@create')->name('sessions.create');
     $router->post('/login', 'SessionsController@store')->name('sessions.store');
 
+    $router->get('/social-logins/{provider}', 'SocialLoginsController@redirectToProvider')->name('social-logins.redirect-to-provider');
+    $router->get('/social-logins/{provider}/callback', 'SocialLoginsController@handleProviderCallback')->name('social-logins.handle-provider-callback');
+
     $router->get('/registrations/create', 'RegistrationsController@create')->name('registrations.create');
     $router->post('/registrations', 'RegistrationsController@store')->name('registrations.store');
 
