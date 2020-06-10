@@ -1,7 +1,7 @@
 ## ShareInspire Forum [![Build Status](https://travis-ci.org/ali223/share-inspire-forum.svg?branch=master)](https://travis-ci.org/ali223/share-inspire-forum) [![StyleCI](https://styleci.io/repos/83811382/shield?branch=master)](https://styleci.io/repos/83811382)
 
 ShareInspire Forum is a discussion forum website. It is meant to provide a
-platform, where people can come together and inspire eash other by sharing
+platform, where people can come together and inspire each other by sharing
 their thoughts and feelings. It is a personal project that I have built to
 learn and practise Vue.js and Laravel. You can visit the website at https://share-inspire-forum.herokuapp.com
 
@@ -35,7 +35,7 @@ implemented using Laravel Event Broadcasting, Laravel Echo, Vue.js and Pusher.
 
 When users add, edit or delete their posts, all other users get Real-Time
 updates on their browser windows, without refreshing the page. This has been
-accomplised using Laravel Event Broadcasting to broadcast server side events
+accomplished using Laravel Event Broadcasting to broadcast server side events
 to client side via Pusher.
 
 #### Real-Time Notifications
