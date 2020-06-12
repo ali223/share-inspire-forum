@@ -5,7 +5,6 @@ namespace Tests\Feature\SocialLogins;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Laravel\Socialite\Facades\Socialite;
-use Mockery as m;
 use Tests\TestCase;
 
 class RedirectToProviderTest extends TestCase
@@ -15,7 +14,7 @@ class RedirectToProviderTest extends TestCase
     {
         Socialite::shouldReceive('driver')
                 ->with('github')
-                ->andReturn(m::self())
+                ->andReturnSelf()
                 ->shouldReceive('redirect')
                 ->andReturn(redirect('https://url-to-provider'));
 

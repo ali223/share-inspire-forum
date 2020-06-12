@@ -9,7 +9,6 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Mail;
 use Laravel\Socialite\Facades\Socialite;
 use Laravel\Socialite\Two\User as SocialiteUser;
-use Mockery as m;
 use Tests\TestCase;
 
 class HandleProviderCallbackTest extends TestCase
@@ -29,7 +28,7 @@ class HandleProviderCallbackTest extends TestCase
 
         Socialite::shouldReceive('driver')
                 ->with('github')
-                ->andReturn(m::self())
+                ->andReturnSelf()
                 ->shouldReceive('user')
                 ->andReturn(
                     (new SocialiteUser)
@@ -75,7 +74,7 @@ class HandleProviderCallbackTest extends TestCase
 
         Socialite::shouldReceive('driver')
                 ->with('github')
-                ->andReturn(m::self())
+                ->andReturnSelf()
                 ->shouldReceive('user')
                 ->andReturn(
                     (new SocialiteUser)
