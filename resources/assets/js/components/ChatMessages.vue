@@ -25,7 +25,7 @@
     </div>
     <div class="col-md-4">
       <div class="card">
-        <div class="card-header text-center bg-custom text-light">
+        <div class="card-header text-center bg-secondary text-light">
           Online Users
         </div>
         <div class="card-body">
