@@ -4,33 +4,35 @@
 
 @section('content')
   <div class="row">
-    <div class="col-md-10 col-md-offset-1">
-      <div class="panel panel-default">
-        <div class="panel-heading text-center">
-          <h3>Search Results</h3>
+    <div class="col-md-10 offset-md-1">
+      <div class="card mt-2 mb-4">
+        <div class="card-header text-center bg-secondary text-light">
+          <h4>
+            Search Results
+          </h4>
         </div>
 
-        <div class="panel-body">
+        <div class="card-body">
           <ul>
           @forelse ($searchedTopics as $topic)
             <li>
               <p>
                 <strong>Topic</strong>
-                <a href="{{ route('posts.index', $topic->id) }}" class="link-underline">
+                <a href="{{ route('posts.index', $topic->id) }}" class="link-underline text-custom">
                   {{$topic->title}}
                 </a>
               
                 <strong>Created by</strong>
-                <a href="{{ route('profiles.show', $topic->user->id) }}" class="link-underline">
+                <a href="{{ route('profiles.show', $topic->user->id) }}" class="link-underline text-custom">
                   {{ $topic->user->name }}
                 </a>
                 {{ $topic->created_at->diffForHumans() }}
               </p>
             </li>
           @empty
-            <h3 class="text-center">
+            <h4 class="text-center">
               No matching topics found.
-            </h3>
+            </h4>
           @endforelse
           </ul>
         </div>
