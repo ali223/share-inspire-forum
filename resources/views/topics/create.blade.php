@@ -4,18 +4,19 @@
 
 @section('content')
   <div class="row">
-    <div class="col-md-10 col-md-offset-1">
-      <div class="panel panel-default">
-        <div class="panel-heading text-center">
-          <h3>
-            Category: <strong>{{ $category->name }}</strong>
-          </h3>
-          <h3>
+    <div class="col-md-10 offset-md-1">
+      <div class="card mt-2 mb-4">
+        <div class="card-header text-center bg-secondary text-light">
+          <h4>
+            Category: 
+            <strong>{{ $category->name }}</strong>
+          </h4>
+          <h4>
             <strong>Create a New Topic</strong>
-          </h3>
+          </h4>
         </div>
 
-        <div class="panel-body text-left">
+        <div class="card-body">
           <form method="POST" action="{{ route('topics.store', $category->id) }}">
             {{ csrf_field() }}
 
@@ -30,7 +31,7 @@
             </div>      
 
             <div class="form-group">
-              <input type="submit" value="Create" class="btn btn-primary" class="form-control">
+              <input type="submit" value="Create" class="btn btn-custom">
             </div>      
           </form>
         </div>
