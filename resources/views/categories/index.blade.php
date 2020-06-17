@@ -11,7 +11,7 @@
     <div class="col-md-10 offset-md-1">
       <a name="list"></a>
 
-      <div class="card mt-2 mb-3">
+      <div class="card mt-2 mb-4">
         <div class="card-header text-center bg-custom text-light">
           <h3>Forum Categories</h3>
         </div>
