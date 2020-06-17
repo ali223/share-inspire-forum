@@ -4,13 +4,15 @@
 
 @section('content')
   <div class="row">
-    <div class="col-md-8 col-md-offset-2">
-      <div class="panel panel-default">
-        <div class="panel-heading text-center">
-          <h3>User Registration Form</h3>
+    <div class="col-md-8 offset-md-2">
+      <div class="card mt-2 mb-4">
+        <div class="card-header text-center bg-secondary text-light">
+          <h4>
+            User Registration Form
+          </h4>
         </div>
 
-        <div class="panel-body text-left">
+        <div class="card-body">
           <form method="POST" action=" {{ route('registrations.store') }}" enctype="multipart/form-data">
             {{ csrf_field() }}
 
@@ -45,7 +47,7 @@
             </div>
 
             <div class="form-group">
-              <input type="submit" value="Register" class="btn btn-primary" class="form-control">
+              <input type="submit" value="Register" class="btn btn-custom">
             </div>
           </form>
         </div>
