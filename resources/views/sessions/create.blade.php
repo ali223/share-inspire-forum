@@ -4,13 +4,15 @@
 
 @section('content')
   <div class="row">
-    <div class="col-md-6 col-md-offset-3">
-      <div class="panel panel-default">
-        <div class="panel-heading text-center">
-          <h3>User Login Form</h3>
+    <div class="col-md-6 offset-md-3">
+      <div class="card mt-2 mb-4">
+        <div class="card-header text-center bg-secondary text-light">
+          <h4>
+            User Login Form
+          </h4>
         </div>
 
-        <div class="panel-body text-left">
+        <div class="card-body">
           <form method="POST" action="{{ route('sessions.store') }}">
             {{ csrf_field() }}
 
@@ -31,13 +33,13 @@
             </div>
 
             <div class="form-group">
-              <button type="submit" class="btn btn-primary form-control">
+              <button type="submit" class="btn btn-custom form-control">
                 Login with Email and Password
               </button>
             </div>
 
             <div class="form-group">
-              <a href="{{ route('social-logins.redirect-to-provider', 'github') }}" class="btn btn-primary form-control">
+              <a href="{{ route('social-logins.redirect-to-provider', 'github') }}" class="btn btn-custom form-control">
                 Sign In with GitHub
                 <img src="{{ asset('images/github-icon.png') }}" width="20">
               </a>              
