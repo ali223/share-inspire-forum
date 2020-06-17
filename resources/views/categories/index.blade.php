@@ -8,15 +8,15 @@
 
 @section('content')
   <div class="row">
-    <div class="col-md-10 col-md-offset-1">
+    <div class="col-md-10 offset-md-1">
       <a name="list"></a>
 
-      <div class="panel panel-default">
-        <div class="panel-heading text-center">
+      <div class="card mt-2 mb-3">
+        <div class="card-header text-center bg-custom text-light">
           <h3>Forum Categories</h3>
         </div>
 
-        <div class="panel-body text-center">
+        <div class="card-body text-center">
           <table class="table text-left">
             <thead>
               <tr>
@@ -30,7 +30,7 @@
               @foreach($categories as $category)
                 <tr>
                   <td>
-                    <a href="{{ route('topics.index', $category->id) }}">
+                    <a class="text-custom" href="{{ route('topics.index', $category->id) }}">
                       <strong>{{ $category->name }}</strong>
                     </a>
                   </td>
