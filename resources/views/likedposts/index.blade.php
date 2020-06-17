@@ -4,17 +4,17 @@
 
 @section('content')
   <div class="row">
-    <div class="col-md-10 col-md-offset-1">
-      <div class="panel panel-default">
-        <div class="panel-heading text-center">
-          <h3>
+    <div class="col-md-10 offset-md-1">
+      <div class="card mb-3">
+        <div class="card-header bg-secondary text-light text-center">
+          <h4>
             Posts 
-            <span class="glyphicon glyphicon-heart"></span>
+            <i class="fa fa-heart text-danger"></i>
             Liked By You
-          </h3>
+          </h4>
         </div>
 
-        <div class="panel-body">          
+        <div class="card-body">
           <ul>
             @forelse($likedPosts as $post)
               @include('layouts.postslistitem')
