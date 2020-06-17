@@ -1,62 +1,63 @@
 @php
   $route = Route::currentRouteName();
 @endphp
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="{{ route('home') }}">ShareInspire</a>          
-    </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="{{ $route == 'home' ? 'active' : ''}}">
-          <a href="{{ route('home') }}">
-            <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-            Home
+<nav class="navbar navbar-expand-lg navbar-dark bg-custom">
+  <a class="navbar-brand" href="{{ route('home') }}">ShareInspire</a>
+
+  <button 
+    class="navbar-toggler" 
+    type="button" 
+    data-toggle="collapse" 
+    data-target="#navbarSupportedContent" 
+    aria-controls="navbarSupportedContent" 
+    aria-expanded="false" 
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item {{ $route == 'home' ? 'active' : ''}}">
+        <a class="nav-link" href="{{ route('home') }}">
+          <i class="fa fa-lg fa-home"></i>
+          Home
+        </a>
+      </li>
+
+      <li class="nav-item {{ $route == 'posts.latest' ? 'active' : ''}}">
+        <a class="nav-link" href="{{ route('posts.latest') }}">
+          <i class="fa fa-lg fa-book"></i>
+          Latest Posts
+        </a>
+      </li>
+
+      @auth
+        <li class="nav-item {{ $route == 'chatmessages.index' ? 'active' : ''}}">
+          <a class="nav-link" href="{{ route('chatmessages.index') }}">
+            <i class="fa fa-lg fa-comment"></i>
+            Chat Room
           </a>
         </li>
+      @endauth
 
-        <li class="{{ $route == 'posts.latest' ? 'active' : ''}}">
-          <a href="{{ route('posts.latest') }}">
-            <span class="glyphicon glyphicon-book" aria-hidden="true"></span>
-            Latest Posts
+      @guest
+        <li class="nav-item {{ $route == 'registrations.create' ? 'active' : ''}}">
+          <a class="nav-link" href="{{ route('registrations.create') }}">
+            <i class="fa fa-lg fa-user"></i>
+            Sign Up
           </a>
         </li>
+        <li class="nav-item {{ $route == 'sessions.create' ? 'active' : ''}}">
+          <a class="nav-link" href="{{ route('sessions.create') }}">
+            <i class="fa fa-lg fa-sign-out"></i>
+            Login
+          </a>
+        </li>
+      @endguest
 
-        @auth
-          <li class="{{ $route == 'chatmessages.index' ? 'active' : ''}}">
-            <a href="{{ route('chatmessages.index') }}">
-              <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
-              Chat Room
-            </a>
-          </li>
-        @endauth
-
-        @guest
-          <li class="{{ $route == 'registrations.create' ? 'active' : ''}}">
-            <a href="{{ route('registrations.create') }}">
-              <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-              Sign Up
-            </a>
-          </li>
-          <li class="{{ $route == 'sessions.create' ? 'active' : ''}}">
-            <a href="{{ route('sessions.create') }}">
-              <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-              Login
-            </a>
-          </li>
-        @endguest
-
-      </ul>
-      <form class="navbar-form navbar-left" action="{{ route('topics.search') }}">
+      <form class="form-inline my-2 my-lg-0" action="{{ route('topics.search') }}">
         <div class="form-group">
           <search-box 
             initial-value="{{ request('keywords') }}"
@@ -64,35 +65,54 @@
             algolia-search-api-key="{{ config('scout.algolia.search_api_key') }}">
           </search-box>
         </div>
-        <button type="submit" class="btn btn-default">Search</button>        
-        <img id="algolia-logo" src="{{ asset("images/search-by-algolia.png") }}">        
+
+        <button type="submit" class="btn btn-dark ml-sm-2 mr-sm-2 text-white">
+          Search
+        </button>
+
+        <img id="algolia-logo" class="ml-sm-1" src="{{ asset("images/search-by-algolia.png") }}">
       </form>
+    </ul>
 
-      @auth
-        <ul class="nav navbar-nav navbar-right">
-          <li class="active">
-            <a href="{{ route('profiles.show', Auth::user()) }}">
-              <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-              {{ Auth::user()->name }}
+    @auth
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="{{ route('profiles.show', Auth::user()) }}">
+            <i class="fa fa-lg fa-user"></i>
+            {{ Auth::user()->name }}
+          </a>
+        </li>
+
+        <notifications-list></notifications-list>
+
+        <li class="nav-item dropdown">
+          <a 
+            class="nav-link dropdown-toggle" 
+            href="#" 
+            id="navbarDropdown" 
+            role="button" 
+            data-toggle="dropdown" 
+            aria-haspopup="true" 
+            aria-expanded="false"
+          >
+            Actions
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{{ route('profiles.show', auth()->id()) }}">
+              Your Profile
             </a>
-          </li>
-
-          <notifications-list></notifications-list>
-          
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="{{ route('profiles.show', auth()->id()) }}">Your Profile</a></li>
-              <li><a href="{{ route('profiles.edit', auth()->id()) }}">Edit Profile</a></li>
-              <li><a href="{{ route('likedposts.index') }}">Posts Liked By You</a></li>
-              <li role="separator" class="divider"></li>
-
-              <logout-link action-url="{{ route('sessions.destroy') }}" csrf-token="{{ csrf_token() }}">
-              </logout-link>
-            </ul>
-          </li>
-        </ul>
-      @endauth
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
+            <a class="dropdown-item" href="{{ route('profiles.edit', auth()->id()) }}">
+              Edit Profile
+            </a>
+            <a class="dropdown-item" href="{{ route('likedposts.index') }}">
+              Posts Liked By You
+            </a>
+            <div class="dropdown-divider"></div>
+            <logout-link action-url="{{ route('sessions.destroy') }}" csrf-token="{{ csrf_token() }}">
+            </logout-link>
+          </div>
+        </li>
+      </ul>
+    @endauth
+  </div>
 </nav>

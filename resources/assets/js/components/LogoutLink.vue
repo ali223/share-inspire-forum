@@ -1,6 +1,6 @@
 <template>
   <li>
-    <a href="#" @click.prevent="submitForm">
+    <a href="#" class="dropdown-item" @click.prevent="submitForm">
       Logout
     </a>
 

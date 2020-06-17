@@ -1,14 +1,6 @@
 // Custom
 $main-color: #40575a;
-$brand-primary: darken($main-color, 6.5%) !default;
 
-$border-radius-base: 0px !default;
-
-$navbar-height: 60px !default;
-$navbar-default-bg: $main-color !default;
-$navbar-default-link-color: #fff !default;
-$navbar-default-link-hover-color: #ddd !default;
-$navbar-default-link-active-color: #fff !default;
-
-$panel-default-text: #fff !default;
-$panel-default-heading-bg: lighten($main-color, 10%) !default;
+$theme-colors: (
+  "custom": $main-color
+);
