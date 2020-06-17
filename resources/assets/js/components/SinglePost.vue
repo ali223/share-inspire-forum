@@ -1,39 +1,63 @@
 <template>
-  <div class="panel panel-info text-left">
-    <div class="panel-heading">
+  <div class="card mt-2 mb-4">
+    <div class="card-header">
       <strong>
         Posted By
-        <a :href="'/profiles/' + postData.user_id">
+        <a :href="'/profiles/' + postData.user_id" class="text-custom">
             {{ postData.user.name }} 
         </a>
         {{ postData.created_at | moment("from")}}
       </strong>
       <likes :initial-post-data="initialPostData"></likes>
     </div>
-    <div class="panel-body">
+    <div class="card-body">
         <loading :active.sync="isLoading"></loading>
 
-    		<div v-if="isEditing">
-    			<form>
-    				<div class="form-group">
-    					<textarea id="txtcontent" name="txtcontent" class="form-control" v-model="postData.content"></textarea>
-    				</div>
-  		      <div class="interaction">
-              <a href="#" class="btn btn-primary btn-xs" @click.prevent="update(postData.id)">Update</a>
+        <div v-if="isEditing">
+          <form>
+            <div class="form-group">
+              <textarea id="txtcontent" name="txtcontent" class="form-control" v-model="postData.content"></textarea>
+            </div>
+            <div class="interaction">
+              <a 
+                href="#" 
+                class="btn btn-custom btn-sm" 
+                @click.prevent="update(postData.id)"
+              >
+                Update
+              </a>
 
-              <a href="#" class="btn btn-danger btn-xs" @click.prevent="isEditing=false">Cancel</a>
+              <a 
+                href="#" 
+                class="btn btn-danger btn-sm" 
+                @click.prevent="isEditing=false"
+              >
+                Cancel
+              </a>
             </div>
 
-    			</form>
-    		</div>
-      	<div v-else>
-      		<p>{{ postData.content }}</p>	
-			      <div class="interaction" v-if="canUpdate">
-	            <a href="#" class="btn btn-primary btn-xs" @click.prevent="isEditing=true">Edit</a>
+          </form>
+        </div>
+        <div v-else>
+          <p>{{ postData.content }}</p> 
+            <div class="interaction" v-if="canUpdate">
+              <a 
+                href="#" 
+                class="btn btn-custom btn-sm" 
+                @click.prevent="isEditing=true"
+              >
+                Edit
+              </a>
 
-	            <a href="#" class="btn btn-danger btn-xs" @click.prevent="remove(postData.id)">Delete</a>
-	          </div>
-      	</div>
+              <a 
+                href="#" 
+                class="btn btn-danger btn-sm" 
+                @click.prevent="remove(postData.id)"
+              >
+                Delete
+              </a>
+            </div>
+        </div>
     </div>
   </div>
 </template>
@@ -44,25 +68,25 @@ import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.min.css';
 
 export default {
-	props: ['initialPostData'],
+  props: ['initialPostData'],
 
   components: {
     Likes, Loading
   },
 
-	data() {
-		return {
-			postData: this.initialPostData,
-			isEditing: false,
+  data() {
+    return {
+      postData: this.initialPostData,
+      isEditing: false,
       isLoading: false
-		}
-	},
+    }
+  },
   computed: {
     canUpdate() {
       return this.authorize(user => this.postData.user_id === user.id);
     }
   },
-	methods: {
+  methods: {
       remove(postId) {
         this.isLoading = true;
         axios.delete(location.pathname + '/' + postId)
@@ -82,10 +106,10 @@ export default {
         }
         this.isLoading = true;
         axios.put(location.pathname + '/' + postId, {
-        			content: this.postData.content
-        		})
+              content: this.postData.content
+            })
             .then(response => {
-            	this.isEditing = false;
+              this.isEditing = false;
               this.$emit('postUpdated', this.postData.content);
               this.isLoading = false;
             })
@@ -94,6 +118,6 @@ export default {
               this.isLoading = false;
             });
       }
-	}
+  }
 }
 </script>

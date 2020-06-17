@@ -4,24 +4,31 @@
 
 @section('content')
   <div class="row">
-    <div class="col-md-10 col-md-offset-1">
-      <div class="panel panel-default">
-        <div class="panel-heading text-center">
-          <h3>
-            Category: <strong>{{ $topic->category->name }}</strong>
-          </h3>
+    <div class="col-md-10 offset-md-1">
+      <div class="card mt-2 mb-4">
+        <div class="card-header text-center bg-secondary text-light">
           <h4>
-            Topic: <strong>{{ $topic->title }}</strong>
+            Category: 
+            <strong>{{ $topic->category->name }}</strong>
           </h4>
+          <h5>
+            Topic: 
+            <strong>{{ $topic->title }}</strong>
+          </h5>
           @if (!empty($approvalMessage))
-            <strong><em>{{$approvalMessage}}</em></strong>
+            <strong>
+              <em>{{$approvalMessage}}</em>
+            </strong>
           @endif
         </div>
 
-        <div class="panel-body text-center">
-          <posts-list :topic-id="{{ $topic->id }}"></posts-list>
+        <div class="card-body">
+          <posts-list :topic-id="{{ $topic->id }}">
+          </posts-list>
           
-          <a href="{{ route('topics.index', $topic->category->id) }}" class="btn btn-primary">Back to Topics List</a>
+          <a href="{{ route('topics.index', $topic->category->id) }}" class="btn btn-custom">
+            Back to Topics List
+          </a>
         </div>
       </div>
       <flash-message></flash-message>

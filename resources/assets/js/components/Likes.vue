@@ -2,24 +2,28 @@
   <div id="likes_div">
     <loading :active.sync="isLoading"></loading>
 
-    <button id="like_btn" 
-            class="btn btn-link" 
-            :title="likeTitle" 
-            :disabled="!canLike || !signedIn"
-            @click="likePost"
-            v-if="!postData.is_liked"> 
-      <span class="glyphicon glyphicon-heart-empty"></span>
+    <button 
+      id="like_btn" 
+      class="btn btn-link" 
+      :title="likeTitle" 
+      :disabled="!canLike || !signedIn"
+      @click="likePost"
+      v-if="!postData.is_liked"
+    > 
+      <i class="fa fa-lg fa-heart text-black-50"></i>
       <span title="likes">
         {{ postData.likes_count }} Likes
       </span>
     </button>
 
-    <button id="unlike_btn" 
-            class="btn btn-link" 
-            title="Unlike Post"
-            @click="unlikePost"
-            v-else>
-      <span class="glyphicon glyphicon-heart"></span>
+    <button 
+      id="unlike_btn" 
+      class="btn btn-link" 
+      title="Unlike Post"
+      @click="unlikePost"
+      v-else
+    >
+      <i class="fa fa-lg fa-heart text-danger"></i>
       <span title="likes">
         {{ postData.likes_count }} Likes
       </span>          

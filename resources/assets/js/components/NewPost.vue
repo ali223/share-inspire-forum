@@ -1,15 +1,25 @@
 <template>
-  <div class="panel panel-info text-left" v-if="signedIn">
-    <div class="panel panel-heading">
+  <div class="card mt-2 mb-4" v-if="signedIn">
+    <div class="card-header">
       <strong>Create a New Post</strong>
     </div>
-    <div class="panel-body">
+    <div class="card-body">
       <loading :active.sync="isLoading"></loading>      
       <form>
         <div class="form-group">
-          <textarea id="txtcontent" name="txtcontent" class="form-control" v-model="content" required></textarea>
+          <textarea 
+            id="txtcontent" 
+            name="txtcontent" 
+            class="form-control" 
+            v-model="content" 
+            required
+          ></textarea>
         </div>
-        <button class="btn btn-primary" type="submit" @click.prevent="addPost">
+        <button 
+          class="btn btn-custom" 
+          type="submit" 
+          @click.prevent="addPost"
+        >
           Add Post
         </button>
       </form>      
