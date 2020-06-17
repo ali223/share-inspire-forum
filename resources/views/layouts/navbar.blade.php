@@ -76,16 +76,9 @@
 
     @auth
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="{{ route('profiles.show', Auth::user()) }}">
-            <i class="fa fa-lg fa-user"></i>
-            {{ Auth::user()->name }}
-          </a>
-        </li>
-
         <notifications-list></notifications-list>
 
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown active">
           <a 
             class="nav-link dropdown-toggle" 
             href="#" 
@@ -95,7 +88,8 @@
             aria-haspopup="true" 
             aria-expanded="false"
           >
-            Actions
+            <i class="fa fa-lg fa-user"></i>
+            {{ Auth::user()->name }}
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="{{ route('profiles.show', auth()->id()) }}">
