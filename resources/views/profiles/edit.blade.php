@@ -4,13 +4,15 @@
 
 @section('content')
   <div class="row">
-    <div class="col-md-10 col-md-offset-1">
-      <div class="panel panel-info">
-        <div class="panel-heading">
-          <h4>Edit Your Profile</h4>
+    <div class="col-md-10 offset-md-1">
+      <div class="card mb-3">
+        <div class="card-header bg-secondary text-light">
+          <h5>
+            Edit Your Profile
+          </h5>
         </div>
 
-        <div class="panel-body">
+        <div class="card-body">
           <form method="POST" action=" {{ route('profiles.update', $user) }}" enctype="multipart/form-data">
             {{ csrf_field() }}
             {{ method_field('PATCH') }}
@@ -37,7 +39,7 @@
             </div>
 
             <div class="form-group">
-              <input type="submit" value="Save Changes" class="btn btn-primary" class="form-control">
+              <input type="submit" value="Save Changes" class="btn btn-custom">
             </div>
           </form>
         </div>
