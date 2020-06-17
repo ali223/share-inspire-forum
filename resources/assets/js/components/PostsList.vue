@@ -29,7 +29,7 @@ export default {
       }
     },
 
-    mounted() {
+    created() {
       this.fetchPosts();
 
       Echo.channel('posts-channel')
