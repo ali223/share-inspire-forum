@@ -19,16 +19,16 @@
           <textarea class="form-control" v-model="newMessage" required></textarea>
         </div>
         <div class="form-group">
-          <button class="btn btn-primary" type="submit">Send Message</button>
+          <button class="btn btn-custom" type="submit">Send Message</button>
         </div>
       </form>
     </div>
     <div class="col-md-4">
-      <div class="panel panel-primary">
-        <div class="panel-heading">
+      <div class="card">
+        <div class="card-header text-center bg-custom text-light">
           Online Users
         </div>
-        <div class="panel-body">
+        <div class="card-body">
           <ul>
             <li v-for="user in onlineUsers">
               {{ user.name }}
