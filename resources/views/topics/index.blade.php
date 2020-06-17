@@ -4,15 +4,16 @@
 
 @section('content')
   <div class="row">
-    <div class="col-md-10 col-md-offset-1">
-      <div class="panel panel-default">
-        <div class="panel-heading text-center">
-          <h3>
-            Category: <strong>{{ $category->name }}</strong>
-          </h3>
+    <div class="col-md-10 offset-md-1">
+      <div class="card mt-2 mb-4">
+        <div class="card-header text-center bg-secondary text-light">
+          <h4>
+            Category: 
+            <strong>{{ $category->name }}</strong>
+          </h4>
         </div>
 
-        <div class="panel-body text-center">
+        <div class="card-body">
           <table class="table text-left">
             <thead>
               <tr>
@@ -27,7 +28,7 @@
               @foreach($category->topics as $topic)
                 <tr>
                   <td>
-                    <a href="{{ route('posts.index', $topic->id) }}">
+                    <a href="{{ route('posts.index', $topic->id) }}" class="text-custom">
                       <strong>{{ $topic->title }}</strong>
                       <br>
                       @if (!$topic->approved)
@@ -36,7 +37,7 @@
                     </a>
                   </td>
                   <td>
-                    <a href="{{ route('profiles.show', $topic->user->id) }}">
+                    <a href="{{ route('profiles.show', $topic->user->id) }}" class="text-custom">
                       {{ $topic->user->name }}
                     </a>
                   </td>
@@ -53,11 +54,12 @@
           <hr>
 
           @if (Auth::check())
-            <a href="{{ route('topics.create', $category->id) }}" 
-              class="btn btn-primary">Create a New Topic</a>
+            <a href="{{ route('topics.create', $category->id) }}" class="btn btn-custom">
+              Create a New Topic
+            </a>
           @endif
 
-          <a href="{{ route('categories.index') }}#list" class="btn btn-primary">
+          <a href="{{ route('categories.index') }}#list" class="btn btn-custom">
             Back to Categories List
           </a>
         </div>
