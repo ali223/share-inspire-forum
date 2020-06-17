@@ -4,13 +4,13 @@
 
 @section('content')
   <div class="row">
-    <div class="col-md-10 col-md-offset-1">
-      <div class="panel panel-default">
-        <div class="panel-heading text-center">
+    <div class="col-md-10 offset-md-1">
+      <div class="card mt-2 mb-4">
+        <div class="card-header text-center bg-custom text-light">
           <h3>Latest Posts</h3>
         </div>
 
-        <div class="panel-body">
+        <div class="card-body">
           <ul>
             @foreach ($latestPosts as $post)
               @include('layouts.postslistitem', $post)
