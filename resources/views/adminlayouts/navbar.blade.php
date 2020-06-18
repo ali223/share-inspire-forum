@@ -1,54 +1,82 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="{{ route('admin.dashboard.index') }}">
-        ShareInspire        
-      </a>      
-    </div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-custom">
+  <a class="navbar-brand" href="{{ route('admin.dashboard.index') }}">
+    ShareInspire
+  </a>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="{{ route('admin.dashboard.index') }}">Home <span class="sr-only">(current)</span></a></li>
+  <button 
+    class="navbar-toggler" 
+    type="button" 
+    data-toggle="collapse" 
+    data-target="#navbarSupportedContent" 
+    aria-controls="navbarSupportedContent" 
+    aria-expanded="false" 
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-          <li><a href="{{ route('admin.categories.index') }}">Categories</a></li>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{{ route('admin.dashboard.index') }}">
+          Admin Dashboard
+        </a>
+      </li>
 
-          <li><a href="{{ route('admin.topics.index') }}">Topics</a></li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.categories.index') }}">
+          Categories
+        </a>
+      </li>
 
-          <li><a href="#">Posts</a></li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.topics.index') }}">
+          Topics
+        </a>
+      </li>
 
-          <li><a href="#">Users</a></li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          Posts
+        </a>
+      </li>
 
-      </ul>
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          Users
+        </a>
+      </li>
+    </ul>
 
-      @if(Auth::guard('admin')->check())
-        <ul class="nav navbar-nav navbar-right">
-            <li class="active">
-              <a href="#">Welcome 
-                {{ Auth::guard('admin')->user()->name }}
-              </a>
-            </li>
-          
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="{{ route('profiles.show', auth()->id()) }}">Your Profile</a></li>
-              <li><a href="#">Settings</a></li>
-              <li role="separator" class="divider"></li>
-
-              <logout-link action-url="{{ route('admin.sessions.destroy') }}" csrf-token="{{ csrf_token() }}">
-              </logout-link>
-            </ul>
-          </li>
-        </ul>
-      @endif
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item dropdown active">
+        <a 
+          class="nav-link dropdown-toggle" 
+          href="#" 
+          id="navbarDropdown" 
+          role="button" 
+          data-toggle="dropdown" 
+          aria-haspopup="true" 
+          aria-expanded="false"
+        >
+          <i class="fa fa-lg fa-user"></i>
+          {{ Auth::guard('admin')->user()->name }}
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">
+            Your Profile
+          </a>
+          <a class="dropdown-item" href="#">
+            Edit Profile
+          </a>
+          <div class="dropdown-divider"></div>
+          <logout-link 
+            action-url="{{ route('admin.sessions.destroy') }}" 
+            csrf-token="{{ csrf_token() }}"
+          >
+          </logout-link>
+        </div>
+      </li>
+    </ul>
+  </div>
 </nav>
