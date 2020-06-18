@@ -65,7 +65,6 @@ Route::group([
     $router->get('/categories/{category}/topics/create', 'TopicsController@create')->name('topics.create');
     $router->post('/categories/{category}/topics', 'TopicsController@store')->name('topics.store');
 
-    $router->get('/topics/{topic}/posts/create', 'PostsController@create')->name('posts.create');
     $router->post('/topics/{topic}/posts', 'PostsController@store')->name('posts.store');
     $router->put('/topics/{topic}/posts/{post}', 'PostsController@update')->name('posts.update');
     $router->delete('/topics/{topic}/posts/{post}', 'PostsController@destroy')->name('posts.destroy');
