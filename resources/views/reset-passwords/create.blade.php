@@ -4,13 +4,13 @@
 
 @section('content')
   <div class="row">
-    <div class="col-md-6 col-md-offset-3">
-      <div class="panel panel-default">
-        <div class="panel-heading text-center">
+    <div class="col-md-6 offset-md-3">
+      <div class="card mt-2 mb-4">
+        <div class="card-header text-center bg-secondary text-light">
           <h3>Reset Password</h3>
         </div>
 
-        <div class="panel-body text-left">
+        <div class="card-body">
           <form method="POST" action="{{ route('reset-passwords.store') }}">
             {{ csrf_field() }}
 
@@ -35,7 +35,7 @@
             </div>
 
             <div class="form-group">
-              <input type="submit" value="Reset Password" class="btn btn-primary" class="form-control">
+              <input type="submit" value="Reset Password" class="btn btn-custom">
             </div>
           </form>
         </div>
