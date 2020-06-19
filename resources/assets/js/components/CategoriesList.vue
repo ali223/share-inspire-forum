@@ -2,36 +2,37 @@
   <div class="container margin-top" v-if="signedIn">
     <div class="row">
       <div class="col-md-8">
-        <div class="panel panel-default">
-          <div class="panel-heading text-center">
-            <h3>Categories</h3>
+        <div class="card mt-2 mb-4">
+          <div class="card-header text-center bg-secondary text-light">
+            <h4>
+              Categories
+            </h4>
           </div>
-
-          <div class="panel-body">
-            <table class="table table-striped table-hover">
-              <thead>
-                <tr>
-                  <th>Category Id</th>
-                  <th>Category Name</th>
-                  <th>Category Description</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr :class="{'success' : isSelected(category) }"
-                  v-for="category in categories">
-                  <td>{{ category.id }}</td>
-                  <td>{{ category.name }}</td>
-                  <td>{{ category.description }}</td>
-                  <td>
-                    <button class="btn btn-primary" @click="showEditForm(category)">
-                      Edit
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>Category Id</th>
+                <th>Category Name</th>
+                <th>Category Description</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr 
+                :class="{'success' : isSelected(category) }"
+                v-for="category in categories"
+              >
+                <td>{{ category.id }}</td>
+                <td>{{ category.name }}</td>
+                <td>{{ category.description }}</td>
+                <td>
+                  <button class="btn btn-custom" @click="showEditForm(category)">
+                    Edit
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
       <div class="col-md-4">

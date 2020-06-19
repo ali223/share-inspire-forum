@@ -1,9 +1,9 @@
 <template>
-  <div class="panel panel-default text-left" v-if="signedIn">
-    <div class="panel panel-heading">
+  <div class="card mt-2 mb-4" v-if="signedIn">
+    <div class="card-header text-center bg-secondary text-light">
       <strong>Edit Category</strong>
     </div>
-    <div class="panel-body">
+    <div class="card-body">
       <form>
         <div class="form-group">
           <label for="name">Name</label>
@@ -28,7 +28,7 @@
         </div>
 
         <button 
-          class="btn btn-primary" 
+          class="btn btn-custom" 
           type="submit"
           @click.prevent="updateCategory"
         >
@@ -36,7 +36,7 @@
         </button>
 
         <button 
-          class="btn btn-primary" 
+          class="btn btn-danger" 
           type="submit"
           @click.prevent="cancel"
         >
