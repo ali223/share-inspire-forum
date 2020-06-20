@@ -5,7 +5,7 @@
 @section('content')
   <div class="row">
     <div class="col-md-10 offset-md-1">
-      <div class="card mb-3">
+      <div class="card shadow-lg mb-3">
         <div class="card-body">
           @if ($profileImageUrl)
             <img class="profile-image" width="125" src="{{ $profileImageUrl }}">
@@ -29,7 +29,7 @@
         </div>
       </div>
 
-      <div class="card mb-3">
+      <div class="card shadow-lg mb-3">
         <div class="card-header bg-secondary text-light">
           <h5>
             About {{ $user->name }}
@@ -42,7 +42,7 @@
         </div>
       </div>
 
-      <div class="card mb-3">
+      <div class="card shadow-lg mb-3">
         <div class="card-header bg-secondary text-light">
           <h5>
             Topics created by {{ $user->name }}
@@ -71,7 +71,7 @@
         </div>
       </div>
 
-      <div class="card mb-3">
+      <div class="card shadow-lg mb-3">
         <div class="card-header bg-secondary text-light">
           <h5>
             Posts created by {{ $user->name }}

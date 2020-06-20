@@ -5,8 +5,6 @@
 @section('content')
   <div class="row">
     <div class="col-md-10 offset-md-1">
-      <h3>Chat Messages</h3>
-
       <chat-messages></chat-messages>
       <flash-message></flash-message>
     </div>

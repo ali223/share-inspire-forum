@@ -5,7 +5,7 @@
 @section('content')
   <div class="row">
     <div class="col-md-6 offset-md-3">
-      <div class="card mt-2 mb-4">
+      <div class="card shadow-lg mt-2 mb-4">
         <div class="card-header text-center bg-secondary text-light">
           <h4>
             User Login Form

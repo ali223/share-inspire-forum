@@ -1,5 +1,5 @@
 <template>
-  <div class="card mt-2 mb-4">
+  <div class="card shadow-lg mt-2 mb-4">
     <div class="card-header">
       <strong>
         Posted By

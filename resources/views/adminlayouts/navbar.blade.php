@@ -62,7 +62,7 @@
           <i class="fa fa-lg fa-user"></i>
           {{ Auth::guard('admin')->user()->name }}
         </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+        <div class="dropdown-menu dropdown-menu-right shadow-lg" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="#">
             Your Profile
           </a>

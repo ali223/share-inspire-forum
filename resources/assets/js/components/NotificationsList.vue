@@ -15,7 +15,7 @@
       <span class="caret"></span>
     </a>
 
-    <div class="dropdown-menu dropdown-menu-right">
+    <div class="dropdown-menu dropdown-menu-right shadow-lg">
       <a 
         class="dropdown-item"
         :href="note.data.url"

@@ -1,30 +1,39 @@
 <template>
   <div class="row">
     <div class="col-md-8">
-      <div class="messages">
-        <ul>
-          <li v-for="message in messages">
-            <p class="message-content">
-              <strong>{{ message.user.name }} : </strong>
-              {{ message.text }}
-              <span class="message-time">
-                {{ message.created_at | moment("from") }}                
-              </span>
-            </p>
-          </li>
-        </ul>
+      <div class="card shadow-lg mt-2 mb-4">
+        <div class="text-center bg-secondary text-light py-3">
+          <h4>
+            Chat Messages
+          </h4>
+        </div>
+        <div class="card-body">
+          <div class="messages mb-2">
+            <ul>
+              <li v-for="message in messages">
+                <p class="message-content">
+                  <strong>{{ message.user.name }} : </strong>
+                  {{ message.text }}
+                  <span class="message-time">
+                    {{ message.created_at | moment("from") }}
+                  </span>
+                </p>
+              </li>
+            </ul>
+          </div>
+          <form @submit.prevent="sendMessage">
+            <div class="form-group">
+              <textarea class="form-control" v-model="newMessage" required></textarea>
+            </div>
+            <div class="form-group">
+              <button class="btn btn-custom" type="submit">Send Message</button>
+            </div>
+          </form>
+        </div>
       </div>
-      <form @submit.prevent="sendMessage">
-        <div class="form-group">
-          <textarea class="form-control" v-model="newMessage" required></textarea>
-        </div>
-        <div class="form-group">
-          <button class="btn btn-custom" type="submit">Send Message</button>
-        </div>
-      </form>
     </div>
     <div class="col-md-4">
-      <div class="card">
+      <div class="card shadow-lg mt-2 mb-4">
         <div class="card-header text-center bg-secondary text-light">
           Online Users
         </div>
