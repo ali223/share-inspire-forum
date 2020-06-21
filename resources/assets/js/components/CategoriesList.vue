@@ -1,54 +1,52 @@
 <template>
-  <div class="container margin-top" v-if="signedIn">
-    <div class="row">
-      <div class="col-md-8">
-        <div class="card shadow-lg mt-2 mb-4">
-          <div class="card-header text-center bg-secondary text-light">
-            <h4>
-              Categories
-            </h4>
-          </div>
-          <table class="table table-striped table-hover">
-            <thead>
-              <tr>
-                <th>Category Id</th>
-                <th>Category Name</th>
-                <th>Category Description</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr 
-                :class="{'success' : isSelected(category) }"
-                v-for="category in categories"
-              >
-                <td>{{ category.id }}</td>
-                <td>{{ category.name }}</td>
-                <td>{{ category.description }}</td>
-                <td>
-                  <button class="btn btn-custom" @click="showEditForm(category)">
-                    Edit
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+  <div class="row" v-if="signedIn">
+    <div class="col-md-8">
+      <div class="card shadow-lg mt-2 mb-4">
+        <div class="card-header text-center bg-secondary text-light">
+          <h4>
+            Categories
+          </h4>
         </div>
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th>Category Id</th>
+              <th>Category Name</th>
+              <th>Category Description</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr 
+              :class="{'success' : isSelected(category) }"
+              v-for="category in categories"
+            >
+              <td>{{ category.id }}</td>
+              <td>{{ category.name }}</td>
+              <td>{{ category.description }}</td>
+              <td>
+                <button class="btn btn-custom" @click="showEditForm(category)">
+                  Edit
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-      <div class="col-md-4">
-        <new-category 
-          @categoryAdded="addToCategoriesList"
-          v-if="!editing"
-        >
-        </new-category>
-        <edit-category 
-          v-else
-          :category-data="selectedCategory"
-          @categoryUpdated="updateCategoriesList"
-          @cancelled="cancelEditForm"
-        >
-        </edit-category>
-      </div>
+    </div>
+    <div class="col-md-4">
+      <new-category 
+        @categoryAdded="addToCategoriesList"
+        v-if="!editing"
+      >
+      </new-category>
+      <edit-category 
+        v-else
+        :category-data="selectedCategory"
+        @categoryUpdated="updateCategoriesList"
+        @cancelled="cancelEditForm"
+      >
+      </edit-category>
     </div>
   </div>
 </template>
