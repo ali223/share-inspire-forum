@@ -3,7 +3,7 @@
 @section('title', 'ShareInspire Forum | Categories')
 
 @section('showcase')
-  @include('layouts.showcase')
+  @include('layouts._showcase')
 @endsection
 
 @section('content')
