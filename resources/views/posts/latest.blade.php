@@ -15,7 +15,7 @@
         <div class="card-body">
           <ul>
             @foreach ($latestPosts as $post)
-              @include('layouts.postslistitem', $post)
+              @include('posts._posts-list-item')
             @endforeach
           </ul>
         </div>

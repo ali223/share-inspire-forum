@@ -17,7 +17,7 @@
         <div class="card-body">
           <ul>
             @forelse($likedPosts as $post)
-              @include('layouts.postslistitem')
+              @include('posts._posts-list-item')
             @empty
               <li>No Posts Liked yet.</li>
             @endforelse
