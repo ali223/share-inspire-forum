@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <div class="col-md-8">
-      <div class="card shadow-lg mt-2 mb-4">
+      <div class="card shadow-lg">
         <div class="text-center bg-secondary text-light py-3">
           <h4>
             Chat Messages
@@ -33,7 +33,7 @@
       </div>
     </div>
     <div class="col-md-4">
-      <div class="card shadow-lg mt-2 mb-4">
+      <div class="card shadow-lg">
         <div class="card-header text-center bg-secondary text-light">
           Online Users
         </div>

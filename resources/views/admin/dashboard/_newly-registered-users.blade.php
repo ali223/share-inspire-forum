@@ -1,4 +1,4 @@
-<div class="card shadow-lg mt-2 mb-4">
+<div class="card shadow-lg mt-2">
   <div class="card-header text-left bg-secondary text-light">
     <i class="fa fa-lg fa-user"></i>
     Newly Registered Users (Last 5)

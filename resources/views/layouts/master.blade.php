@@ -4,7 +4,7 @@
 
   @yield('showcase')
 
-  <div class="container margin-top">
+  <div class="container py-4">
     @include('layouts.message')
     @include('layouts.errors')
 

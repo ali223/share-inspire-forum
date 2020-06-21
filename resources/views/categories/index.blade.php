@@ -11,7 +11,7 @@
     <div class="col-md-10 offset-md-1">
       <a name="list"></a>
 
-      <div class="card shadow-lg mt-2 mb-4">
+      <div class="card shadow-lg">
         <div class="card-header text-center bg-secondary text-light">
           <h4>
             Forum Categories

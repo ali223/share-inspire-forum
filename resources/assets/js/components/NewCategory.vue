@@ -1,5 +1,5 @@
 <template>
-  <div class="card shadow-lg mt-2 mb-4" v-if="signedIn">
+  <div class="card shadow-lg" v-if="signedIn">
     <div class="card-header text-center bg-secondary text-light">
       <strong>Create a New Category</strong>
     </div>

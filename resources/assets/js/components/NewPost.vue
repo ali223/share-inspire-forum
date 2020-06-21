@@ -1,5 +1,5 @@
 <template>
-  <div class="card shadow-lg mt-2 mb-4" v-if="signedIn">
+  <div class="card shadow-lg my-2" v-if="signedIn">
     <div class="card-header">
       <strong>Create a New Post</strong>
     </div>

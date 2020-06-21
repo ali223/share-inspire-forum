@@ -5,7 +5,7 @@
 
   @yield('banner')
 
-  <div class="container margin-top">
+  <div class="container py-4">
     @include('adminlayouts.message')
     @include('adminlayouts.errors')
 
