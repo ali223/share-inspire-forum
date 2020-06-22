@@ -57,7 +57,7 @@
         </li>
       @endguest
 
-      <form class="form-inline my-2 my-lg-0" action="{{ route('topics.search') }}">
+      <form class="form-inline ml-md-2 my-2 my-lg-0" action="{{ route('topics.search') }}">
         <div class="form-group">
           <search-box 
             initial-value="{{ request('keywords') }}"
