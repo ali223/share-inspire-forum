@@ -23,7 +23,7 @@ class IndexTest extends TestCase
         $likedPosts[1]->markAsLikedBy($user->id);
 
         $this->actingAs($user)
-            ->get(route('likedposts.index'))
+            ->get(route('liked-posts.index'))
             ->assertSee($likedPosts[0]->content)
             ->assertSee($likedPosts[1]->content);
     }

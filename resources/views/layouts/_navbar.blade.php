@@ -98,7 +98,7 @@
             <a class="dropdown-item" href="{{ route('profiles.edit', auth()->id()) }}">
               Edit Profile
             </a>
-            <a class="dropdown-item" href="{{ route('likedposts.index') }}">
+            <a class="dropdown-item" href="{{ route('liked-posts.index') }}">
               Posts Liked By You
             </a>
             <div class="dropdown-divider"></div>
