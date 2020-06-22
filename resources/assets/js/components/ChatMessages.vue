@@ -15,7 +15,7 @@
                   <strong>{{ message.user.name }} : </strong>
                   {{ message.text }}
                   <span class="message-time">
-                    {{ message.created_at | moment("from") }}
+                    {{ message.created_at }}
                   </span>
                 </p>
               </li>

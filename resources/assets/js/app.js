@@ -33,8 +33,6 @@ Vue.component('categories-list', require('./components/CategoriesList.vue'));
 Vue.component('search-box', require('./components/SearchBox.vue'));
 Vue.component('logout-link', require('./components/LogoutLink.vue'));
 
-Vue.use(require('vue-moment'));
-
 const app = new Vue({
     el: '#app'
 });
