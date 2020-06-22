@@ -73,8 +73,8 @@ Route::group([
     $router->post('/posts/{post}/like', 'LikesController@store')->name('likes.store');
     $router->delete('/posts/{post}/like', 'LikesController@destroy')->name('likes.destroy');
 
-    $router->get('/chatmessages', 'ChatMessagesController@index')->name('chatmessages.index');
-    $router->post('/chatmessages', 'ChatMessagesController@store')->name('chatmessages.store');
+    $router->get('/chat-messages', 'ChatMessagesController@index')->name('chat-messages.index');
+    $router->post('/chat-messages', 'ChatMessagesController@store')->name('chat-messages.store');
 
     $router->get('/notifications', 'NotificationsController@index')->name('notifications.index');
     $router->delete('/notifications/{id}', 'NotificationsController@destroy')->name('notifications.destroy');

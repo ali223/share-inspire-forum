@@ -34,8 +34,8 @@
       </li>
 
       @auth
-        <li class="nav-item {{ $route == 'chatmessages.index' ? 'active' : ''}}">
-          <a class="nav-link" href="{{ route('chatmessages.index') }}">
+        <li class="nav-item {{ $route == 'chat-messages.index' ? 'active' : ''}}">
+          <a class="nav-link" href="{{ route('chat-messages.index') }}">
             <i class="fa fa-lg fa-comment"></i>
             Chat Room
           </a>

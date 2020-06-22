@@ -19,7 +19,7 @@ class ChatMessagesController extends Controller
             return ChatMessage::with('user')->get();
         }
 
-        return view('chatmessages.index');
+        return view('chat-messages.index');
     }
 
     /**
