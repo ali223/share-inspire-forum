@@ -15,7 +15,7 @@
                   <strong>{{ message.user.name }} : </strong>
                   {{ message.text }}
                   <span class="message-time">
-                    {{ message.created_at }}
+                    {{ formattedCreatedAt(message) }}
                   </span>
                 </p>
               </li>
@@ -50,6 +50,9 @@
 </template>
 
 <script>
+import parseISO from 'date-fns/parseISO';
+import formatDistanceToNowStrict from 'date-fns/formatDistanceToNowStrict';
+
 export default {
   data() {
     return {
@@ -103,6 +106,14 @@ export default {
         .catch(error => {
           flashMessage('Error sending message', 'danger');
         });
+    },
+
+    formattedCreatedAt(message) {
+      let distanceToNow = formatDistanceToNowStrict(
+        parseISO(message.created_at)
+      );
+
+      return `${distanceToNow} ago`;
     }
   }
 }

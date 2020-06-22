@@ -6,7 +6,7 @@
         <a :href="'/profiles/' + postData.user_id" class="text-custom">
             {{ postData.user.name }} 
         </a>
-        {{ postData.created_at }}
+        {{ formattedCreatedAt }}
       </strong>
       <likes :initial-post-data="initialPostData"></likes>
     </div>
@@ -66,6 +66,8 @@
 import Likes from './Likes';
 import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.min.css';
+import parseISO from 'date-fns/parseISO';
+import formatDistanceToNowStrict from 'date-fns/formatDistanceToNowStrict';
 
 export default {
   props: ['initialPostData'],
@@ -84,6 +86,14 @@ export default {
   computed: {
     canUpdate() {
       return this.authorize(user => this.postData.user_id === user.id);
+    },
+
+    formattedCreatedAt() {
+      let distanceToNow = formatDistanceToNowStrict(
+        parseISO(this.postData.created_at)
+      );
+
+      return `${distanceToNow} ago`;
     }
   },
   methods: {
