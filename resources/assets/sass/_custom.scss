@@ -15,6 +15,8 @@
 	h1 {
 		font-family: 'Great Vibes', Arial, sans-serif;
 		font-size: 60px;
+		text-align: center;
+		margin-top: 10px;
 		color: #ddd;
 		text-shadow: 4px 4px 4px #111;
 	}
@@ -23,11 +25,12 @@
 		font-style: italic;
 		font-weight: bold;
 		color: #ddd;
+		margin-left: 5px;
 	}
 
 	.slogan {
 		background-color: rgba(200, 200, 200, 0.5);
-		padding: 3px 8px 3px 5px;		
+		padding: 10px;
 	}
 }
 

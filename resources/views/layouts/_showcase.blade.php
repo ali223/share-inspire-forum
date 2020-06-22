@@ -7,8 +7,6 @@
           <p>A discussion forum where we share our experiences and inspire each other.</p>
         </div>
       </div>
-      <div class="col-md-6">
-      </div>
     </div>
   </div>
 </div>
