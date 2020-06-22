@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Category;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CategoryResource;
 use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
@@ -16,6 +17,8 @@ class CategoriesController extends Controller
     public function index(Request $request)
     {
         $categories = Category::oldest()->get();
+
+        $categories = CategoryResource::collection($categories);
 
         return view('admin.categories.index', compact('categories'));
     }

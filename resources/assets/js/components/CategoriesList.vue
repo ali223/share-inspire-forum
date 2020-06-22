@@ -10,7 +10,7 @@
         <table class="table table-striped table-hover">
           <thead>
             <tr>
-              <th>Category Id</th>
+              <th>Id</th>
               <th>Category Name</th>
               <th>Category Description</th>
               <th>Actions</th>
