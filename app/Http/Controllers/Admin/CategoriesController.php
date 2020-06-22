@@ -15,11 +15,9 @@ class CategoriesController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->expectsJson()) {
-            return Category::all();
-        }
+        $categories = Category::oldest()->get();
 
-        return view('admin.categories.index');
+        return view('admin.categories.index', compact('categories'));
     }
 
     /**

@@ -56,18 +56,24 @@ import NewCategory from './NewCategory.vue';
 import EditCategory from './EditCategory.vue';
 
 export default {
-  components: { NewCategory, EditCategory },
-
-  data() {
-    return {
-      categories: [],
-      editing: false,
-      selectedCategory: null
+  props: {
+    initialCategories: {
+      type: Array,
+      required: true
     }
   },
 
-  created() {
-    this.getCategories();
+  components: { 
+    NewCategory, 
+    EditCategory 
+  },
+
+  data() {
+    return {
+      categories: _.cloneDeep(this.initialCategories),
+      editing: false,
+      selectedCategory: null
+    }
   },
 
   computed: {
@@ -77,14 +83,6 @@ export default {
   },
 
   methods: {
-    getCategories() {
-      axios.get('/admin/categories')
-          .then(response => this.categories = response.data)
-          .catch(error => {
-              flashMessage('Error retrieving categories', 'danger');
-          });
-    },
-
     addToCategoriesList(newCategoryData) {
       this.categories.push(newCategoryData);
       flashMessage('New category added successfully', 'success');
