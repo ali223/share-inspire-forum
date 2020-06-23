@@ -48,14 +48,22 @@
       >
       </edit-category>
     </div>
+    <loading :active.sync="isLoading"></loading>
   </div>
 </template>
 
 <script>
 import NewCategory from './NewCategory.vue';
 import EditCategory from './EditCategory.vue';
+import Loading from 'vue-loading-overlay';
 
 export default {
+  components: { 
+    NewCategory, 
+    EditCategory,
+    Loading
+  },
+
   props: {
     initialCategories: {
       type: Array,
@@ -63,31 +71,32 @@ export default {
     }
   },
 
-  components: { 
-    NewCategory, 
-    EditCategory 
-  },
-
   data() {
     return {
       categories: _.cloneDeep(this.initialCategories),
       editing: false,
-      selectedCategory: null
+      selectedCategory: null,
+      isLoading: false
     }
   },
 
   methods: {
     storeCategory(category) {
+      this.isLoading = true;
+
       axios.post('/admin/categories', category)
         .then(response => {
           this.categories.push(response.data.data);
           flashMessage('New category added successfully', 'success');
+          this.isLoading = false;
       }).catch(error => {
         flashMessage('Error Adding New Category', 'warning');
+        this.isLoading = false;
       });
     },
 
     updateCategory({id, name, description}) {
+      this.isLoading = true;
       this.editing = false;
 
       axios.patch(`/admin/categories/${id}`, {name, description})
@@ -99,9 +108,11 @@ export default {
           this.selectedCategory = null;
 
           flashMessage('Category updated successfully', 'success');
+          this.isLoading = false;
       }).catch(error => {
         this.selectedCategory = null;
         flashMessage('Error Updating Category', 'warning');
+        this.isLoading = false;
       });
     },
 
