@@ -4,14 +4,14 @@
       <strong>Create a New Category</strong>
     </div>
     <div class="card-body">
-      <form>
+      <form @submit.prevent="addCategory">
         <div class="form-group">
           <label for="name">Name</label>
           <input 
             id="name" 
             name="name" 
             class="form-control" 
-            v-model="name" 
+            v-model="category.name" 
             required
           />
         </div>
@@ -21,13 +21,12 @@
             id="description" 
             name="description" 
             class="form-control" 
-            v-model="description" 
+            v-model="category.description" 
             required></textarea>
         </div>
         <button 
           class="btn btn-custom" 
           type="submit" 
-          @click.prevent="addCategory"
         >
           Save
         </button>
@@ -40,42 +39,24 @@
 export default {
   data() {
     return {
-      name: null,
-      description: null
+      category: {
+        name: '',
+        description: ''
+      }
+    }
+  },
+
+  methods: {
+    addCategory() {
+      this.$emit('add', {...this.category});
+      this.category.name = '';
+      this.category.description = '';
     }
   },
 
   computed: {
     signedIn() {
       return window.App.signedIn;
-    }
-  },
-
-  methods: {
-    addCategory() {
-      if (!this.name) {
-        flashMessage('Error! Please enter the category name.', 'danger');
-        return;
-      }
-
-      if (!this.description) {
-        flashMessage('Error! Please enter the category description', 'danger');
-        return;
-      }
-
-      axios.post(
-        location.pathname, 
-        {
-          name: this.name,
-          description: this.description
-        }
-      ).then(response => {
-        this.name = null;
-        this.description = null;
-        this.$emit('categoryAdded', response.data.data);
-      }).catch(error => {
-        flashMessage('Error Adding New Category', 'warning');
-      });
     }
   }
 }

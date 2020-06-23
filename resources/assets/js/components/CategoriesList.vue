@@ -36,7 +36,7 @@
     </div>
     <div class="col-md-4">
       <new-category 
-        @categoryAdded="addToCategoriesList"
+        @add="storeCategory"
         v-if="!editing"
       >
       </new-category>
@@ -83,9 +83,14 @@ export default {
   },
 
   methods: {
-    addToCategoriesList(newCategoryData) {
-      this.categories.push(newCategoryData);
-      flashMessage('New category added successfully', 'success');
+    storeCategory(category) {
+      axios.post('/admin/categories', category)
+        .then(response => {
+          this.categories.push(response.data.data);
+          flashMessage('New category added successfully', 'success');
+      }).catch(error => {
+        flashMessage('Error Adding New Category', 'warning');
+      });
     },
 
     updateCategoriesList({id, name, description}) {
