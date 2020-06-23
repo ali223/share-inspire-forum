@@ -1,5 +1,5 @@
 <template>
-  <div class="row" v-if="signedIn">
+  <div class="row">
     <div class="col-md-8">
       <div class="card shadow-lg">
         <div class="card-header text-center bg-secondary text-light">
@@ -73,12 +73,6 @@ export default {
       categories: _.cloneDeep(this.initialCategories),
       editing: false,
       selectedCategory: null
-    }
-  },
-
-  computed: {
-    signedIn() {
-      return window.App.signedIn;
     }
   },
 

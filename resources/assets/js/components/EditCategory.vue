@@ -1,5 +1,5 @@
 <template>
-  <div class="card shadow-lg" v-if="signedIn">
+  <div class="card shadow-lg">
     <div class="card-header text-center bg-secondary text-light">
       <strong>Edit Category</strong>
     </div>
@@ -65,12 +65,6 @@ export default {
     initialCategory(newinitialCategory) {
       this.category.name = newinitialCategory.name;
       this.category.description = newinitialCategory.description;
-    }
-  },
-
-  computed: {
-    signedIn() {
-      return window.App.signedIn;
     }
   },
 
