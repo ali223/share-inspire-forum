@@ -65,7 +65,6 @@
 <script>
 import Likes from './Likes';
 import Loading from 'vue-loading-overlay';
-import 'vue-loading-overlay/dist/vue-loading.min.css';
 import parseISO from 'date-fns/parseISO';
 import formatDistanceToNowStrict from 'date-fns/formatDistanceToNowStrict';
 
