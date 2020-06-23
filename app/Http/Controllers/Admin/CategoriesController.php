@@ -42,7 +42,7 @@ class CategoriesController extends Controller
             'admin_id' => auth()->guard('admin')->id()
         ]);
 
-        return $category;
+        return new CategoryResource($category);
     }
 
     /**
@@ -65,6 +65,6 @@ class CategoriesController extends Controller
             'admin_id' => auth()->guard('admin')->id()
         ])->save();
 
-        return $category;
+        return new CategoryResource($category);
     }
 }

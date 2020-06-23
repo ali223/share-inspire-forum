@@ -72,7 +72,7 @@ export default {
       ).then(response => {
         this.name = null;
         this.description = null;
-        this.$emit('categoryAdded', response.data);
+        this.$emit('categoryAdded', response.data.data);
       }).catch(error => {
         flashMessage('Error Adding New Category', 'warning');
       });

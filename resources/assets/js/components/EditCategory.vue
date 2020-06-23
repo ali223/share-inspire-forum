@@ -94,7 +94,7 @@ export default {
         this.name = null;
         this.description = null;
 
-        this.$emit('categoryUpdated', response.data);
+        this.$emit('categoryUpdated', response.data.data);
         flashMessage('Category updated successfully', 'success');
       }).catch(error => {
         flashMessage('Error Updating Category', 'warning');

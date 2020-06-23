@@ -88,15 +88,15 @@ export default {
       flashMessage('New category added successfully', 'success');
     },
 
-    updateCategoriesList(updatedCategoryData) {
+    updateCategoriesList({id, name, description}) {
       this.editing = false;
       this.selectedCategory = null;
 
-      for (let category of this.categories) {
-        if (category.id == updatedCategoryData.id) {
-          category.name = updatedCategoryData.name;
-          category.description = updatedCategoryData.description;
-        }
+      let searchedCategory = this.categories.find(category => category.id === id);
+
+      if (searchedCategory) {
+          searchedCategory.name = name;
+          searchedCategory.description = description;
       }
     },
 
