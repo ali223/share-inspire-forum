@@ -4,14 +4,14 @@
       <strong>Edit Category</strong>
     </div>
     <div class="card-body">
-      <form>
+      <form @submit.prevent="updateCategory">
         <div class="form-group">
           <label for="name">Name</label>
           <input 
             id="name" 
             name="name" 
             class="form-control" 
-            v-model="name" 
+            v-model="category.name" 
             required
           />
         </div>
@@ -22,22 +22,21 @@
             id="description" 
             name="description" 
             class="form-control" 
-            v-model="description" 
+            v-model="category.description" 
             required
           ></textarea>
         </div>
 
         <button 
-          class="btn btn-custom" 
           type="submit"
-          @click.prevent="updateCategory"
+          class="btn btn-custom"
         >
           Update
         </button>
 
         <button 
+          type="button"
           class="btn btn-danger" 
-          type="submit"
           @click.prevent="cancel"
         >
           Cancel
@@ -49,20 +48,23 @@
 
 <script>
 export default {
-  props: [ 'categoryData' ],
+  props: { 
+    initialCategory: {
+      type: Object,
+      required: true
+    }
+  },
 
   data() {
     return {
-      id: this.categoryData.id,
-      name: this.categoryData.name,
-      description: this.categoryData.description
+      category: {...this.initialCategory}
     }
   },
 
   watch: {
-    categoryData(newCategoryData) {
-      this.name = newCategoryData.name;
-      this.description = newCategoryData.description;
+    initialCategory(newinitialCategory) {
+      this.category.name = newinitialCategory.name;
+      this.category.description = newinitialCategory.description;
     }
   },
 
@@ -74,36 +76,14 @@ export default {
 
   methods: {
     updateCategory() {
-      if (!this.name) {
-        flashMessage('Error! Please enter the category name.', 'danger');
-        return;
-      }
-
-      if (!this.description) {
-        flashMessage('Error! Please enter the category description', 'danger');
-        return;
-      }
-
-      axios.patch(
-        location.pathname + '/' + this.id,
-        {
-          name: this.name,
-          description: this.description
-        }
-      ).then(response => {
-        this.name = null;
-        this.description = null;
-
-        this.$emit('categoryUpdated', response.data.data);
-        flashMessage('Category updated successfully', 'success');
-      }).catch(error => {
-        flashMessage('Error Updating Category', 'warning');
-      });
+      this.$emit('update', {...this.category});
+      this.category.name = '';
+      this.category.description = '';
     },
 
     cancel() {
-      this.name = null;
-      this.description = null;
+      this.category.name = '';
+      this.category.description = '';
       this.$emit('cancelled');
     }
   }

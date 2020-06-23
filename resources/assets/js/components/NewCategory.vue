@@ -25,8 +25,8 @@
             required></textarea>
         </div>
         <button 
+          type="submit"
           class="btn btn-custom" 
-          type="submit" 
         >
           Save
         </button>

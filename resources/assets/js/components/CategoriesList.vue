@@ -42,8 +42,8 @@
       </new-category>
       <edit-category 
         v-else
-        :category-data="selectedCategory"
-        @categoryUpdated="updateCategoriesList"
+        :initial-category="selectedCategory"
+        @update="updateCategory"
         @cancelled="cancelEditForm"
       >
       </edit-category>
@@ -93,16 +93,22 @@ export default {
       });
     },
 
-    updateCategoriesList({id, name, description}) {
+    updateCategory({id, name, description}) {
       this.editing = false;
-      this.selectedCategory = null;
 
-      let searchedCategory = this.categories.find(category => category.id === id);
+      axios.patch(`/admin/categories/${id}`, {name, description})
+        .then(response => {
+          let updatedCategory = response.data.data;
 
-      if (searchedCategory) {
-          searchedCategory.name = name;
-          searchedCategory.description = description;
-      }
+          this.selectedCategory.name = updatedCategory.name;
+          this.selectedCategory.description = updatedCategory.description;
+          this.selectedCategory = null;
+
+          flashMessage('Category updated successfully', 'success');
+      }).catch(error => {
+        this.selectedCategory = null;
+        flashMessage('Error Updating Category', 'warning');
+      });
     },
 
     showEditForm(category) {
