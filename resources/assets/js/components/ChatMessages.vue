@@ -1,30 +1,11 @@
 <template>
   <div class="row">
     <div class="col-md-8">
-      <div class="card shadow-lg">
-        <div class="text-center bg-secondary text-light py-3">
-          <h4>
-            Chat Messages
-          </h4>
-        </div>
-        <div class="card-body">
-          <div class="messages mb-2">
-            <ul>
-              <li v-for="message in messages">
-                <p class="message-content">
-                  <strong>{{ message.user_name }} : </strong>
-                  {{ message.text }}
-                  <span class="message-time">
-                    {{ formattedCreatedAt(message) }}
-                  </span>
-                </p>
-              </li>
-            </ul>
-          </div>
-          <chat-message-editor @send="sendMessage">
-          </chat-message-editor>
-        </div>
-      </div>
+      <chat-messages-list :messages="messages">
+      </chat-messages-list>
+
+      <chat-message-editor @send="sendMessage">
+      </chat-message-editor>
     </div>
     <div class="col-md-4">
       <chat-online-users-list :users="onlineUsers">
@@ -34,13 +15,13 @@
 </template>
 
 <script>
-import parseISO from 'date-fns/parseISO';
-import formatDistanceToNowStrict from 'date-fns/formatDistanceToNowStrict';
+import ChatMessagesList from './ChatMessagesList';
 import ChatOnlineUsersList from './ChatOnlineUsersList';
 import ChatMessageEditor from './ChatMessageEditor';
 
 export default {
   components: {
+    ChatMessagesList,
     ChatOnlineUsersList,
     ChatMessageEditor
   },
@@ -80,11 +61,6 @@ export default {
         });
   },
 
-  updated() {
-    this.$el.querySelector('.messages').scrollTop =
-    this.$el.querySelector('.messages').scrollHeight
-  },
-
   methods: {
     sendMessage({message}) {
       axios.post('/chat-messages', { 
@@ -95,30 +71,7 @@ export default {
       }).catch(error => {
         flashMessage('Error sending message', 'danger');
       });
-    },
-
-    formattedCreatedAt(message) {
-      let distanceToNow = formatDistanceToNowStrict(
-        parseISO(message.created_at)
-      );
-
-      return `${distanceToNow} ago`;
     }
   }
 }
 </script>
-<style scoped>
-div.messages {
-  height: 400px;
-  overflow: scroll;
-} 
-
-div.messages ul {
-  list-style-type: none;
-}
-
-span.message-time {
-  float: right;
-  color: #999;
-}
-</style>
