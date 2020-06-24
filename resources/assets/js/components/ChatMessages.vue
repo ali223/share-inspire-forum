@@ -33,18 +33,8 @@
       </div>
     </div>
     <div class="col-md-4">
-      <div class="card shadow-lg">
-        <div class="card-header text-center bg-secondary text-light">
-          Online Users
-        </div>
-        <div class="card-body">
-          <ul>
-            <li v-for="user in onlineUsers">
-              {{ user.name }}
-            </li>
-          </ul>
-        </div>
-      </div>
+      <chat-online-users-list :users="onlineUsers">
+      </chat-online-users-list>
     </div>
   </div>
 </template>
@@ -52,8 +42,13 @@
 <script>
 import parseISO from 'date-fns/parseISO';
 import formatDistanceToNowStrict from 'date-fns/formatDistanceToNowStrict';
+import ChatOnlineUsersList from './ChatOnlineUsersList';
 
 export default {
+  components: {
+    ChatOnlineUsersList
+  },
+
   props: {
     initialMessages: {
       type: Array,
