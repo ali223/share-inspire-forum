@@ -12,7 +12,7 @@
             <ul>
               <li v-for="message in messages">
                 <p class="message-content">
-                  <strong>{{ message.user.name }} : </strong>
+                  <strong>{{ message.user_name }} : </strong>
                   {{ message.text }}
                   <span class="message-time">
                     {{ formattedCreatedAt(message) }}
@@ -54,22 +54,28 @@ import parseISO from 'date-fns/parseISO';
 import formatDistanceToNowStrict from 'date-fns/formatDistanceToNowStrict';
 
 export default {
+  props: {
+    initialMessages: {
+      type: Array,
+      required: true
+    }
+  },
+
   data() {
     return {
-      messages: [],
+      messages: _.cloneDeep(this.initialMessages),
       newMessage: '',
       onlineUsers: []
     }
   },
-  mounted() {
-    this.getMessages();
 
+  mounted() {
     Echo.join('Chat.Room')
         .here(users => {
-            this.onlineUsers = users;
+          this.onlineUsers = users;
         })
-        .listen('NewChatMessage', event => {
-            this.messages.push(event.message);
+        .listen('NewChatMessage', message => {
+          this.messages.push(message);
         })
         .joining(user => {
           this.onlineUsers.push(user);
@@ -82,30 +88,25 @@ export default {
           this.onlineUsers.splice(index, 1);
         });
   },
+
   updated() {
     this.$el.querySelector('.messages').scrollTop =
     this.$el.querySelector('.messages').scrollHeight
   },
-  methods: {
-    getMessages() {
-      axios.get(location.pathname)
-        .then(response => {
-          this.messages = response.data;
-        });
 
-    },
+  methods: {
     sendMessage() {
-      axios.post(location.pathname, {
-          text: this.newMessage,
-          user_id: window.App.user.id
-      })
-        .then(response => {
-            this.getMessages();
-            this.newMessage = '';
-        })
-        .catch(error => {
+      let message = this.newMessage;
+      this.newMessage = '';
+
+      axios.post('/chat-messages', {
+        text: message,
+      }).then(response => {
+        let createdMessage = response.data.data;
+        this.messages.push(createdMessage);
+      }).catch(error => {
           flashMessage('Error sending message', 'danger');
-        });
+      });
     },
 
     formattedCreatedAt(message) {

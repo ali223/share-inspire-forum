@@ -3,6 +3,7 @@
 namespace App\Events;
 
 use App\ChatMessage;
+use App\Http\Resources\ChatMessageResource;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
@@ -13,16 +14,16 @@ class NewChatMessage implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $message;
+    public $chatMessage;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(ChatMessage $message)
+    public function __construct(ChatMessage $chatMessage)
     {
-        $this->message = $message;
+        $this->chatMessage = $chatMessage;
     }
 
     /**
@@ -37,6 +38,6 @@ class NewChatMessage implements ShouldBroadcast
 
     public function broadcastWith()
     {
-        return ['message' => $this->message->load('user')];
+        return (new ChatMessageResource($this->chatMessage))->resolve();
     }
 }

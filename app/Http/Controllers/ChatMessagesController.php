@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\ChatMessage;
 use App\Events\NewChatMessage;
+use App\Http\Resources\ChatMessageResource;
 use Illuminate\Http\Request;
 
 class ChatMessagesController extends Controller
@@ -15,11 +16,10 @@ class ChatMessagesController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->expectsJson()) {
-            return ChatMessage::with('user')->get();
-        }
+        $chatMessages = ChatMessage::with('user:id,name')->get();
+        $chatMessages = ChatMessageResource::collection($chatMessages);
 
-        return view('chat-messages.index');
+        return view('chat-messages.index', compact('chatMessages'));
     }
 
     /**
@@ -41,6 +41,6 @@ class ChatMessagesController extends Controller
 
         broadcast(new NewChatMessage($chatMessage))->toOthers();
 
-        return $chatMessage;
+        return new ChatMessageResource($chatMessage);
     }
 }

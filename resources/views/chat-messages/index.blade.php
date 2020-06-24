@@ -5,7 +5,7 @@
 @section('content')
   <div class="row">
     <div class="col-md-10 offset-md-1">
-      <chat-messages></chat-messages>
+      <chat-messages :initial-messages="{{ json_encode($chatMessages) }}"></chat-messages>
       <flash-message></flash-message>
     </div>
   </div>
