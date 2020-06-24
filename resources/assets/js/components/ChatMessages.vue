@@ -21,14 +21,8 @@
               </li>
             </ul>
           </div>
-          <form @submit.prevent="sendMessage">
-            <div class="form-group">
-              <textarea class="form-control" v-model="newMessage" required></textarea>
-            </div>
-            <div class="form-group">
-              <button class="btn btn-custom" type="submit">Send Message</button>
-            </div>
-          </form>
+          <chat-message-editor @send="sendMessage">
+          </chat-message-editor>
         </div>
       </div>
     </div>
@@ -43,10 +37,12 @@
 import parseISO from 'date-fns/parseISO';
 import formatDistanceToNowStrict from 'date-fns/formatDistanceToNowStrict';
 import ChatOnlineUsersList from './ChatOnlineUsersList';
+import ChatMessageEditor from './ChatMessageEditor';
 
 export default {
   components: {
-    ChatOnlineUsersList
+    ChatOnlineUsersList,
+    ChatMessageEditor
   },
 
   props: {
@@ -90,17 +86,14 @@ export default {
   },
 
   methods: {
-    sendMessage() {
-      let message = this.newMessage;
-      this.newMessage = '';
-
-      axios.post('/chat-messages', {
-        text: message,
+    sendMessage({message}) {
+      axios.post('/chat-messages', { 
+        text: message
       }).then(response => {
         let createdMessage = response.data.data;
         this.messages.push(createdMessage);
       }).catch(error => {
-          flashMessage('Error sending message', 'danger');
+        flashMessage('Error sending message', 'danger');
       });
     },
 
