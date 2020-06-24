@@ -3,18 +3,18 @@
 @section('title', 'ShareInspire Forum | ADMIN')
 
 @section('banner')
-<header id="header" class="py-3">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <h2>
-          <i class="fa fa-lg fa-dashboard"></i>
-          Admin Dashboard
-        </h2>
+  <header id="header" class="py-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h2>
+            <i class="fa fa-lg fa-dashboard"></i>
+            Admin Dashboard
+          </h2>
+        </div>
       </div>
     </div>
-  </div>
-</header>
+  </header>
 @endsection
 
 @section('content')
