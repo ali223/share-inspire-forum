@@ -41,8 +41,13 @@ export default {
     }
   },
 
-  mounted() {
-    Echo.join('Chat.Room')
+  created() {
+    this.registerEventListenersForLaravelEcho();
+  },
+
+  methods: {
+    registerEventListenersForLaravelEcho() {
+      Echo.join('Chat.Room')
         .here(users => {
           this.onlineUsers = users;
         })
@@ -59,9 +64,8 @@ export default {
 
           this.onlineUsers.splice(index, 1);
         });
-  },
+    },
 
-  methods: {
     sendMessage({message}) {
       axios.post('/chat-messages', { 
         text: message
