@@ -30,10 +30,6 @@ class PostsController extends Controller
 
         $topic->load(['posts', 'posts.user']);
 
-        if (request()->expectsJson()) {
-            return $topic;
-        }
-
         return view('posts.index', [
             'topic' => $topic,
             'approvalMessage' => $approvalMessage

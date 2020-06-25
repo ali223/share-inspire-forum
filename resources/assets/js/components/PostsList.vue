@@ -26,15 +26,20 @@ export default {
     PostListItem
   },
 
+  props: {
+    topicWithPosts: {
+      type: Object,
+      required: true
+    }
+  },
+
   data() {
     return {
-      postsList: []
+      postsList: _.cloneDeep(this.topicWithPosts.posts)
     };
   },
 
   created() {
-    this.fetchPosts();
-
     Echo.channel('posts-channel')
       .listen('NewPostCreated', event => {
         this.postsList.push(event.post);
@@ -55,17 +60,13 @@ export default {
       });
   },
 
+  mounted() {
+    this.$nextTick(() => {
+      this.scrollToPost(window.location.hash);
+    });
+  },
+
   methods: {
-    fetchPosts() {
-      axios.get(location.pathname).then(response => {
-        this.postsList = response.data.posts;
-
-        this.$nextTick(() => {
-          this.scrollToPost(window.location.hash);
-        });
-      });
-    },
-
     scrollToPost(bookmarkHash) {
       if (bookmarkHash && this.$refs.hasOwnProperty(bookmarkHash)) {
         let postDiv = this.$refs[bookmarkHash][0];

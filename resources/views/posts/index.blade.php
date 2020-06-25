@@ -23,7 +23,7 @@
         </div>
 
         <div class="card-body">
-          <posts-list :topic-id="{{ $topic->id }}">
+          <posts-list :topic-with-posts="{{ json_encode($topic) }}">
           </posts-list>
           
           <a href="{{ route('topics.index', $topic->category->id) }}" class="btn btn-custom">
