@@ -16,7 +16,7 @@ class ChatMessagesController extends Controller
      */
     public function index(Request $request)
     {
-        $chatMessages = ChatMessage::with('user:id,name')->get();
+        $chatMessages = ChatMessage::with('user')->get();
         $chatMessages = ChatMessageResource::collection($chatMessages);
 
         return view('chat-messages.index', compact('chatMessages'));
