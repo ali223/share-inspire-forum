@@ -30,8 +30,8 @@ class PostsController extends Controller
         }
 
         $topic->load([
-            'category', 
-            'posts.likes', 
+            'category',
+            'posts.likes',
             'posts.user'
         ]);
 
