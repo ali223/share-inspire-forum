@@ -3,7 +3,7 @@
     <div class="card-header">
       <strong>
         Posted By
-        <a :href="'/profiles/' + postData.user_id" class="text-custom">
+        <a :href="'/profiles/' + postData.user.id" class="text-custom">
           {{ postData.user.name }}
         </a>
         {{ formattedCreatedAt }}
@@ -90,7 +90,7 @@ export default {
 
   computed: {
     canUpdate() {
-      return this.authorize(user => this.postData.user_id === user.id);
+      return this.authorize(user => this.postData.user.id === user.id);
     },
 
     formattedCreatedAt() {

@@ -8,7 +8,7 @@
         <ul>
           <li v-for="message in messages" :key="message.id">
             <p class="message-content">
-              <strong>{{ message.user_name }} : </strong>
+              <strong>{{ message.user.name }} : </strong>
               {{ message.text }}
               <span class="message-time">
                 {{ formattedCreatedAt(message) }}

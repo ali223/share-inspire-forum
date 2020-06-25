@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Events\NewPostCreated;
 use App\Events\PostDeleted;
 use App\Events\PostUpdated;
+use App\Http\Resources\TopicResource;
 use App\Post;
 use App\Topic;
 use Illuminate\Http\Request;
@@ -28,7 +29,13 @@ class PostsController extends Controller
             $approvalMessage = 'Waiting for Admin Approval';
         }
 
-        $topic->load(['posts', 'posts.user']);
+        $topic->load([
+            'category', 
+            'posts.likes', 
+            'posts.user'
+        ]);
+
+        $topic = new TopicResource($topic);
 
         return view('posts.index', [
             'topic' => $topic,

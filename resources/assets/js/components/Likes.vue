@@ -49,7 +49,7 @@ export default {
   },
   computed: {
     canLike() {
-      return this.authorize(user => this.postData.user_id !== user.id);
+      return this.authorize(user => this.postData.user.id !== user.id);
     },
     signedIn() {
       return window.App.signedIn;
