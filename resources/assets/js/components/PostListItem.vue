@@ -8,7 +8,7 @@
         </a>
         {{ formattedCreatedAt }}
       </strong>
-      <likes :initial-post-data="initialPostData"></likes>
+      <post-likes :initial-post-data="initialPostData"></post-likes>
     </div>
     <div class="card-body">
       <loading :active.sync="isLoading"></loading>
@@ -67,7 +67,7 @@
 </template>
 
 <script>
-import Likes from './Likes';
+import PostLikes from './PostLikes';
 import Loading from 'vue-loading-overlay';
 import parseISO from 'date-fns/parseISO';
 import formatDistanceToNowStrict from 'date-fns/formatDistanceToNowStrict';
@@ -76,7 +76,7 @@ export default {
   props: ['initialPostData'],
 
   components: {
-    Likes,
+    PostLikes,
     Loading
   },
 
