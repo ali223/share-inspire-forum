@@ -11,8 +11,6 @@
       <post-likes :initial-post-data="initialPost"></post-likes>
     </div>
     <div class="card-body">
-      <loading :active.sync="isLoading"></loading>
-
       <div v-if="isEditing">
         <form @submit.prevent="update">
           <div class="form-group">
@@ -25,17 +23,14 @@
             ></textarea>
           </div>
           <div class="interaction">
-            <button
-              type="submit"
-              class="btn btn-custom btn-sm"
-            >
+            <button type="submit" class="btn btn-custom btn-sm">
               Update
             </button>
 
             <button
               type="button"
               class="btn btn-danger btn-sm"
-              @click.prevent="isEditing = false"
+              @click="isEditing = false"
             >
               Cancel
             </button>
@@ -48,7 +43,7 @@
           <button
             type="button"
             class="btn btn-custom btn-sm"
-            @click.prevent="isEditing = true"
+            @click="isEditing = true"
           >
             Edit
           </button>
@@ -56,7 +51,7 @@
           <button
             type="button"
             class="btn btn-danger btn-sm"
-            @click.prevent="$emit('delete', post)"
+            @click="remove"
           >
             Delete
           </button>
@@ -68,7 +63,6 @@
 
 <script>
 import PostLikes from './PostLikes';
-import Loading from 'vue-loading-overlay';
 import parseISO from 'date-fns/parseISO';
 import formatDistanceToNowStrict from 'date-fns/formatDistanceToNowStrict';
 
@@ -76,15 +70,13 @@ export default {
   props: ['initialPost'],
 
   components: {
-    PostLikes,
-    Loading
+    PostLikes
   },
 
   data() {
     return {
-      post: this.initialPost,
-      isEditing: false,
-      isLoading: false
+      post: _.cloneDeep(this.initialPost),
+      isEditing: false
     };
   },
 
@@ -104,21 +96,12 @@ export default {
 
   methods: {
     update() {
-      this.isLoading = true;
+      this.isEditing = false;
+      this.$emit('update', { ...this.post });
+    },
 
-      axios
-        .patch(`/topics/${this.post.topic_id}/posts/${this.post.id}` , {
-          content: this.post.content
-        })
-        .then(response => {
-          this.isEditing = false;
-          this.$emit('postUpdated', this.post.content);
-          this.isLoading = false;
-        })
-        .catch(error => {
-          flashMessage('Error Updating the Post', 'warning');
-          this.isLoading = false;
-        });
+    remove() {
+      this.$emit('remove', { ...this.post });
     }
   }
 };

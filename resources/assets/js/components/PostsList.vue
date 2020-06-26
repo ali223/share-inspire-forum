@@ -7,8 +7,8 @@
     >
       <post-list-item
         :initial-post="post"
-        @delete="deletePost"
-        @postUpdated="updateMessage"
+        @remove="deletePost"
+        @update="updatePost"
       >
       </post-list-item>
     </div>
@@ -80,8 +80,9 @@ export default {
       flashMessage('Success! New Post Added', 'success');
     },
 
-    deletePost({topic_id, id}) {
+    deletePost({ id, topic_id }) {
       this.isLoading = true;
+
       axios
         .delete(`/topics/${topic_id}/posts/${id}`)
         .then(response => {
@@ -95,8 +96,20 @@ export default {
         });
     },
 
-    updateMessage() {
-      flashMessage('Success! Post Updated', 'success');
+    updatePost({ id, content, topic_id }) {
+      this.isLoading = true;
+
+      axios
+        .patch(`/topics/${topic_id}/posts/${id}`, { content })
+        .then(response => {
+          this.updatePostInTheList(response.data.data);
+          flashMessage('Success! Post Updated', 'success');
+          this.isLoading = false;
+        })
+        .catch(error => {
+          flashMessage('Error Updating the Post', 'warning');
+          this.isLoading = false;
+        });
     },
 
     getPostIndex(postId) {
@@ -110,6 +123,14 @@ export default {
 
       if (postIndex !== -1) {
         this.postsList.splice(postIndex, 1);
+      }
+    },
+
+    updatePostInTheList(updatedPost) {
+      let postIndex = this.getPostIndex(updatedPost.id);
+
+      if (postIndex !== -1) {
+        this.postsList.splice(postIndex, 1, updatedPost);
       }
     }
   }

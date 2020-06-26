@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Events\NewPostCreated;
 use App\Events\PostDeleted;
 use App\Events\PostUpdated;
+use App\Http\Resources\PostResource;
 use App\Http\Resources\TopicResource;
 use App\Post;
 use App\Topic;
@@ -99,7 +100,9 @@ class PostsController extends Controller
 
         broadcast(new PostUpdated($post))->toOthers();
 
-        return response()->json(['new_content' => $post->content], 200);
+        $post->load('user');
+
+        return new PostResource($post);
     }
 
     /**
