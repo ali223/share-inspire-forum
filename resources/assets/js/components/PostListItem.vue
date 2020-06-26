@@ -14,52 +14,52 @@
       <loading :active.sync="isLoading"></loading>
 
       <div v-if="isEditing">
-        <form>
+        <form @submit.prevent="update">
           <div class="form-group">
             <textarea
               id="txtcontent"
               name="txtcontent"
               class="form-control"
               v-model="postData.content"
+              required
             ></textarea>
           </div>
           <div class="interaction">
-            <a
-              href="#"
+            <button
+              type="submit"
               class="btn btn-custom btn-sm"
-              @click.prevent="update(postData.id)"
             >
               Update
-            </a>
+            </button>
 
-            <a
-              href="#"
+            <button
+              type="button"
               class="btn btn-danger btn-sm"
               @click.prevent="isEditing = false"
             >
               Cancel
-            </a>
+            </button>
           </div>
         </form>
       </div>
       <div v-else>
         <p>{{ postData.content }}</p>
         <div class="interaction" v-if="canUpdate">
-          <a
-            href="#"
+          <button
+            type="button"
             class="btn btn-custom btn-sm"
             @click.prevent="isEditing = true"
           >
             Edit
-          </a>
+          </button>
 
-          <a
-            href="#"
+          <button
+            type="button"
             class="btn btn-danger btn-sm"
-            @click.prevent="remove(postData.id)"
+            @click.prevent="remove"
           >
             Delete
-          </a>
+          </button>
         </div>
       </div>
     </div>
@@ -103,10 +103,10 @@ export default {
   },
 
   methods: {
-    remove(postId) {
+    remove() {
       this.isLoading = true;
       axios
-        .delete(location.pathname + '/' + postId)
+        .delete(`/topics/${this.postData.topic_id}/posts/${this.postData.id}`)
         .then(response => {
           this.$emit('postRemoved');
           this.isLoading = false;
@@ -117,13 +117,11 @@ export default {
         });
     },
 
-    update(postId) {
-      if (this.content == '') {
-        return;
-      }
+    update() {
       this.isLoading = true;
+
       axios
-        .put(location.pathname + '/' + postId, {
+        .patch(`/topics/${this.postData.topic_id}/posts/${this.postData.id}` , {
           content: this.postData.content
         })
         .then(response => {

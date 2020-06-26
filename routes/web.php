@@ -66,7 +66,7 @@ Route::group([
     $router->post('/categories/{category}/topics', 'TopicsController@store')->name('topics.store');
 
     $router->post('/topics/{topic}/posts', 'PostsController@store')->name('posts.store');
-    $router->put('/topics/{topic}/posts/{post}', 'PostsController@update')->name('posts.update');
+    $router->patch('/topics/{topic}/posts/{post}', 'PostsController@update')->name('posts.update');
     $router->delete('/topics/{topic}/posts/{post}', 'PostsController@destroy')->name('posts.destroy');
 
     $router->get('/liked-posts', 'LikedPostsController@index')->name('liked-posts.index');
