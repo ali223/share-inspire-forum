@@ -10,6 +10,7 @@
         @remove="deletePost"
         @update="updatePost"
       >
+        <post-likes :initial-post-data="post" />
       </post-list-item>
     </div>
     <post-creator @add="addPost" />
@@ -20,12 +21,14 @@
 <script>
 import PostCreator from './PostCreator.vue';
 import PostListItem from './PostListItem.vue';
+import PostLikes from './PostLikes';
 import Loading from 'vue-loading-overlay';
 
 export default {
   components: {
     PostCreator,
     PostListItem,
+    PostLikes,
     Loading
   },
 

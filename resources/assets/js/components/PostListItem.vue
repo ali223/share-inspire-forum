@@ -8,7 +8,7 @@
         </a>
         {{ formattedCreatedAt }}
       </strong>
-      <post-likes :initial-post-data="initialPost"></post-likes>
+      <slot></slot>
     </div>
     <div class="card-body">
       <div v-if="isEditing">
@@ -62,16 +62,11 @@
 </template>
 
 <script>
-import PostLikes from './PostLikes';
 import parseISO from 'date-fns/parseISO';
 import formatDistanceToNowStrict from 'date-fns/formatDistanceToNowStrict';
 
 export default {
   props: ['initialPost'],
-
-  components: {
-    PostLikes
-  },
 
   data() {
     return {
