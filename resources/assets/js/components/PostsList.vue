@@ -12,7 +12,7 @@
       >
       </post-list-item>
     </div>
-    <post-creator @postAdded="addToPostsList" />
+    <post-creator @add="addPost" />
     <loading :active.sync="isLoading" />
   </div>
 </template>
@@ -75,9 +75,20 @@ export default {
       }
     },
 
-    addToPostsList(newPostdata) {
-      this.postsList.push(newPostdata);
-      flashMessage('Success! New Post Added', 'success');
+    addPost({ content }) {
+      this.isLoading = true;
+
+      axios
+        .post(`/topics/${this.topicWithPosts.id}/posts`, { content })
+        .then(response => {
+          this.postsList.push(response.data.data);
+          flashMessage('Success! New Post Added', 'success');
+          this.isLoading = false;
+        })
+        .catch(error => {
+          flashMessage('Error Adding New Post', 'warning');
+          this.isLoading = false;
+        });
     },
 
     deletePost({ id, topic_id }) {

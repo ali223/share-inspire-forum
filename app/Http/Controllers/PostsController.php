@@ -74,13 +74,9 @@ class PostsController extends Controller
 
         broadcast(new NewPostCreated($post))->toOthers();
 
-        if ($request->expectsJson()) {
-            return $post->load('user');
-        }
+        $post->load('user');
 
-        return redirect()
-                ->route('posts.index', $topic->id)
-                ->with('message', 'New Post Created Successfully');
+        return new PostResource($post);
     }
 
     /**
