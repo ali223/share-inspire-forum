@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      v-for="(post, index) in postsList"
+      v-for="post in postsList"
       :key="post.id"
       :ref="'#post' + post.id"
     >
@@ -10,7 +10,11 @@
         @remove="deletePost"
         @update="updatePost"
       >
-        <post-likes :initial-post-data="post" />
+        <post-likes 
+          :initial-post="post" 
+          @like="likePost"
+          @unlike="unlikePost"
+        />
       </post-list-item>
     </div>
     <post-creator @add="addPost" />
@@ -126,6 +130,38 @@ export default {
         });
     },
 
+    likePost({ id }) {
+      this.isLoading = true;
+
+      axios
+        .post(`/posts/${id}/like`)
+        .then(response => {
+          this.likePostInTheListById(id);
+          flashMessage('Post Liked Successfully', 'success');
+          this.isLoading = false;
+        })
+        .catch(error => {
+          flashMessage('Error! Could not like the post', 'warning')
+          this.isLoading = false;
+        });
+    },
+
+    unlikePost({ id }) {
+      this.isLoading = true;
+
+      axios
+        .delete(`/posts/${id}/like`)
+        .then(response => {
+          this.unlikePostInTheListById(id); 
+          flashMessage('Post Unliked Successfully', 'success');
+          this.isLoading = false;
+        })
+        .catch(error => {
+          flashMessage('Error! Could not unlike the post', 'warning');
+          this.isLoading = false;
+        }) 
+    },
+
     getPostIndex(postId) {
       return this.postsList.findIndex(function(post) {
         return post.id === postId;
@@ -146,7 +182,25 @@ export default {
       if (postIndex !== -1) {
         this.postsList.splice(postIndex, 1, updatedPost);
       }
-    }
+    },
+
+    likePostInTheListById(postId) {
+      let post = this.postsList.find(post => post.id === postId);
+
+      if (post) {
+        post.is_liked = true;
+        post.likes_count++;
+      }
+    },
+
+    unlikePostInTheListById(postId) {
+      let post = this.postsList.find(post => post.id === postId);
+
+      if (post) {
+        post.is_liked = false;
+        post.likes_count--;
+      }
+    }    
   }
 };
 </script>
