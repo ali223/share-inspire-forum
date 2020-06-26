@@ -3,12 +3,12 @@
     <div class="card-header">
       <strong>
         Posted By
-        <a :href="'/profiles/' + postData.user.id" class="text-custom">
-          {{ postData.user.name }}
+        <a :href="`/profiles/${post.user.id}`" class="text-custom">
+          {{ post.user.name }}
         </a>
         {{ formattedCreatedAt }}
       </strong>
-      <post-likes :initial-post-data="initialPostData"></post-likes>
+      <post-likes :initial-post-data="initialPost"></post-likes>
     </div>
     <div class="card-body">
       <loading :active.sync="isLoading"></loading>
@@ -20,7 +20,7 @@
               id="txtcontent"
               name="txtcontent"
               class="form-control"
-              v-model="postData.content"
+              v-model="post.content"
               required
             ></textarea>
           </div>
@@ -43,7 +43,7 @@
         </form>
       </div>
       <div v-else>
-        <p>{{ postData.content }}</p>
+        <p>{{ post.content }}</p>
         <div class="interaction" v-if="canUpdate">
           <button
             type="button"
@@ -73,7 +73,7 @@ import parseISO from 'date-fns/parseISO';
 import formatDistanceToNowStrict from 'date-fns/formatDistanceToNowStrict';
 
 export default {
-  props: ['initialPostData'],
+  props: ['initialPost'],
 
   components: {
     PostLikes,
@@ -82,7 +82,7 @@ export default {
 
   data() {
     return {
-      postData: this.initialPostData,
+      post: this.initialPost,
       isEditing: false,
       isLoading: false
     };
@@ -90,12 +90,12 @@ export default {
 
   computed: {
     canUpdate() {
-      return this.authorize(user => this.postData.user.id === user.id);
+      return this.authorize(user => this.post.user.id === user.id);
     },
 
     formattedCreatedAt() {
       let distanceToNow = formatDistanceToNowStrict(
-        parseISO(this.postData.created_at)
+        parseISO(this.post.created_at)
       );
 
       return `${distanceToNow} ago`;
@@ -106,7 +106,7 @@ export default {
     remove() {
       this.isLoading = true;
       axios
-        .delete(`/topics/${this.postData.topic_id}/posts/${this.postData.id}`)
+        .delete(`/topics/${this.post.topic_id}/posts/${this.post.id}`)
         .then(response => {
           this.$emit('postRemoved');
           this.isLoading = false;
@@ -121,12 +121,12 @@ export default {
       this.isLoading = true;
 
       axios
-        .patch(`/topics/${this.postData.topic_id}/posts/${this.postData.id}` , {
-          content: this.postData.content
+        .patch(`/topics/${this.post.topic_id}/posts/${this.post.id}` , {
+          content: this.post.content
         })
         .then(response => {
           this.isEditing = false;
-          this.$emit('postUpdated', this.postData.content);
+          this.$emit('postUpdated', this.post.content);
           this.isLoading = false;
         })
         .catch(error => {

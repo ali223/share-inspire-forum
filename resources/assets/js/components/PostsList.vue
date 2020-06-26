@@ -6,7 +6,7 @@
       :ref="'#post' + post.id"
     >
       <post-list-item
-        :initial-post-data="post"
+        :initial-post="post"
         @postRemoved="removeFromPostsList(index)"
         @postUpdated="updateMessage"
       >
