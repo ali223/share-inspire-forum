@@ -56,7 +56,7 @@
           <button
             type="button"
             class="btn btn-danger btn-sm"
-            @click.prevent="remove"
+            @click.prevent="$emit('delete', post)"
           >
             Delete
           </button>
@@ -103,20 +103,6 @@ export default {
   },
 
   methods: {
-    remove() {
-      this.isLoading = true;
-      axios
-        .delete(`/topics/${this.post.topic_id}/posts/${this.post.id}`)
-        .then(response => {
-          this.$emit('postRemoved');
-          this.isLoading = false;
-        })
-        .catch(error => {
-          flashMessage('Error Deleting the Post', 'warning');
-          this.isLoading = false;
-        });
-    },
-
     update() {
       this.isLoading = true;
 

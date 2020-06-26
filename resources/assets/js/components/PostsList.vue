@@ -7,23 +7,26 @@
     >
       <post-list-item
         :initial-post="post"
-        @postRemoved="removeFromPostsList(index)"
+        @delete="deletePost"
         @postUpdated="updateMessage"
       >
       </post-list-item>
     </div>
     <post-creator @postAdded="addToPostsList" />
+    <loading :active.sync="isLoading" />
   </div>
 </template>
 
 <script>
 import PostCreator from './PostCreator.vue';
 import PostListItem from './PostListItem.vue';
+import Loading from 'vue-loading-overlay';
 
 export default {
   components: {
     PostCreator,
-    PostListItem
+    PostListItem,
+    Loading
   },
 
   props: {
@@ -35,7 +38,8 @@ export default {
 
   data() {
     return {
-      postsList: _.cloneDeep(this.topicWithPosts.posts)
+      postsList: _.cloneDeep(this.topicWithPosts.posts),
+      isLoading: false
     };
   },
 
@@ -45,11 +49,7 @@ export default {
         this.postsList.push(event.post);
       })
       .listen('PostDeleted', event => {
-        let postIndex = this.getPostIndex(event.postId);
-
-        if (postIndex !== -1) {
-          this.postsList.splice(postIndex, 1);
-        }
+        this.removePostFromListById(event.postId);
       })
       .listen('PostUpdated', event => {
         let postIndex = this.getPostIndex(event.post.id);
@@ -80,9 +80,19 @@ export default {
       flashMessage('Success! New Post Added', 'success');
     },
 
-    removeFromPostsList(index) {
-      this.postsList.splice(index, 1);
-      flashMessage('Success! Post Deleted', 'success');
+    deletePost({topic_id, id}) {
+      this.isLoading = true;
+      axios
+        .delete(`/topics/${topic_id}/posts/${id}`)
+        .then(response => {
+          this.removePostFromListById(id);
+          flashMessage('Success! Post Deleted', 'success');
+          this.isLoading = false;
+        })
+        .catch(error => {
+          flashMessage('Error Deleting the Post', 'warning');
+          this.isLoading = false;
+        });
     },
 
     updateMessage() {
@@ -91,8 +101,16 @@ export default {
 
     getPostIndex(postId) {
       return this.postsList.findIndex(function(post) {
-        return post.id == postId;
+        return post.id === postId;
       });
+    },
+
+    removePostFromListById(postId) {
+      let postIndex = this.getPostIndex(postId);
+
+      if (postIndex !== -1) {
+        this.postsList.splice(postIndex, 1);
+      }
     }
   }
 };
