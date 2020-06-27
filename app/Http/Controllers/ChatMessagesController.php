@@ -39,6 +39,7 @@ class ChatMessagesController extends Controller
             'user_id' => auth()->id()
         ]);
 
+        $chatMessage->load('user');
         broadcast(new NewChatMessage($chatMessage))->toOthers();
 
         return new ChatMessageResource($chatMessage);
