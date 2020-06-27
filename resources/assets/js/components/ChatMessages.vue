@@ -4,8 +4,8 @@
       <chat-messages-list :messages="messages">
       </chat-messages-list>
 
-      <chat-message-editor @send="sendMessage">
-      </chat-message-editor>
+      <chat-message-sender @send="sendMessage">
+      </chat-message-sender>
     </div>
     <div class="col-md-4">
       <chat-online-users-list :users="onlineUsers">
@@ -17,13 +17,13 @@
 <script>
 import ChatMessagesList from './ChatMessagesList';
 import ChatOnlineUsersList from './ChatOnlineUsersList';
-import ChatMessageEditor from './ChatMessageEditor';
+import ChatMessageSender from './ChatMessageSender';
 
 export default {
   components: {
     ChatMessagesList,
     ChatOnlineUsersList,
-    ChatMessageEditor
+    ChatMessageSender
   },
 
   props: {

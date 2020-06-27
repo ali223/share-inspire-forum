@@ -35,32 +35,32 @@
       </div>
     </div>
     <div class="col-md-4">
-      <new-category 
+      <category-creator 
         @add="storeCategory"
         v-if="!editing"
       >
-      </new-category>
-      <edit-category 
+      </category-creator>
+      <category-editor 
         v-else
         :initial-category="selectedCategory"
         @update="updateCategory"
         @cancelled="cancelEditForm"
       >
-      </edit-category>
+      </category-editor>
     </div>
     <loading :active.sync="isLoading"></loading>
   </div>
 </template>
 
 <script>
-import NewCategory from './NewCategory.vue';
-import EditCategory from './EditCategory.vue';
+import CategoryCreator from './CategoryCreator.vue';
+import CategoryEditor from './CategoryEditor.vue';
 import Loading from 'vue-loading-overlay';
 
 export default {
   components: { 
-    NewCategory, 
-    EditCategory,
+    CategoryCreator, 
+    CategoryEditor,
     Loading
   },
 
