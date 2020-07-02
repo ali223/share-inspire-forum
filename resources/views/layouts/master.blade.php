@@ -6,6 +6,8 @@
   @yield('showcase')
 
   <div class="container py-4">
+    @yield('breadcrumbs')
+
     @include('layouts._message')
     @include('layouts._errors')
 

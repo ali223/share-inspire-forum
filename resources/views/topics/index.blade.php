@@ -2,11 +2,19 @@
 
 @section('title', "ShareInspire Forum | {$category->name} | Topics")
 
+@section('breadcrumbs')
+  <div class="row">
+    <div class="col-md-12">
+      @include('topics._breadcrumbs')
+    </div>
+  </div>
+@endsection
+
 @section('content')
   <div class="row">
     <div class="col-md-10 offset-md-1">
       <div class="card shadow-lg">
-        <div class="card-header text-center bg-secondary text-light">
+        <div class="card-header text-center bg-custom-secondary">
           <h4>
             Category: 
             <strong>{{ $category->name }}</strong>
@@ -18,8 +26,8 @@
             <thead>
               <tr>
                 <th>Topic Title</th>
-                <th>Created By</th>
-                <th>Date Created</th>
+                <th>By</th>
+                <th>Created At</th>
                 <th>No. of Posts</th>
               </tr>
             </thead>
@@ -28,7 +36,7 @@
               @foreach($category->topics as $topic)
                 <tr>
                   <td>
-                    <a href="{{ route('posts.index', $topic->id) }}" class="text-custom">
+                    <a href="{{ route('posts.index', $topic->id) }}" class="text-dark">
                       <strong>{{ $topic->title }}</strong>
                       <br>
                       @if (!$topic->approved)
@@ -37,7 +45,7 @@
                     </a>
                   </td>
                   <td>
-                    <a href="{{ route('profiles.show', $topic->user->id) }}" class="text-custom">
+                    <a href="{{ route('profiles.show', $topic->user->id) }}" class="text-dark">
                       {{ $topic->user->name }}
                     </a>
                   </td>
@@ -53,15 +61,11 @@
           </table>
           <hr>
 
-          @if (Auth::check())
+          @auth
             <a href="{{ route('topics.create', $category->id) }}" class="btn btn-custom">
               Create a New Topic
             </a>
-          @endif
-
-          <a href="{{ route('categories.index') }}#list" class="btn btn-custom">
-            Back to Categories List
-          </a>
+          @endauth
         </div>
       </div>
     </div>
