@@ -5,7 +5,7 @@
 @section('breadcrumbs')
   <div class="row">
     <div class="col-md-12">
-      @include('topics._breadcrumbs')
+      @include('topics._breadcrumbs-index')
     </div>
   </div>
 @endsection

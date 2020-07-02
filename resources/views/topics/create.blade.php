@@ -2,18 +2,24 @@
 
 @section('title', "ShareInspire Forum | {$category->name} | Topics")
 
+@section('breadcrumbs')
+  <div class="row">
+    <div class="col-md-12">
+      @include('topics._breadcrumbs-create')
+    </div>
+  </div>
+@endsection
+
 @section('content')
   <div class="row">
     <div class="col-md-10 offset-md-1">
       <div class="card shadow-lg">
-        <div class="card-header text-center bg-secondary text-light">
+        <div class="card-header text-center bg-custom-secondary">
           <h4>
-            Category: 
+            Category:
             <strong>{{ $category->name }}</strong>
           </h4>
-          <h4>
-            <strong>Create a New Topic</strong>
-          </h4>
+          <h4>Create a New Topic</h4>
         </div>
 
         <div class="card-body">
