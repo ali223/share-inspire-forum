@@ -6,7 +6,7 @@
   <div class="row">
     <div class="col-md-6 offset-md-3">
       <div class="card shadow-lg">
-        <div class="card-header text-center bg-secondary text-light">
+        <div class="card-header text-center">
           <h3>Forgot Password</h3>
         </div>
 

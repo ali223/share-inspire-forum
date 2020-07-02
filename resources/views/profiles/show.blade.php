@@ -30,7 +30,7 @@
       </div>
 
       <div class="card shadow-lg mb-3">
-        <div class="card-header bg-secondary text-light">
+        <div class="card-header">
           <h5>
             About {{ $user->name }}
           </h5>
@@ -43,7 +43,7 @@
       </div>
 
       <div class="card shadow-lg mb-3">
-        <div class="card-header bg-secondary text-light">
+        <div class="card-header">
           <h5>
             Topics created by {{ $user->name }}
           </h5>
@@ -72,7 +72,7 @@
       </div>
 
       <div class="card shadow-lg mb-3">
-        <div class="card-header bg-secondary text-light">
+        <div class="card-header">
           <h5>
             Posts created by {{ $user->name }}
           </h5>

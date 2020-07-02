@@ -6,7 +6,7 @@
   <div class="row">
     <div class="col-md-10 offset-md-1">
       <div class="card shadow-lg">
-        <div class="card-header bg-secondary text-light">
+        <div class="card-header">
           <h5>
             Edit Your Profile
           </h5>

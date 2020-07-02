@@ -37,7 +37,7 @@
             </div>      
 
             <div class="form-group">
-              <button type="submit" class="btn btn-custom text-custom-secondary">
+              <button type="submit" class="btn btn-custom">
                 Create
               </button>
             </div>      

@@ -1,5 +1,5 @@
 <div class="card shadow-lg mt-2">
-  <div class="card-header text-left bg-secondary text-light">
+  <div class="card-header text-left">
     <i class="fa fa-lg fa-book"></i>
     Newly Created Topics (Last 5)
 

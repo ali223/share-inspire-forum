@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-8">
       <div class="card shadow-lg">
-        <div class="card-header text-center bg-secondary text-light">
+        <div class="card-header text-center">
           <h4>
             Categories
           </h4>

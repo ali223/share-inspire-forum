@@ -1,6 +1,6 @@
 <template>
   <div class="card shadow-lg">
-    <div class="card-header text-center bg-secondary text-light">
+    <div class="card-header text-center">
       <strong>Create a New Category</strong>
     </div>
     <div class="card-body">

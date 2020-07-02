@@ -1,5 +1,5 @@
 <div class="card shadow-lg mb-4">
-  <div class="card-header text-left bg-secondary text-light">
+  <div class="card-header text-left">
     <i class="fa fa-lg fa-feed"></i>
     Website Overview
   </div>

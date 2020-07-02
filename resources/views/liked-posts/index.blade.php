@@ -6,7 +6,7 @@
   <div class="row">
     <div class="col-md-10 offset-md-1">
       <div class="card shadow-lg">
-        <div class="card-header bg-secondary text-light text-center">
+        <div class="card-header text-center">
           <h4>
             Posts 
             <i class="fa fa-heart text-danger"></i>

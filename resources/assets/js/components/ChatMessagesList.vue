@@ -1,6 +1,6 @@
 <template>
   <div class="card shadow-lg">
-    <div class="text-center bg-secondary text-light py-3">
+    <div class="card-header text-center py-3">
       <h4>Chat Messages</h4>
     </div>
     <div class="card-body">

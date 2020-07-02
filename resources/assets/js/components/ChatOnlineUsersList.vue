@@ -1,7 +1,7 @@
 <template>
   <div class="card shadow-lg">
-    <div class="card-header text-center bg-secondary text-light">
-      Online Users
+    <div class="card-header text-center">
+      <h4>Online Users</h4>
     </div>
     <div class="card-body">
       <ul v-if="users.length">
