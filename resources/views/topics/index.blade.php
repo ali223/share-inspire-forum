@@ -2,14 +2,6 @@
 
 @section('title', "ShareInspire Forum | {$category->name} | Topics")
 
-@section('breadcrumbs')
-  <div class="row">
-    <div class="col-md-12">
-      @include('topics._breadcrumbs-index')
-    </div>
-  </div>
-@endsection
-
 @section('content')
   <div class="row">
     <div class="col-md-10 offset-md-1">
@@ -66,6 +58,10 @@
               Create a New Topic
             </a>
           @endauth
+
+          <a href="{{ route('home') }}#list" class="btn btn-custom">
+            Back To Categories
+          </a>
         </div>
       </div>
     </div>
