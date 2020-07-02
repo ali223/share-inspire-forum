@@ -62,7 +62,7 @@
           <hr>
 
           @auth
-            <a href="{{ route('topics.create', $category->id) }}" class="btn btn-custom">
+            <a href="{{ route('topics.create', $category->id) }}" class="btn btn-custom text-custom-secondary">
               Create a New Topic
             </a>
           @endauth

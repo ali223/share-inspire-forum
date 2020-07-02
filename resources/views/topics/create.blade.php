@@ -37,7 +37,9 @@
             </div>      
 
             <div class="form-group">
-              <input type="submit" value="Create" class="btn btn-custom">
+              <button type="submit" class="btn btn-custom text-custom-secondary">
+                Create
+              </button>
             </div>      
           </form>
         </div>
