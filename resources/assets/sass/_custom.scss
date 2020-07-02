@@ -87,3 +87,15 @@ button.cookie-consent__agree {
     border-radius: 10px;
     padding: 5px 20px;
 }
+
+a.category-link {
+	color: black;
+}
+
+a.category-link:hover {
+	text-decoration: none;
+}
+
+div.category-card {
+	min-height: 220px;
+}

@@ -1,8 +1,10 @@
 // Custom
 $main-color: #40575a;
+$custom-secondary-color: #F9DC5C;
 
 $theme-colors: (
-  "custom": $main-color
+  "custom": $main-color,
+  "custom-secondary": $custom-secondary-color
 );
 
 $navbar-brand-padding-y: 0;
