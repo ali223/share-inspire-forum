@@ -1,6 +1,6 @@
 <template>
   <div class="card shadow-lg my-2">
-    <div class="card-header">
+    <div class="card-header bg-light">
       <strong>
         Posted By
         <a :href="`/profiles/${post.user.id}`" class="text-custom">
