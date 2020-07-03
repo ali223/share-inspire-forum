@@ -66,7 +66,7 @@
           </search-box>
         </div>
 
-        <button type="submit" class="btn btn-dark ml-sm-2 mr-sm-2 text-white">
+        <button type="submit" class="btn btn-dark ml-sm-2 mr-sm-2">
           Search
         </button>
 

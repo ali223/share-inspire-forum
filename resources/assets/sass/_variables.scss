@@ -8,5 +8,9 @@ $theme-colors: (
 );
 
 $navbar-brand-padding-y: 0;
+$navbar-dark-color: rgba($custom-secondary-color, .5);
+$navbar-dark-hover-color: $custom-secondary-color;
+$navbar-dark-active-color: $custom-secondary-color;
+$navbar-dark-disabled-color: rgba($custom-secondary-color, .25);
 
 $card-cap-bg: $custom-secondary-color;

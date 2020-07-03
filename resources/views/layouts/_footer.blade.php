@@ -1,9 +1,6 @@
   <footer>
     @include('cookieConsent::index')
-
-    <div class="container">
-      ShareInspire Form
-    </div>
+    <p>ShareInspire Forum</p>
   </footer>
   <script src="{{ mix('/js/app.js') }} "></script>
     @yield('scripts')

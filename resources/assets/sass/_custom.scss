@@ -4,27 +4,26 @@
 .navbar-brand {
 	font-family: 'Dancing Script', Arial, sans-serif;
 	font-size: 50px;
-	text-shadow: 4px 4px 4px #333;	
+	text-shadow: 4px 4px 4px #333;
 }
 
 .showcase {
 	background: url(../images/shareinspire4.jpeg) no-repeat 0 -150px;
 	height: 650px;
 	padding: 20px 0px;
+	color: $custom-secondary-color;
 
 	h1 {
 		font-family: 'Great Vibes', Arial, sans-serif;
 		font-size: 60px;
 		text-align: center;
 		margin-top: 10px;
-		color: #ddd;
 		text-shadow: 4px 4px 4px #111;
 	}
 
 	p {
 		font-style: italic;
 		font-weight: bold;
-		color: #ddd;
 		margin-left: 5px;
 	}
 
@@ -39,10 +38,11 @@
 }
 
 footer {
-	background-color: $main-color;
-	color: #fff;
+	background-color: theme-color("dark");
+	color: $custom-secondary-color;
 	padding: 20px 0;
 	text-align: center;
+	font-weight: bold;
 }
 
 #header {
@@ -102,4 +102,8 @@ div.category-card {
 
 .btn-custom {
 	color: $custom-secondary-color;
+}
+
+.btn-dark {
+	color: $custom-secondary-color;	
 }
