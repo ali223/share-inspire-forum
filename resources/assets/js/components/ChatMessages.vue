@@ -1,13 +1,13 @@
 <template>
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-9">
       <chat-messages-list :messages="messages">
       </chat-messages-list>
 
       <chat-message-sender @send="sendMessage">
       </chat-message-sender>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
       <chat-online-users-list :users="onlineUsers">
       </chat-online-users-list>
     </div>

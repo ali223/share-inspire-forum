@@ -7,13 +7,15 @@
       <div class="messages" ref="messages">
         <ul>
           <li v-for="message in messages" :key="message.id">
-            <p class="message-content">
-              <strong>{{ message.user.name }} : </strong>
-              {{ message.text }}
-              <span class="message-time">
+            <div :class="[isMessageByCurrentUser(message) ? 'current-user-message-container' : 'other-user-message-container']">
+              <p class="message-content">
+                {{ message.text }}
+              </p>
+              <div class="message-sender">
+                <strong>{{ getUserName(message) }}</strong>
                 {{ formattedCreatedAt(message) }}
-              </span>
-            </p>
+              </div>
+            </div>
           </li>
         </ul>
       </div>
@@ -40,7 +42,7 @@ export default {
   updated() {
     this.scrollMessagesDivToBottom();
   },
-  
+
   methods: {
     formattedCreatedAt(message) {
       let distanceToNow = formatDistanceToNowStrict(
@@ -52,6 +54,14 @@ export default {
 
     scrollMessagesDivToBottom() {
       this.$refs.messages.scrollTop = this.$refs.messages.scrollHeight;
+    },
+
+    isMessageByCurrentUser(message) {
+      return message.user.id === window.App.user.id;
+    },
+
+    getUserName(message) {
+      return this.isMessageByCurrentUser(message) ? 'You' : message.user.name;
     }
   }
 }
@@ -68,8 +78,35 @@ div.messages ul {
   list-style-type: none;
 }
 
-span.message-time {
-  float: right;
+div.other-user-message-container {
+  max-width: 50%;
+  margin-top: 20px;
+}
+
+p.message-content {
+  background: #eee;
+  padding: 15px 10px;
+  border-radius: 10px;
+  margin-bottom: 0px;
+}
+
+div.message-sender {
   color: #999;
+  margin-top: 0px;
+  font-size: 0.85em;
+}
+
+div.current-user-message-container {
+  max-width: 50%;
+  margin-top: 20px;
+  margin-left: auto;
+}
+
+div.current-user-message-container > p.message-content {
+  background: #ccccff;
+}
+
+div.current-user-message-container > div.message-sender {
+  text-align: right;
 }
 </style>
