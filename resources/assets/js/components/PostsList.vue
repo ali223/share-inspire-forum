@@ -5,7 +5,7 @@
       :key="post.id"
       :ref="'#post' + post.id"
     >
-      <post-list-item
+      <posts-list-item
         :initial-post="post"
         @remove="deletePost"
         @update="updatePost"
@@ -15,7 +15,7 @@
           @like="likePost"
           @unlike="unlikePost"
         />
-      </post-list-item>
+      </posts-list-item>
     </div>
     <post-creator @add="addPost" />
     <loading :active.sync="isLoading" />
@@ -24,14 +24,14 @@
 
 <script>
 import PostCreator from './PostCreator.vue';
-import PostListItem from './PostListItem.vue';
+import PostsListItem from './PostsListItem.vue';
 import PostLikes from './PostLikes';
 import Loading from 'vue-loading-overlay';
 
 export default {
   components: {
     PostCreator,
-    PostListItem,
+    PostsListItem,
     PostLikes,
     Loading
   },
