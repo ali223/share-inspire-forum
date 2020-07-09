@@ -41,7 +41,7 @@
             <div class="form-group">
               <a href="{{ route('social-logins.redirect-to-provider', 'github') }}" class="btn btn-custom form-control">
                 Sign In with GitHub
-                <img src="{{ asset('images/github-icon.png') }}" width="20">
+                <i class="fa fa-lg fa-github"></i>
               </a>              
             </div>
           </form>
