@@ -13,7 +13,8 @@ use Socialite;
 class SocialLoginsController extends Controller
 {
     const VALID_OAUTH_PROVIDERS = [
-        'github'
+        'github',
+        'google',
     ];
 
     public function redirectToProvider($provider)

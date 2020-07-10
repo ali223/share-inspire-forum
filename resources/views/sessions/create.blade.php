@@ -42,7 +42,14 @@
               <a href="{{ route('social-logins.redirect-to-provider', 'github') }}" class="btn btn-custom form-control">
                 Sign In with GitHub
                 <i class="fa fa-lg fa-github"></i>
-              </a>              
+              </a>
+            </div>
+
+            <div class="form-group">
+              <a href="{{ route('social-logins.redirect-to-provider', 'google') }}" class="btn btn-custom form-control">
+                Sign In with Google
+                <i class="fa fa-lg fa-google"></i>
+              </a>
             </div>
           </form>
         </div>
